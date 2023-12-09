@@ -9,58 +9,41 @@ h1 {
   font-size: 24px;
 }
 
-.navbar {
-  color: #333;
-  text-decoration: none;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-ul.sidenav {
+ul.topnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  overflow: hidden;
   background-color: #333;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
 }
 
-ul.sidenav li a {
+ul.topnav li {
+  float: left;
+}
+
+ul.topnav li a {
   display: block;
-  color: #fff;
-  padding: 8px 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
 }
 
-ul.sidenav li a.active {
-  background-color: #4CAF50;
-  color: white;
+ul.topnav li a:hover:not(.active) {
+  background-color: #111;
 }
 
-ul.sidenav li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+ul.topnav li a.active {
+  background-color: #54d374;
 }
 
-@media screen and (max-width: 900px) {
-  ul.sidenav {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  ul.sidenav li a {
-    float: left;
-    padding: 15px;
-  }
-  div.content {
-    margin-left: 0;
-  }
+ul.topnav li.right {
+  float: right;
 }
-@media screen and (max-width: 400px) {
-  ul.sidenav li a {
-    text-align: center;
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right,
+  ul topnav li {
     float: none;
   }
 }
