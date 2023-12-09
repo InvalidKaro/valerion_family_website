@@ -1,0 +1,24 @@
+body {
+  font-family: Kalnia;
+  background-color: #f8f8f8;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.navbar {
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.browsehappy {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}/*# sourceMappingURL=index.css.map */
