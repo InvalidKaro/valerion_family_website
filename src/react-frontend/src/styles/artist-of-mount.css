@@ -1,0 +1,54 @@
+.aOfM {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.aOfM p {
+  font-size: var(--size-2xl);
+}
+
+.line-holder {
+  position: inherit;
+  height: 50vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.vertical-line {
+  width: 1.5px;
+  background-color: black;
+  height: var(--size-4xl);
+}
+.aOfM__sec {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.aOfM__box {
+  border: 1px solid black;
+  padding: 8em;
+}
+
+.aOfM__sec img {
+  z-index: 1;
+  width: 20em;
+  height: auto;
+}
+
+.price {
+  position: relative;
+  font-weight: 700;
+  top: -2em;
+  left: 5em;
+  z-index: 2;
+  font-size: var(--size-3xl);
+  background-color: rgb(87, 215, 84);
+  color: rgb(19, 113, 19);
+  padding: 0.2em 0.5em;
+  border-radius: 10px;
+}

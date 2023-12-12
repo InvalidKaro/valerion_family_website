@@ -8,4 +8,20 @@
   align-items: center;
   margin-top: 3.5rem;
   padding: 0.85rem;
+  gap: 2em;
+}
+
+.hero h1 {
+  font-size: var(--size-7xl);
+  line-height: 1em;
+}
+
+.hero p {
+  font-size: var(--size-2xl);
+}
+
+.hero__motto {
+  font-size: var(--size-md);
+  font-weight: 300;
+  margin-top: -1.5em;
 }
