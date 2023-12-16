@@ -10,7 +10,7 @@
   padding: 0.85rem;
   gap: 2em;
 
-  background-color: gray;
+  background-color: rgba(129, 128, 128, 0.1);
 }
 
 .hero h1 {

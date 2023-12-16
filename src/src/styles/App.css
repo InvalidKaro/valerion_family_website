@@ -2,10 +2,9 @@
 
 :root {
   /*color variables: */
-  --clr-bg: #e5e5e5;
-  --clr-txt: black;
-  --clr-prim: #1a1aff;
-  /*--clr-hover: ;*/
+  --clr-bg: #1a1a1a;
+  --clr-txt: white;
+  --clr-prim: #e5e5e5;
 
   /*sizes*/
   --size-xxs: 0.5rem;
@@ -30,6 +29,7 @@
   padding: 0;
   margin: 0;
   background-color: var(--clr-bg);
+  color: var(--clr-txt);
   z-index: 1;
   font-family: "League Spartan", sans-serif;
   font-weight: 500;
@@ -60,15 +60,15 @@ button {
   color: var(--clr-bg);
   padding: 0.5em 1em;
   border-radius: 6px;
-  box-shadow: 0 10px 20px rgba(26, 26, 255, 0.5),
-    0 6px 6px rgba(26, 26, 255, 0.5), 0 0 100px -10px var(--clr-prim);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5),
+    0 6px 6px rgba(255, 255, 255, 0.5), 0 0 100px -10px var(--clr-prim);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(26, 26, 255, 0.25),
-    0 10px 10px rgba(26, 26, 255, 0.22), 0 0 120px -10px var(--clr-prim);
+  box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25),
+    0 10px 10px rgba(255, 255, 255, 0.22), 0 0 120px -10px var(--clr-prim);
 }
 
 .container {
@@ -80,5 +80,5 @@ button {
 }
 
 section {
-  margin-top: 10rem;
+  margin-top: 6.5rem;
 }
