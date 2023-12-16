@@ -9,6 +9,8 @@
   margin-top: 3.5rem;
   padding: 0.85rem;
   gap: 2em;
+
+  background-color: gray;
 }
 
 .hero h1 {

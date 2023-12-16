@@ -7,16 +7,23 @@ const AofM = () => {
     return ( 
         <section class="container aOfM">
             <div class="aOfM__sec">
-            <p>Art of the mount</p>
-            <img src = {art_of_mount_img}></img>
-            <div class="price">{price}$</div>
-            </div>
-            <div class="line-holder"><div class="vertical-line"></div></div>
-            
-            <div class="aOfM__sec">
-            <p>Artist of mount</p>
-            <img src = {artist_of_mount_img}></img>
-            <div class="price">{price}$</div>
+             <div class="aOfM__header">
+                 <p>Art of the mount</p>
+                <div class="vertical-line"></div>
+                   <p>Artist of mount</p>
+             </div>
+             <div class="aofM__imgs">
+                <div class="img__box">
+                    <img src = {art_of_mount_img}></img>
+                    <div class="price">{price}$</div> 
+                </div>
+                <div class="img__box">
+
+                <img src = {artist_of_mount_img}></img>
+                <div class="price">{price}$</div> 
+                </div>
+             </div>
+
             </div>
         </section>
     );
