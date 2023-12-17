@@ -1,16 +1,12 @@
-.reviews {
-  display: flex;
-  width: 85vw;
-  padding: 1em;
-  align-items: flex-start;
-  justify-content: center;
-  height: 25rem;
+.reviews-container {
+  height: 27em;
+  width: auto;
+  padding: 1em 8em;
 }
 
 .review__card {
-  width: 18em;
   height: 20em;
-  padding: 1.5em;
+  padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,3 +63,26 @@
   /* Background position for an empty star */
   background-position: -40px 0; /* Adjust empty star position */
 }
+
+/* .swiper {
+  width: 100%;
+  height: 100%;
+} */
+/* 
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+/* .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
