@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  height: 27rem;
+  height: 37rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,7 @@
   margin-top: 3.5rem;
   padding: 0.85rem;
   gap: 2em;
+  /* margin-bottom: -5em; */
 
   background-color: rgba(129, 128, 128, 0.1);
 }
@@ -29,4 +30,15 @@
   background-color: rgba(255, 255, 255, 0);
   font-weight: 300;
   margin-top: -1.5em;
+}
+
+.wave {
+  background-color: rgba(255, 255, 255, 0);
+  bottom: 0%;
+}
+
+.wave svg {
+  width: 120%;
+  transform: scaleY(0.5);
+  background-color: rgba(129, 128, 128, 0);
 }

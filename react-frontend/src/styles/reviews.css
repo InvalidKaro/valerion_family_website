@@ -28,7 +28,6 @@
   width: 100%;
   gap: 1em;
   background-color: rgba(255, 255, 255, 0);
-  
 }
 
 .review__card span {
@@ -79,25 +78,9 @@
   background-position: -40px 0; /* Adjust empty star position */
 }
 
-/* .swiper {
+.wave {
+  height: 200px;
+  z-index: 2;
+  margin-top: -6rem;
   width: 100%;
-  height: 100%;
-} */
-/* 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-/* .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
+}

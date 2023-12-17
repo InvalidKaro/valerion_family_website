@@ -33,7 +33,6 @@ header {
   cursor: pointer;
   width: var(--size-5xl);
   height: var(--size-5xl);
-
 }
 
 .header__user__icon {
@@ -43,7 +42,6 @@ header {
 .header__rsection {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 3em;
   margin-left: -3em;
 }
