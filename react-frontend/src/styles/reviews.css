@@ -1,0 +1,86 @@
+.reviews-container {
+  height: 16em;
+  width: auto;
+  padding: 1em 8em;
+  margin-top: -3em;
+}
+
+.review__card {
+  position: relative;
+  height: 90%;
+  gap: 0.6em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+
+  box-shadow: 5px 5px 10px 2px rgba(255, 255, 255, 0.2);
+}
+
+.card_top_section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1em;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.review__card span {
+  font-size: var(--size-3xl);
+}
+
+.card__img {
+  width: 3.5em;
+  width: 3.5em;
+  border-radius: 100px;
+}
+
+.card__username {
+  font-size: var(--size-3xl);
+  font-weight: 600;
+}
+
+.card__review {
+  text-align: center;
+  line-height: 1.4em;
+  width: 100%;
+}
+
+.rating {
+  font-size: 0; /* Remove space between inline-block elements */
+}
+
+.star {
+  display: inline-block;
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  background-image: url("../images/icons8-star-48.png"); /* Replace with your star icon */
+  background-size: cover;
+}
+
+.full {
+  /* Background position for a full star */
+  background-position: 0 0;
+}
+
+.half {
+  /* Background position for a half star */
+  background-position: -40px 0; /* Adjust half-star position */
+}
+
+.empty {
+  /* Background position for an empty star */
+  background-position: -40px 0; /* Adjust empty star position */
+}
+
+.wave {
+  height: 200px;
+  z-index: 2;
+  margin-top: -6rem;
+  width: 100%;
+}

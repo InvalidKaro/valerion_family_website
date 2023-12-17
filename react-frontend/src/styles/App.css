@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;300;400;700&display=swap");
+
+:root {
+  /*color variables: */
+  --clr-bg: #1a1a1a;
+  --clr-txt: white;
+  --clr-prim: #e5e5e5;
+
+  /*sizes*/
+  --size-xxs: 0.5rem;
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size-base: 1rem;
+  --size-lg: 1.125rem;
+  --size-xl: 1.25rem;
+  --size-2xl: 1.5rem;
+  --size-3xl: 1.875rem;
+  --size-4xl: 2.25rem;
+  --size-5xl: 3rem;
+  --size-6xl: 3.75rem;
+  --size-7xl: 4.5rem;
+  --size-8xl: 6rem;
+  --size-9xl: 8rem;
+  --size-10xl: 10rem;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: var(--clr-bg);
+  color: var(--clr-txt);
+  z-index: 1;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+li,
+a,
+button {
+  text-decoration: none;
+}
+
+button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  background-color: var(--clr-prim);
+  color: var(--clr-bg);
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5),
+    0 6px 6px rgba(255, 255, 255, 0.5), 0 0 100px -10px var(--clr-prim);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25),
+    0 10px 10px rgba(255, 255, 255, 0.22), 0 0 120px -10px var(--clr-prim);
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+section {
+  margin-top: 9rem;
+}
