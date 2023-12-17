@@ -31,8 +31,9 @@ header {
 .header__logo {
   display: block;
   cursor: pointer;
-  width: var(--size-6xl);
-  height: auto;
+  width: var(--size-5xl);
+  height: var(--size-5xl);
+
 }
 
 .header__user__icon {

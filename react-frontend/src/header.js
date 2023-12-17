@@ -1,4 +1,4 @@
-import logo from './images/valerion-logo.png';
+import logo from './images/v-arts-logo.png';
 import userLogo from './images/user.png';
 
 
