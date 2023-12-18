@@ -45,3 +45,17 @@ header {
   gap: 3em;
   margin-left: -3em;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input {
+  padding: 5px;
+}
+
+.login-form button {
+  padding: 8px;
+}
