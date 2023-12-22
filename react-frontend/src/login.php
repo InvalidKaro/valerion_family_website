@@ -2,7 +2,13 @@
 
 <?php
 // Establish a connection to your database
-$servername = "localhost";
+
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+header('Content-Type: application/json; charset=utf-8');
+
+$servername = "localhost:3306";
 $username = "root";
 $password = "b59]UY]jp9@ASDac";
 $dbname = "login";
@@ -17,15 +23,18 @@ if ($conn->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM users WHERE username = '$username'";
-$result = $conn->query($sql);
+// Use prepared statements to prevent SQL injection
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $hashedPassword = $row['password'];
+    $storedPassword = $row['password'];
 
-    // Verify the password using password_verify
-    if (password_verify($password, $hashedPassword)) {
+    // Compare the user-provided password directly with the stored password
+    if ($password === $storedPassword) {
         echo json_encode(['success' => true, 'message' => 'Login successful']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
@@ -34,5 +43,6 @@ if ($result->num_rows > 0) {
     echo json_encode(['success' => false, 'message' => 'User not found']);
 }
 
+$stmt->close();
 $conn->close();
 ?>

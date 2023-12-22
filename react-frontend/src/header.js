@@ -10,24 +10,22 @@ const Header = () => {
   const [loginMessage, setLoginMessage] = useState('');
 
   const handleBuyClick = () => {
-    // Handle the buy button click, e.g., redirect to the purchase page
     console.log('Buy button clicked');
+    // Add logic to handle the buy button click, e.g., redirect to the purchase page
   };
 
   const handleUserIconClick = () => {
-    // Toggle the visibility of the login form
     setShowLoginForm(!showLoginForm);
-    setLoginMessage(''); // Clear previous login messages when the form is opened
+    setLoginMessage('');
   };
 
   const handleLogin = () => {
-    // Send a login request to the PHP server
-    fetch('/login.php', { // Assuming login.php is in the same folder as the React app
+    fetch('http://localhost:80/login.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: `username=${username}&password=${password}`,
+      body: JSON.stringify({ username: username, password: password }),
     })
       .then(response => response.json())
       .then(data => {
@@ -35,7 +33,7 @@ const Header = () => {
           setUserLoggedIn(true);
           setShowLoginForm(false);
         } else {
-          setLoginMessage(data.message);
+          setLoginMessage('Login failed. Please check your credentials.');
         }
       })
       .catch(error => {
@@ -45,28 +43,36 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    // Mock logout function
     setUserLoggedIn(false);
+    // Add logic to handle logout, e.g., redirect to the home page
   };
 
   const handleRegister = () => {
-    // Send a register request to the PHP server
-    fetch('/register.php', { // Assuming register.php is in the same folder as the React app
+    fetch('http://localhost:80/register.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: `username=${username}&password=${password}`,
+      body: JSON.stringify({ username: username, password: password }),
     })
+          
       .then(response => response.json())
       .then(data => {
-        alert(data.message); // You can handle the registration response accordingly
+        if (data.success) {
+          setUserLoggedIn(true);
+          setShowLoginForm(false);
+          // Redirect the user or perform additional actions after successful registration
+        } else {
+          setLoginMessage('Registration failed. Please try again.');
+        }
       })
       .catch(error => {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration');
+        setLoginMessage('An error occurred during registration');
       });
   };
+
+  
 
   return (
     <header className="container header">

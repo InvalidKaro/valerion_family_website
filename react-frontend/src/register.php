@@ -1,8 +1,6 @@
-// register.php
-
 <?php
 // Establish a connection to your database
-$servername = "localhost";
+$servername = "localhost:3306";
 $username = "root";
 $password = "b59]UY]jp9@ASDac";
 $dbname = "login";
@@ -17,16 +15,19 @@ if ($conn->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
+// Use prepared statements to prevent SQL injection
+$stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+$stmt->bind_param("ss", $username, $hashedPassword);
+
 // Hash the password before storing it in the database
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashedPassword')";
-
-if ($conn->query($sql) === TRUE) {
+if ($stmt->execute()) {
     echo json_encode(['success' => true, 'message' => 'User registered successfully']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Error registering user']);
 }
 
+$stmt->close();
 $conn->close();
 ?>
