@@ -75,12 +75,17 @@ const Header = () => {
   
 
   return (
-    <header className="container header">
-      <img src={logo} alt="logo" className="header__logo" />
+    <header class="container header">
+      <img src={logo} alt="logo" class="header__logo" />
       <nav>
-        {/* ... (menu items) */}
+        <ul class="header__menu">
+          <li class="header__link"><a href="History">Our History</a></li>
+          <li class="header__link"><a href="#">Family Tree</a></li>
+          <li class="header__link"><a href="#">Supporters</a></li>
+          <li class="header__link"><a href="#">Need Help?</a></li>
+        </ul>
       </nav>
-      <div className="header__rsection">
+      <div class="header__rsection">
         <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
         <div className="header__user__section">
           {isUserLoggedIn ? (

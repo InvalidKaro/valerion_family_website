@@ -8,13 +8,14 @@ import AofM from './artist-of-mount.js';
 import './styles/artist-of-mount.css';
 import Reviews from './reviews.js';
 import './styles/reviews.css';
-
+import Home from './pages/Home.jsx';
+import History from "./pages/History.jsx"
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
-import Home from './pages/Home.jsx'
 
 
 
@@ -22,12 +23,16 @@ import Home from './pages/Home.jsx'
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <main>
-        <Hero/>
-        <Reviews/>
-        <AofM/>
-      </main>
+      <Router>
+        <Header/>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route
+                    path="/History"
+                    element={<History />}
+                />
+            </Routes>
+        </Router>
     </div>
   );
 }
