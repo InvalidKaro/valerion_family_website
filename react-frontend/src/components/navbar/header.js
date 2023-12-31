@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import logo from './images/v-arts-logo.png';
-import userLogo from './images/user.png';
+import logo from '../../images/v-arts-logo.png';
+import userLogo from '../../images/user.png';
 
 const Header = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
