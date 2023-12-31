@@ -76,13 +76,13 @@ const Header = () => {
 
   return (
     <header class="container header">
-      <img src={logo} alt="logo" class="header__logo" />
+      <a href="/"><img src={logo} alt="logo" class="header__logo"/></a>
       <nav>
         <ul class="header__menu">
           <li class="header__link"><a href="History">Our History</a></li>
-          <li class="header__link"><a href="#">Family Tree</a></li>
-          <li class="header__link"><a href="#">Supporters</a></li>
-          <li class="header__link"><a href="#">Need Help?</a></li>
+          <li class="header__link"><a href="Family">Family Tree</a></li>
+          <li class="header__link"><a href="Supporters">Supporters</a></li>
+          <li class="header__link"><a href="Help">Need Help?</a></li>
         </ul>
       </nav>
       <div class="header__rsection">

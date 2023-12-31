@@ -3,7 +3,7 @@ import '../styles/App.css';
 import { Link } from "react-router-dom";
 
 
-function Home() {
+function History() {
   return (
       <main>
         <Link to="/history">
@@ -14,4 +14,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default History;
