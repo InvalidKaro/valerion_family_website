@@ -1,14 +1,14 @@
-// login.php
-
 <?php
-// Establish a connection to your database
-
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
 
-$servername = "localhost:3306";
+$json_data = file_get_contents('php://input');
+error_log("Received JSON data: $json_data");
+$data = json_decode($json_data, true);
+
+$servername = "localhost";
 $username = "root";
 $password = "b59]UY]jp9@ASDac";
 $dbname = "login";
@@ -19,30 +19,54 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Assuming you have a 'users' table with columns 'username' and 'password'
-$username = $_POST['username'];
-$password = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($data['username']) && isset($data['password'])) {
+        $username = $data['username'];
+        $password = $data['password'];
 
-// Use prepared statements to prevent SQL injection
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $storedPassword = $row['password'];
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $storedPassword = $row['password'];
 
-    // Compare the user-provided password directly with the stored password
-    if ($password === $storedPassword) {
-        echo json_encode(['success' => true, 'message' => 'Login successful']);
+            if (password_verify($password, $storedPassword)) {
+                $response = [
+                    'success' => true,
+                    'message' => 'Login successful',
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Invalid credentials',
+                ];
+            }
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'User not found',
+            ];
+        }
+
+        $stmt->close();
     } else {
-        echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+        $response = [
+            'success' => false,
+            'message' => 'Username or password is missing',
+        ];
     }
 } else {
-    echo json_encode(['success' => false, 'message' => 'User not found']);
+    $response = [
+        'success' => false,
+        'message' => 'Invalid request method',
+    ];
 }
 
-$stmt->close();
 $conn->close();
-?>
+
+header('Content-Type: application/json');
+echo json_encode($response);
+

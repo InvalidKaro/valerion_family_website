@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import logo from './images/v-arts-logo.png';
-import userLogo from './images/user.png';
-
+import logo from '../../images/v-arts-logo.png';
+import userLogo from '../../images/user.png';
+import '../../styles/Login.css';
 const Header = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -75,12 +75,17 @@ const Header = () => {
   
 
   return (
-    <header className="container header">
-      <img src={logo} alt="logo" className="header__logo" />
+    <header class="container header">
+      <a href="/"><img src={logo} alt="logo" class="header__logo"/></a>
       <nav>
-        {/* ... (menu items) */}
+        <ul class="header__menu">
+          <li class="header__link"><a href="History">Our History</a></li>
+          <li class="header__link"><a href="Family">Family Tree</a></li>
+          <li class="header__link"><a href="Supporters">Supporters</a></li>
+          <li class="header__link"><a href="Help">Need Help?</a></li>
+        </ul>
       </nav>
-      <div className="header__rsection">
+      <div class="header__rsection">
         <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
         <div className="header__user__section">
           {isUserLoggedIn ? (
@@ -90,32 +95,13 @@ const Header = () => {
             </>
           ) : (
             <>
-              <a href="#" onClick={handleUserIconClick}>
+              <a href="Login" onClick={handleUserIconClick}>
                 <img
                   src={userLogo}
                   alt="userLogo"
                   className="header__user__icon"
                 />
               </a>
-              {showLoginForm && (
-                <div className="login-form">
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button className="btn" onClick={handleLogin}>Login</button>
-                  <button className="btn" onClick={handleRegister}>Register</button>
-                  {loginMessage && <p>{loginMessage}</p>}
-                </div>
-              )}
             </>
           )}
         </div>
