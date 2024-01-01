@@ -20,8 +20,8 @@ if ($conn->connect_error) {
 }
 
 // Assuming you have a 'users' table with columns 'username' and 'password'
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $data['username'];
+$password = $data['password'];
 
 // Use prepared statements to prevent SQL injection
 $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");

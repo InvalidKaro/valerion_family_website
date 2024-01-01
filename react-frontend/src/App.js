@@ -13,6 +13,7 @@ import History from "./pages/History.jsx"
 import Login from "./pages/Login.jsx"
 import Register from "./pages/Register.jsx"
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { UserProvider } from './UserContext';
 
 
 
@@ -31,21 +32,23 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Header setUser={setUser} />
-            <Routes>
-                <Route path="/" element={<Home username={username} loggedIn={isUserLoggedIn} setLoggedIn={setUserLoggedIn}/>} />
-                <Route
-                    path="/History"
-                    element={<History />}
-                />
-                <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} />} />
-                <Route
-                    path="/Register"
-                    element={<Register />}
-                />
-            </Routes>
-        </Router>
+      <UserProvider>
+        <Router>
+          <Header setUser={setUser} />
+              <Routes>
+                  <Route path="/" element={<Home username={username} loggedIn={isUserLoggedIn} setLoggedIn={setUserLoggedIn}/>} />
+                  <Route
+                      path="/History"
+                      element={<History />}
+                  />
+                  <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} />} />
+                  <Route
+                      path="/Register"
+                      element={<Register />}
+                  />
+              </Routes>
+          </Router>
+        </UserProvider>
     </div>
   );
 }

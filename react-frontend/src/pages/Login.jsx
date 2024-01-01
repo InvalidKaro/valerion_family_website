@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import logo from './../images/v-arts-logo.png';
 import userLogo from './../images/user.png';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext';
+import { useAuth } from './auth';
+
 
 const Login = () => {
-    const navigate = useNavigate();
-    const [isUserLoggedIn, setUserLoggedIn] = useState(false);
-    const [showLoginForm, setShowLoginForm] = useState(false);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginMessage, setLoginMessage] = useState('');
-  
+
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginMessage, setLoginMessage] = useState('');
+
+  const { loginUser, setUserLoggedIn, navigate } = useAuth();
+  const { loginUser: contextLoginUser } = useUser();
+
+
+
     const handleBuyClick = () => {
       console.log('Buy button clicked');
       // Add logic to handle the buy button click, e.g., redirect to the purchase page
@@ -30,13 +37,12 @@ const Login = () => {
         },
         body: JSON.stringify({ username: username, password: password }),
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           if (data.success) {
+            loginUser({ username: username });
             
-            navigate('/');
-            setUserLoggedIn(true);
-            document.cookie = "isUserLoggedIn=true; path=/";
+            
           } else {
             setLoginMessage('Login failed. Please check your credentials.');
           }
