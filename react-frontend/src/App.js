@@ -43,7 +43,7 @@ function App() {
                   />
                   <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} />} />
                   <Route
-                      path="/Register"
+                      path="/Signup"
                       element={<Register />}
                   />
               </Routes>
