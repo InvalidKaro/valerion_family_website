@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const UserContext = createContext();
-
 /**
  * Generates a function comment for the given function body.
  *
@@ -11,7 +10,6 @@ const UserContext = createContext();
  */
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
   useEffect(() => { 
     /* 
     Check localStorage on component mount (page load)
@@ -58,6 +56,7 @@ export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
     throw new Error('useUser must be used within a UserProvider');
-  }
+  }console.log(context)
   return context;
+  
 };

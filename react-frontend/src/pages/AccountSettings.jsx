@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useUser } from '../UserContext';
 import { useAuth } from './auth';
+import '../styles/settings.css';
 
 const AccountSettings = () => {
   const { user } = useUser();
@@ -43,7 +44,7 @@ const AccountSettings = () => {
   }
 
   return (
-    <div>
+    <div className='acc-set'>
       <h2>Account Settings</h2>
       <p>Hello, {user.username}!</p>
 
