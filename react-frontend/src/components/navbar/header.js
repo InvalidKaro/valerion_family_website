@@ -102,25 +102,6 @@ const Header = () => {
                   className="header__user__icon"
                 />
               </a>
-              {showLoginForm && (
-                <div className="login-form">
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button className="btn" onClick={handleLogin}>Login</button>
-                  <button className="btn" onClick={handleRegister}>Register</button>
-                  {loginMessage && <p>{loginMessage}</p>}
-                </div>
-              )}
             </>
           )}
         </div>
