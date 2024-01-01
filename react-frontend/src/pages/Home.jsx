@@ -8,14 +8,18 @@ import Reviews from '../reviews.js';
 import '../styles/reviews.css';
 import { Link } from "react-router-dom";
 
-function Home() {
+function Home({ user }) {
   return (
     <div className="App">
       <main>
-        <Link to="/history">
-          <h1>History</h1>
-        </Link>
-        <Hero/>
+      <Hero/>
+        {user && (
+            <div>
+              <h1>Welcome, {user.username}!</h1>
+              {/* Add more user information if needed */}
+            </div>
+          )}
+        
         <Reviews/>
         <AofM/>
       </main>

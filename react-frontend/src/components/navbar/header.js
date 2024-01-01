@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../images/v-arts-logo.png';
 import userLogo from '../../images/user.png';
-
+import '../../styles/Login.css';
 const Header = () => {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -95,7 +95,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <a href="#" onClick={handleUserIconClick}>
+              <a href="Login" onClick={handleUserIconClick}>
                 <img
                   src={userLogo}
                   alt="userLogo"

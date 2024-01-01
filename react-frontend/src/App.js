@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/navbar/header.js';
 import './styles/header.css';
@@ -10,26 +10,39 @@ import Reviews from './reviews.js';
 import './styles/reviews.css';
 import Home from './pages/Home.jsx';
 import History from "./pages/History.jsx"
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+import Login from "./pages/Login.jsx"
+import Register from "./pages/Register.jsx"
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+
 
 
 
 
 function App() {
+  const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [user, setUser] = useState(null); // Add user state
+
+
+  // Check for user login status when the app starts
+  useEffect(() => {
+    const isUserLoggedIn = document.cookie.includes('isUserLoggedIn=true');
+  });
+
   return (
     <div className="App">
       <Router>
-        <Header/>
+        <Header setUser={setUser} />
             <Routes>
-                <Route exact path="/" element={<Home />} />
+                <Route path="/" element={<Home username={username} loggedIn={isUserLoggedIn} setLoggedIn={setUserLoggedIn}/>} />
                 <Route
                     path="/History"
                     element={<History />}
+                />
+                <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} />} />
+                <Route
+                    path="/Register"
+                    element={<Register />}
                 />
             </Routes>
         </Router>

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import logo from './../images/v-arts-logo.png';
 import userLogo from './../images/user.png';
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const navigate = useNavigate();
+const Header = () => {
     const [isUserLoggedIn, setUserLoggedIn] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [username, setUsername] = useState('');
@@ -21,8 +19,7 @@ const Login = () => {
       setLoginMessage('');
     };
   
-    const handleLogin = (e) => {
-      e.preventDefault();
+    const handleLogin = () => {
       fetch('http://localhost:80/login.php', {
         method: 'POST',
         headers: {
@@ -33,10 +30,8 @@ const Login = () => {
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            
-            navigate('/');
             setUserLoggedIn(true);
-            document.cookie = "isUserLoggedIn=true; path=/";
+            setShowLoginForm(false);
           } else {
             setLoginMessage('Login failed. Please check your credentials.');
           }
@@ -104,30 +99,17 @@ const Login = () => {
                 </a>
                 
                 <div className="login-form">
-                    <form onSubmit={handleLogin}>
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button type="submit" className="btn" onClick={handleLogin}>Login</button>
-                        <button className="btn" onClick={handleRegister}>Register</button>
-                    </form>
-
-                </div>
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis mattis venenatis. Donec sollicitudin est iaculis dapibus mattis. Morbi felis nibh, rhoncus eu lectus in, faucibus congue diam. Phasellus a erat et augue accumsan lacinia eu ac nulla. Phasellus commodo, felis nec aliquam blandit, erat lorem finibus odio, non tempus nisl risus vitae nunc. Ut vulputate quam ut vulputate lobortis. Phasellus elit ante, pharetra id gravida ut, pellentesque id justo. Aliquam sit amet eleifend lectus. In ac tellus porttitor, venenatis urna vitae, sollicitudin leo. Nunc dictum nulla vel molestie tempus. Donec fermentum nibh sit amet ex vulputate sagittis. Sed rhoncus molestie eros at consectetur. Nulla quis maximus mi, ac imperdiet metus.</h2>
+                    <button className="btn" onClick={handleLogin}>Register</button>
+                    {loginMessage && <p>{loginMessage}</p>}
+                    Already have an account? <a href="Login"><u>Log in here</u></a>
                     
+                </div>
                
           </div>
     </main>
     );
   };
   
-  export default Login;
+  export default Header;
   
