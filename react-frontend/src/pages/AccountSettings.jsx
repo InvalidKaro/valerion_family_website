@@ -4,6 +4,8 @@ import { useUser } from '../UserContext';
 import { useAuth } from './auth';
 import '../styles/settings.css';
 
+
+//Maybe make this components
 const AccountSettings = () => {
   const { user } = useUser();
   const { changePassword } = useAuth();
@@ -12,36 +14,64 @@ const AccountSettings = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleChangePassword = async (e) => {
-    e.preventDefault();
-
+  const handleChangePassword = async ({ currentPassword, newPassword, confirmPassword }) => {
     // Add logic to check if currentPassword is correct
-    // and if newPassword matches confirmPassword
+    // You need to replace 'checkCurrentPasswordApi' with the actual API endpoint to verify the current password
+    try {
+      const response = await fetch('http://localhost:80/CheckPassword.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: user.username, password: currentPassword }),
+      });
+  
+      const data = await response.json();
+  
+      if (!data.success) {
+        setMessage('Current password is incorrect.');
+        return;
+      }
+    } catch (error) {
+      console.error('Error checking current password:', error);
+      setMessage('An error occurred while checking the current password.');
+      return;
+    }
+  
+    // Check if newPassword matches confirmPassword
     if (newPassword !== confirmPassword) {
       setMessage('New password and confirm password do not match.');
       return;
     }
-
+  
     // Assuming you have an API endpoint to change the password
     try {
       // Call the API to change the password
-      await changePassword({
-        username: user.username,
-        currentPassword,
-        newPassword,
+      const changePasswordResponse = await fetch('http://localhost:80/login.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user.username,
+          password: currentPassword,
+          newPassword,
+        }),
       });
-
-      setMessage('Password changed successfully!');
+  
+      const changePasswordData = await changePasswordResponse.json();
+  
+      if (changePasswordData.success) {
+        setMessage('Password changed successfully!');
+      } else {
+        setMessage('Failed to change password. Please try again.');
+      }
     } catch (error) {
       console.error('Error changing password:', error);
       setMessage('An error occurred while changing the password.');
     }
   };
-
-  // If user is not present, display a loading or login prompt
-  if (!user) {
-    return <p>Loading...</p>; // or render a login prompt
-  }
+  
 
   return (
     <div className='acc-set'>
