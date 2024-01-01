@@ -3,6 +3,12 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const UserContext = createContext();
 
+/**
+ * Generates a function comment for the given function body.
+ *
+ * @param {Object} children - The children elements.
+ * @return {JSX.Element} - The JSX element.
+ */
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
@@ -14,12 +20,18 @@ export const UserProvider = ({ children }) => {
     }
   }, []);
 
+    /**
+   * Sets the user data and saves it to localStorage for persistence.
+   *
+   * @param {Object} userData - The user data to be set.
+   */
   const loginUser = (userData) => {
     setUser(userData);
     // Save to localStorage for persistence
     localStorage.setItem('user', JSON.stringify(userData));
   };
 
+  // Logs out the current user by removing their information from the local storage.
   const logoutUser = () => {
     setUser(null);
     // Remove user from localStorage
@@ -33,6 +45,12 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+/**
+ * Returns the user context from the UserContext.
+ *
+ * @return {Object} The user context.
+ * @throws {Error} Throws an error if used outside of a UserProvider.
+ */
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
