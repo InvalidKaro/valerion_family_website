@@ -20,42 +20,72 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($data['username']) && isset($data['password'])) {
+    if (isset($data['username'])) {
         $username = $data['username'];
-        $password = $data['password'];
 
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        if (isset($data['password'])) {
+            // For login, verify the password
+            $password = $data['password'];
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $storedPassword = $row['password'];
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            if (password_verify($password, $storedPassword)) {
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $storedPassword = $row['password'];
+
+                if (password_verify($password, $storedPassword)) {
+                    $response = [
+                        'success' => true,
+                        'message' => 'Login successful',
+                    ];
+                } else {
+                    $response = [
+                        'success' => false,
+                        'message' => 'Invalid credentials',
+                    ];
+                }
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'User not found',
+                ];
+            }
+
+            $stmt->close();
+        } elseif (isset($data['newPassword'])) {
+            // For password change, update the password
+            $newPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
+
+            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+            $stmt->bind_param("ss", $newPassword, $username);
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
                 $response = [
                     'success' => true,
-                    'message' => 'Login successful',
+                    'message' => 'Password changed successfully',
                 ];
             } else {
                 $response = [
                     'success' => false,
-                    'message' => 'Invalid credentials',
+                    'message' => 'Failed to change password',
                 ];
             }
+
+            $stmt->close();
         } else {
             $response = [
                 'success' => false,
-                'message' => 'User not found',
+                'message' => 'Invalid request: Missing password or newPassword',
             ];
         }
-
-        $stmt->close();
     } else {
         $response = [
             'success' => false,
-            'message' => 'Username or password is missing',
+            'message' => 'Invalid request: Missing username',
         ];
     }
 } else {
@@ -69,4 +99,4 @@ $conn->close();
 
 header('Content-Type: application/json');
 echo json_encode($response);
-
+?>
