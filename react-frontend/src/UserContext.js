@@ -12,8 +12,11 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Check localStorage on component mount (page load)
+  useEffect(() => { 
+    /* 
+    Check localStorage on component mount (page load)
+    and setting the user state if there is a stored user value.
+    */
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
