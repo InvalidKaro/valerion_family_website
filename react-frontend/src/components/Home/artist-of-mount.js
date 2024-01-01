@@ -1,5 +1,5 @@
-import art_of_mount_img from './images/artOfMount.jpg'
-import artist_of_mount_img from './images/artistOfMount.jpg'
+import art_of_mount_img from '../../images/artOfMount.jpg'
+import artist_of_mount_img from '../../images/artistOfMount.jpg'
 
 const price = 50;
 

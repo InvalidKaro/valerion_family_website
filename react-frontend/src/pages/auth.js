@@ -12,12 +12,20 @@ export const useAuth = () => {
   const memoizedContextLoginUser = useCallback(contextLoginUser, []);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      memoizedContextLoginUser(JSON.parse(storedUser));
-      setIsLoggedIn(true);
+    try {
+      const storedUser = localStorage.getItem('user');
+      console.log('Stored User:', storedUser);
+  
+      if (storedUser) {
+        memoizedContextLoginUser(JSON.parse(storedUser));
+        setIsLoggedIn(true);
+        console.log('User Logged In:', JSON.parse(storedUser));
+      }
+    } catch (error) {
+      console.error('Error parsing stored user data:', error);
     }
   }, [memoizedContextLoginUser]);
+  
 
   const saveUsernameInContext = (username) => {
     memoizedContextLoginUser({ username });

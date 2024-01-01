@@ -1,10 +1,10 @@
 import React from 'react';
 import '../styles/App.css';
-import Hero from '../hero.js';
+import Hero from '../components/Home/hero.js';
 import '../styles/hero.css';
-import AofM from '../artist-of-mount.js';
+import AofM from '../components/Home/artist-of-mount.js';
 import '../styles/artist-of-mount.css';
-import Reviews from '../reviews.js';
+import Reviews from '../components/Home/reviews.js';
 import '../styles/reviews.css';
 import { useUser } from '../UserContext';
 import { useAuth } from './auth';

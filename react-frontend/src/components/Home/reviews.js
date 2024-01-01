@@ -1,4 +1,4 @@
-import review_profile_img from './images/artOfMount.jpg'
+import review_profile_img from '../../images/artOfMount.jpg'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
