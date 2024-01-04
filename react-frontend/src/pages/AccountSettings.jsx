@@ -1,115 +1,126 @@
-// AccountSettings.js
 import React, { useState } from 'react';
 import { useUser } from '../UserContext';
-import { useAuth } from './auth';
 import '../styles/settings.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-
-//Maybe make this components
 const AccountSettings = () => {
   const { user } = useUser();
-  const { changePassword } = useAuth();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [message, setMessage] = useState('');
-
-  const handleChangePassword = async ({ currentPassword, newPassword, confirmPassword }) => {
-    // Add logic to check if currentPassword is correct
-    // You need to replace 'checkCurrentPasswordApi' with the actual API endpoint to verify the current password
-    try {
-      const response = await fetch('http://localhost:80/CheckPassword.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: user.username, password: currentPassword }),
-      });
-  
-      const data = await response.json();
-  
-      if (!data.success) {
-        setMessage('Current password is incorrect.');
-        return;
-      }
-    } catch (error) {
-      console.error('Error checking current password:', error);
-      setMessage('An error occurred while checking the current password.');
-      return;
-    }
-  
-    // Check if newPassword matches confirmPassword
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    
+    /* 
+    check if currentPassword is correct
+    and if newPassword matches confirmPassword
+    */
+   
     if (newPassword !== confirmPassword) {
       setMessage('New password and confirm password do not match.');
       return;
     }
   
-    // Assuming you have an API endpoint to change the password
+    
+    const url = 'http://localhost:80/changePassword.php'; 
     try {
       // Call the API to change the password
-      const changePasswordResponse = await fetch('http://localhost:80/login.php', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: user.username,
-          password: currentPassword,
+          currentPassword,
           newPassword,
         }),
       });
   
-      const changePasswordData = await changePasswordResponse.json();
+      const data = await response.json();
   
-      if (changePasswordData.success) {
-        setMessage('Password changed successfully!');
+      if (response.ok) {
+        setMessage(data.message);
       } else {
-        setMessage('Failed to change password. Please try again.');
+        setMessage('An error occurred while changing the password.');
       }
     } catch (error) {
       console.error('Error changing password:', error);
       setMessage('An error occurred while changing the password.');
     }
   };
-  
 
-  return (
+  if (!user) {
+    return <p>Loading...</p>; // or render a login prompt
+  }
+  return(
     <div className='acc-set'>
-      <h2>Account Settings</h2>
-      <p>Hello, {user.username}!</p>
+    <h2>Account Settings</h2>
+    <p>Hello, {user.username}!</p>
 
-      <form onSubmit={handleChangePassword}>
-        <label>
-          Current Password:
+    <form onSubmit={handleChangePassword}>
+      <label>
+        Current Password:
+        <div className="password-input-container">
           <input
-            type="password"
+            type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             required
           />
-        </label>
-        <label>
-          New Password:
+          {/* Change the fa-eye-slash if needed */}
+          
+          <i
+            className={`password-toggle fas ${
+              showCurrentPassword ? "fa-eye-slash" : "fa-eye"
+            }`}
+            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+          ></i>
+        </div>
+      </label>
+      <label>
+        New Password:
+        <div className="password-input-container">
           <input
-            type="password"
+            type={showNewPassword ? "text" : "password"}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Confirm Password:
+          <i
+            className={`password-toggle fas ${
+              showNewPassword ? "fa-eye-slash" : "fa-eye"
+            }`}
+            onClick={() => setShowNewPassword(!showNewPassword)}
+          ></i>
+        </div>
+      </label>
+      <label>
+        Confirm Password:
+        <div className="password-input-container">
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Change Password</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+          <i
+            className={`password-toggle fas ${
+              showConfirmPassword ? "fa-eye-slash" : "fa-eye" 
+            }`}
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          ></i>
+        </div>
+      </label>
+      <br></br>
+      <button type="submit">Change Password</button>
+    </form>
+    {message && <p>{message}</p>} {/* This returns an error message if any */}
+  </div>
   );
 };
 
