@@ -80,6 +80,56 @@ const AccountSettings = () => {
     }
   };
 
+
+  const handleProfilePictureUpload = async (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+
+    // Check if a file was selected
+    if (!file) {
+      setMessage('Please select a profile picture to upload.');
+      return;
+    }
+
+    // Check if the file type is supported (gif, png, or jpg)
+    const allowedFileTypes = ['image/gif', 'image/png', 'image/jpeg'];
+    if (!allowedFileTypes.includes(file.type)) {
+      setMessage('Invalid file type. Please select a GIF, PNG, or JPEG image.');
+      return;
+    }
+
+    // Set the URL of the API endpoint
+    const url = 'http://localhost:80/uploadProfilePicture.php';
+
+    try {
+      // Create a FormData object to send the file
+      const formData = new FormData();
+      formData.append('username', user.username);
+      formData.append('profilePicture', file);
+
+      // Call the API to upload the profile picture
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      });
+
+      // Parse the response as JSON
+      const data = await response.json();
+
+      // Check if the response is successful
+      if (response.ok) {
+        // Set the message based on the response data
+        setMessage(data.message);
+      } else {
+        // Set a generic error message if the response is not successful
+        setMessage('An error occurred while uploading the profile picture.');
+      }
+    } catch (error) {
+      // Log and display an error message if an exception occurs during the API call
+      console.error('Error uploading profile picture:', error);
+      setMessage('An error occurred while uploading the profile picture.');
+    }
+  };
   if (!user) {
     return <p>Loading...</p>; // or render a login prompt
   }
@@ -87,6 +137,23 @@ const AccountSettings = () => {
     <div className='acc-set'>
     <h2>Account Settings</h2>
     <p>Hello, {user.username}!</p>
+
+
+    {/* Display current profile picture */}
+    {user.profilePicture && (
+        <div className="current-profile-picture">
+          {user.profilePicture.fileType === 'gif' ? (
+            <img src={user.profilePicture.url} alt="Profile Picture" />
+          ) : (
+            // eslint-disable-next-line jsx-a11y/img-redundant-alt
+            <img
+              src={user.profilePicture.url}
+              alt="Profile Picture"
+              style={{ maxWidth: '100%' }}
+            />
+          )}
+        </div>
+      )}
 
     <form onSubmit={handleChangePassword}>
       <label>
@@ -146,6 +213,20 @@ const AccountSettings = () => {
       <button type="submit">Change Password</button>
     </form>
     {message && <p>{message}</p>} {/* This returns an error message if any */}
+
+     {/* Upload profile picture */}
+     <form onSubmit={handleProfilePictureUpload}>
+        <label>
+          Select Profile Picture:
+          <input
+            type="file"
+            accept="image/gif, image/png, image/jpeg"
+            onChange={handleProfilePictureUpload}
+          />
+        </label>
+        <button type="submit">Upload</button>
+      </form>
+
   </div>
   );
 };
