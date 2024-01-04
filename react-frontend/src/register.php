@@ -31,7 +31,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Use prepared statements to prevent SQL injection
 $stmt = $conn->prepare("INSERT INTO users (mail, username, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $mail, $username, $hashedPassword);
+$stmt->bind_param("sss", $username, $hashedPassword, $mail);
 
 $response = []; // Initialize a response array
 

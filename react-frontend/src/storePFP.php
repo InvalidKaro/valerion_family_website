@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($data['username']) && isset($_FILES['profilePicture'])) {
+    if (isset($data['username']) && isset($data['profilePicture'])) {
         $username = $data['username'];
         $profilePicture = $_FILES['profilePicture'];
 
