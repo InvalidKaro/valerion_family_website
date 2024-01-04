@@ -19,60 +19,7 @@ const Header = () => {
     setLoginMessage('');
   };
 
-  const handleLogin = () => {
-    fetch('http://localhost:80/login.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          setUserLoggedIn(true);
-          setShowLoginForm(false);
-        } else {
-          setLoginMessage('Login failed. Please check your credentials.');
-        }
-      })
-      .catch(error => {
-        console.error('Error during login:', error);
-        setLoginMessage('An error occurred during login');
-      });
-  };
 
-  const handleLogout = () => {
-    setUserLoggedIn(false);
-    // Add logic to handle logout, e.g., redirect to the home page
-  };
-
-  const handleRegister = () => {
-    fetch('http://localhost:80/register.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-          
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          setUserLoggedIn(true);
-          setShowLoginForm(false);
-          // Redirect the user or perform additional actions after successful registration
-        } else {
-          setLoginMessage('Registration failed. Please try again.');
-        }
-      })
-      .catch(error => {
-        console.error('Error during registration:', error);
-        setLoginMessage('An error occurred during registration');
-      });
-  };
-
-  
 
   return (
     <header class="container header">
@@ -91,11 +38,10 @@ const Header = () => {
           {isUserLoggedIn ? (
             <>
               <span>Welcome, {username}!</span>
-              <button className="btn" onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <>
-              <a href="Login" onClick={handleUserIconClick}>
+              <a href="Login">
                 <img
                   src={userLogo}
                   alt="userLogo"
