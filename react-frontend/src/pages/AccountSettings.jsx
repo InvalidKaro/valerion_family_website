@@ -19,14 +19,35 @@ const AccountSettings = () => {
     check if currentPassword is correct
     and if newPassword matches confirmPassword
     */
-   
+
+    // Check if the new password and confirm password match
     if (newPassword !== confirmPassword) {
       setMessage('New password and confirm password do not match.');
       return;
     }
-  
     
+    // Check if the new password meets the required criteria
+    if (
+      newPassword.length < 8 ||
+      !/[A-Z]/.test(newPassword) ||
+      !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(newPassword)
+    ) {
+      setMessage(
+        'New password must be at least 8 characters long and contain at least one uppercase letter and one special character.'
+      );
+      return;
+    }
+    
+    // Check if the new password is the same as the current password
+    if (newPassword === currentPassword) {
+      setMessage('New password cannot be the same as the current password.');
+      return;
+    }
+
+    
+    // Set the URL of the API endpoint
     const url = 'http://localhost:80/changePassword.php'; 
+    
     try {
       // Call the API to change the password
       const response = await fetch(url, {
@@ -40,15 +61,20 @@ const AccountSettings = () => {
           newPassword,
         }),
       });
-  
+    
+      // Parse the response as JSON
       const data = await response.json();
-  
+    
+      // Check if the response is successful
       if (response.ok) {
+        // Set the message based on the response data
         setMessage(data.message);
       } else {
+        // Set a generic error message if the response is not successful
         setMessage('An error occurred while changing the password.');
       }
     } catch (error) {
+      // Log and display an error message if an exception occurs during the API call
       console.error('Error changing password:', error);
       setMessage('An error occurred while changing the password.');
     }
