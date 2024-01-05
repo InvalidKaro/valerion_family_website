@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 }
 
 // Query the database to retrieve data from the table
-$sql = "SELECT * FROM month";
+$sql = "SELECT * FROM monthly";
 $result = $conn->query($sql);
 
 // Check if records were found
