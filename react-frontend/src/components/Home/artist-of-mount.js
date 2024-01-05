@@ -8,7 +8,6 @@ const AofM = () => {
   const price = 50;
 
   useEffect(() => {
-    // Assume you have a backend API endpoint to fetch data
     const fetchData = async () => {
       try {
         // Fetch data for "Art of the Mount"
