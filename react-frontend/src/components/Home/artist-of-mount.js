@@ -6,6 +6,14 @@ const AofM = () => {
   const [artistOfMountData, setArtistOfMountData] = useState([]);
   const [artPrice, setArtPrice] = useState(0);
   const [artistPrice, setArtistPrice] = useState(0);
+    
+  
+  /*
+   * Fetches data from http://localhost:80/month.php and filters it based on the values of "Title".
+   * Sets the filtered data to state variables and sets the price from the filtered JSON data.
+   *
+   * @return {void}
+  */
   const fetchData = async () => {
     try {
       // Fetch data from localhost:80/month.php

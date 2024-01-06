@@ -99,6 +99,13 @@ const AccountSettings = () => {
       return;
     }
   
+    // Check the file size
+    const maxSize = 3.5 * 1024 * 1024; // 3.5MB in bytes
+    if (file.size > maxSize) {
+        setMessage('File size exceeds the maximum limit of 3.5MB.');
+        return;
+ }
+
     // Set the URL of the API endpoint
     const url = 'http://localhost:80/storePFP.php';
   
