@@ -17,7 +17,6 @@ const Login = () => {
   const handleUserIconClick = () => {
     if (isLoggedIn) {
       // Redirect to the Settings page if the user is logged in
-      navigate('/Settings');
     } else {
       setShowLoginForm(!showLoginForm);
       setLoginMessage('');

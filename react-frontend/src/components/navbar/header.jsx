@@ -12,6 +12,7 @@ const Header = () => {
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
+  const [dropdownVisible, setDropdownVisible] = useState(false); // Added state for dropdown
 
   const handleBuyClick = () => {
     console.log('Buy button clicked');
@@ -20,15 +21,19 @@ const Header = () => {
 
   const handleUserIconClick = (e) => {
     e.preventDefault();
+    setShowLoginForm(false); // Close the login form if open
+
     if (isLoggedIn) {
-      // Redirect to the Settings page if the user is logged in
-      navigate('/Settings');
+      setDropdownVisible(!dropdownVisible);
     } else {
-      setShowLoginForm(!showLoginForm);
-      setLoginMessage('');
+      navigate('/Login');
     }
   };
 
+  const handleLogout = () => {
+    setUserLoggedOut();
+    // Add logic to handle logout, e.g., redirect to the login page
+  };
   return (
     <header className="container header">
       <a href="/"><img src={logo} alt="logo" className="header__logo"/></a>
@@ -43,20 +48,18 @@ const Header = () => {
       <div className="header__rsection">
         <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
         <div className="header__user__section">
-          {isUserLoggedIn ? (
-            <>
-              <span>Welcome, {username}!</span>
-            </>
-          ) : (
-            <>
-              <a href="Login" onClick={handleUserIconClick}>
-                <img
-                  src={userLogo}
-                  alt="userLogo"
-                  className="header__user__icon"
-                />
-              </a>
-            </>
+          <a href="#" onClick={handleUserIconClick} className="user-icon">
+            <img
+              src={userLogo}
+              alt="userLogo"
+              className="header__user__icon"
+            />
+          </a>
+          {isLoggedIn && dropdownVisible && (
+            <div className="dropdown">
+              <button onClick={() => navigate('/Settings')}>Settings</button>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
           )}
         </div>
       </div>
