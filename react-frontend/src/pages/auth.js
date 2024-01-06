@@ -1,7 +1,7 @@
 // auth.js
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../UserContext';
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Memoize the contextLoginUser function
-  const memoizedContextLoginUser = useCallback(contextLoginUser, []);
+  const memoizedContextLoginUser = useCallback(contextLoginUser, [contextLoginUser]);
 
   useEffect(() => {
     try {

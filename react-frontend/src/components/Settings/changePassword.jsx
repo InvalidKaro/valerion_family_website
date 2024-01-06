@@ -1,10 +1,11 @@
+/* eslint-disable no-useless-escape */
 import React, { useState } from 'react';
 import { useUser } from '../../UserContext.js';
 import '../../styles/settings.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const ChangePassword = () => {
-  const { user, loginUser, logoutUser } = useUser(); // Use the useUser hook here
+  const { user } = useUser(); // Use the useUser hook here
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
 import Header from './components/navbar/header.jsx';
 import './styles/header.css';
-import Hero from './components/Home/hero.js';
-import './styles/hero.css';
-import AofM from './components/Home/artist-of-mount.js';
-import './styles/artist-of-mount.css';
-import Reviews from './components/Home/reviews.js';
 import './styles/reviews.css';
 import Home from './pages/Home.jsx';
 import History from './pages/History.jsx';

@@ -1,18 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../../UserContext.js';
 import '../../styles/settings.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const ChangeProfile = () => {
-  const { user, loginUser, logoutUser } = useUser(); // Use the useUser hook here
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { user, loginUser } = useUser(); // Use the useUser hook here
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(true);
 
+
+  const fetchProfilePicture = async () => {
+    const url = 'http://localhost:80/checkProfilePicture.php';
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: user.username }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log({ ...data})
+        if (data.success) {
+          // Include profile picture data when calling loginUser
+          // get the filename and check if it has no "profile_pictures/" prefix, if it doesn't, add it
+          if (!data.filename.startsWith('profile_pictures/')) {
+            data.filename = 'profile_pictures/' + data.filename;
+          }
+
+          console.log(data)
+          loginUser({
+            ...user,
+            profilePicture: {
+              url: data.filename,
+              fileType: data.fileType,
+            },
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching profile picture:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   const handleProfilePictureUpload = async (e) => {
     e.preventDefault();
     const fileInput = document.querySelector('#fileInput');
@@ -77,14 +112,28 @@ const ChangeProfile = () => {
     }
   };
   
-
+  useEffect(() => {
+    // Fetch profile picture only if the user is logged in and profile picture is not already loaded
+    if (user && !user.profilePicture) {
+      fetchProfilePicture();
+    } else {
+      setLoading(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchProfilePicture]);  // Removed 'user' from the dependency array
+  
   /*
   Add static image bc logout will clear local storage
     */
-
-  if (!user) {
-    return <p>Loading...</p>; // or render a login prompt
+  if (loading) {
+    return <p>Loading...</p>;
   }
+
+  // Check if the user is logged in
+  if (!user) {
+    return <p>Please log in to view account settings.</p>;
+  }
+
   return(
     <div className='acc-set'>
     <h2>Account Settings</h2>
@@ -98,6 +147,7 @@ const ChangeProfile = () => {
         <p>URL: {user.profilePicture.url}</p>
         {console.log(user.profilePicture.url)}
         {['gif', 'jpg', 'jpeg', 'png'].includes(user.profilePicture.fileType) ? (
+          // eslint-disable-next-line jsx-a11y/img-redundant-alt
           <img
             src={`http://localhost:80/${user.profilePicture.url}`}
             alt="Profile Picture"

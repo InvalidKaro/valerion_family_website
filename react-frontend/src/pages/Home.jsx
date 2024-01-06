@@ -7,11 +7,9 @@ import '../styles/artist-of-mount.css';
 import Reviews from '../components/Home/reviews.js';
 import '../styles/reviews.css';
 import { useUser } from '../UserContext';
-import { useAuth } from './auth';
 
 function Home() {
   const { user } = useUser();
-  const { loginUser, setUserLoggedIn, navigate } = useAuth();
 
 
   return (

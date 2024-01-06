@@ -1,6 +1,5 @@
 // Register.js
 import React, { useState, useEffect } from 'react';
-import { useUser } from '../UserContext';
 import { useAuth } from './auth';
 
 
@@ -13,8 +12,8 @@ const Login = () => {
   const [loginMessage, setLoginMessage] = useState('');
 
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
-  const { loginUser: contextLoginUser } = useUser();
 
+  // eslint-disable-next-line no-unused-vars
   const handleUserIconClick = () => {
     if (isLoggedIn) {
       // Redirect to the Settings page if the user is logged in
@@ -90,7 +89,7 @@ const Login = () => {
     <main>
       <div className="logout">
         {isLoggedIn ? (
-          <a href="#" onClick={handleLogout}>
+          <a href="/" onClick={handleLogout}>
             Logout
           </a>
         ) : (

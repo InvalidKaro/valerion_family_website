@@ -1,17 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import logo from '../../images/v-arts-logo.png';
 import userLogo from '../../images/user.png';
 import '../../styles/Login.css';
 import { useAuth } from '../../pages/auth';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const [isUserLoggedIn, setUserLoggedIn] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginMessage, setLoginMessage] = useState('');
-  const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
+  
+  const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
   const [dropdownVisible, setDropdownVisible] = useState(false); // Added state for dropdown
 
   const handleBuyClick = () => {
@@ -21,7 +17,7 @@ const Header = () => {
 
   const handleUserIconClick = (e) => {
     e.preventDefault();
-    setShowLoginForm(false); // Close the login form if open
+    
       
     if (!isLoggedIn) {
       // If not logged in, navigate to login

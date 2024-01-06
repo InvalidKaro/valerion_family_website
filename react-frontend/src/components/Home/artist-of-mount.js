@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import art_of_mount_img from '../../images/artOfMount.jpg';
+// eslint-disable-next-line no-unused-vars
 import artist_of_mount_img from '../../images/artistOfMount.jpg';
 const AofM = () => {
   const [artOfMountData, setArtOfMountData] = useState([]);
@@ -7,7 +9,7 @@ const AofM = () => {
   const [artPrice, setArtPrice] = useState(0);
   const [artistPrice, setArtistPrice] = useState(0);
     
-  
+
   /*
    * Fetches data from http://localhost:80/month.php and filters it based on the values of "Title".
    * Sets the filtered data to state variables and sets the price from the filtered JSON data.
