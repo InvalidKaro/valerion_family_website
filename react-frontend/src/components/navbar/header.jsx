@@ -22,13 +22,16 @@ const Header = () => {
   const handleUserIconClick = (e) => {
     e.preventDefault();
     setShowLoginForm(false); // Close the login form if open
-
-    if (isLoggedIn) {
-      setDropdownVisible(!dropdownVisible);
-    } else {
+      
+    if (!isLoggedIn) {
+      // If not logged in, navigate to login
       navigate('/Login');
+    } else {
+      // If logged in, toggle dropdown visibility
+      setDropdownVisible(!dropdownVisible);
     }
   };
+  
 
   const handleLogout = () => {
     setUserLoggedOut();

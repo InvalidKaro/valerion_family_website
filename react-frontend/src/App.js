@@ -24,11 +24,6 @@ function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
-  // Check for user login status when the app starts
-  useEffect(() => {
-    const isUserLoggedIn = document.cookie.includes('isUserLoggedIn=true');
-    setUserLoggedIn(isUserLoggedIn); // Update the state
-  }, []);
 
   return (
     <div className="App">
