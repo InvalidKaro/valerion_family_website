@@ -78,6 +78,9 @@ const ChangeProfile = () => {
   };
   
 
+  /*
+  Add static image bc logout will clear local storage
+    */
 
   if (!user) {
     return <p>Loading...</p>; // or render a login prompt
