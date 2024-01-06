@@ -15,10 +15,21 @@ const Login = () => {
   const { loginUser: contextLoginUser } = useUser();
 
   const handleUserIconClick = () => {
-    setShowLoginForm(!showLoginForm);
-    setLoginMessage('');
+    if (isLoggedIn) {
+      // Redirect to the Settings page if the user is logged in
+      navigate('/Settings');
+    } else {
+      setShowLoginForm(!showLoginForm);
+      setLoginMessage('');
+    }
   };
-
+  
+  /**
+   * Handles the login process.
+   *
+   * @param {object} e - The event object.
+   * @return {void}
+   */
   const handleLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {
