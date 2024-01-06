@@ -24,7 +24,7 @@ export const useAuth = () => {
     } catch (error) {
       console.error('Error parsing stored user data:', error);
     }
-  }, [memoizedContextLoginUser]);
+  }, []);
   
 
   const saveUsernameInContext = (username) => {

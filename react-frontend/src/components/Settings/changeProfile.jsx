@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../../UserContext.js';
 import '../../styles/settings.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -6,8 +6,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const ChangeProfile = () => {
   const { user, loginUser } = useUser(); // Use the useUser hook here
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(true);
-
 
   const fetchProfilePicture = async () => {
     const url = 'http://localhost:80/checkProfilePicture.php';
@@ -31,7 +29,6 @@ const ChangeProfile = () => {
             data.filename = 'profile_pictures/' + data.filename;
           }
 
-          console.log(data)
           loginUser({
             ...user,
             profilePicture: {
@@ -44,9 +41,9 @@ const ChangeProfile = () => {
     } catch (error) {
       console.error('Error fetching profile picture:', error);
     } finally {
-      setLoading(false);
     }
   };
+  
   
   const handleProfilePictureUpload = async (e) => {
     e.preventDefault();
@@ -112,22 +109,12 @@ const ChangeProfile = () => {
     }
   };
   
-  useEffect(() => {
-    // Fetch profile picture only if the user is logged in and profile picture is not already loaded
-    if (user && !user.profilePicture) {
-      fetchProfilePicture();
-    } else {
-      setLoading(false);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchProfilePicture]);  // Removed 'user' from the dependency array
+  // Removed 'user' from the dependency array
   
   /*
   Add static image bc logout will clear local storage
     */
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+
 
   // Check if the user is logged in
   if (!user) {
