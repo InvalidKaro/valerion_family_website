@@ -1,6 +1,5 @@
-// Login.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// Register.js
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../UserContext';
 import { useAuth } from './auth';
 
@@ -80,7 +79,13 @@ const Login = () => {
         setLoginMessage('An error occurred during registration');
       });
   };
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      // Reload the page once after successful login
+      navigate('/');
+      window.location.reload();
+    }
+  }, [isLoggedIn, navigate]);
   return (
     <main>
       <div className="logout">
