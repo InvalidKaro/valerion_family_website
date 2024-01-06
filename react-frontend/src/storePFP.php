@@ -21,8 +21,8 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($data['username']) && isset($data['profilePicture'])) {
-        $username = $data['username'];
+    if (isset($_POST['username']) && isset($_FILES['profilePicture'])) {
+        $username = $_POST['username'];
         $profilePicture = $_FILES['profilePicture'];
 
         // Check if the user exists
@@ -32,41 +32,68 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Generate a unique filename for the profile picture
-            $filename = uniqid() . '_' . $profilePicture['name'];
-            $destination = $uploadDirectory . $filename;
+            // Fetch the user ID
+            $userId = $result->fetch_assoc()['id'];
 
-            // Move the uploaded file to the specified destination
-            if (move_uploaded_file($profilePicture['tmp_name'], $destination)) {
-                // Insert the picture details into the "pictures" table
-                $insertStmt = $conn->prepare("INSERT INTO profile_pictures (filename, filetype, userid) VALUES (?, ?, ?)");
-                $filetype = pathinfo($destination, PATHINFO_EXTENSION);
-                $userid = $result->fetch_assoc()['id'];
-                $insertStmt->bind_param("ssi", $filename, $filetype, $userid);
-                $insertStmt->execute();
+            // Check if the user already has a profile picture
+            $checkStmt = $conn->prepare("SELECT * FROM profile_pictures WHERE userid = ?");
+            $checkStmt->bind_param("i", $userId);
+            $checkStmt->execute();
+            $checkResult = $checkStmt->get_result();
 
-                if ($insertStmt->affected_rows > 0) {
-                    $response = [
-                        'success' => true,
-                        'message' => 'Profile picture uploaded and saved successfully',
-                    ];
+            if ($checkResult->num_rows > 0) {
+                // Fetch the old profile picture details
+                $oldPictureDetails = $checkResult->fetch_assoc();
+                $oldFilename = $oldPictureDetails['filename'];
+
+                // Delete the old profile picture file
+                unlink($uploadDirectory . $oldFilename);
+
+                // Generate a unique filename for the new profile picture
+                $newFilename = uniqid() . '_' . $profilePicture['name'];
+                $destination = $uploadDirectory . $newFilename;
+
+                // Move the uploaded file to the specified destination
+                if (move_uploaded_file($profilePicture['tmp_name'], $destination)) {
+                    // Update the profile picture details in the database
+                    $updateStmt = $conn->prepare("UPDATE profile_pictures SET filename = ?, filetype = ? WHERE userid = ?");
+                    $filetype = pathinfo($destination, PATHINFO_EXTENSION);
+                    $updateStmt->bind_param("ssi", $newFilename, $filetype, $userId);
+                    $updateStmt->execute();
+
+                    if ($updateStmt->affected_rows > 0) {
+                        $response = [
+                            'success' => true,
+                            'message' => 'Profile picture updated successfully',
+                            'fileType' => $filetype,
+                            'filename' => $newFilename,
+                            'url' => 'profile_pictures/' . $newFilename
+                        ];
+                    } else {
+                        // Delete the uploaded file if the database update fails
+                        unlink($destination);
+
+                        $response = [
+                            'success' => false,
+                            'message' => 'Failed to update profile picture in the database',
+                        ];
+                    }
+
+                    $updateStmt->close();
                 } else {
-                    // Delete the uploaded file if the database insertion fails
-                    unlink($destination);
-
                     $response = [
                         'success' => false,
-                        'message' => 'Failed to save profile picture',
+                        'message' => 'Failed to move the uploaded file',
                     ];
                 }
-
-                $insertStmt->close();
             } else {
                 $response = [
                     'success' => false,
-                    'message' => 'Failed to move the uploaded file',
+                    'message' => 'User does not have a profile picture to update',
                 ];
             }
+
+            $checkStmt->close();
         } else {
             $response = [
                 'success' => false,
