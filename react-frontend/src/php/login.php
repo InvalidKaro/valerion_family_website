@@ -106,6 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 
 header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 echo json_encode($response);
 
 // Function to retrieve profile picture information
@@ -116,13 +119,11 @@ function retrieveProfilePicture($conn, $username) {
     $stmt->bind_param('s', $username);
     $stmt->execute();
 
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
 
     if ($result) {
-        return [
-            'filename' => $result['filename'],
-            'fileType' => $result['filetype']
-        ];
+        $profileData = $result->fetch_assoc();
+        return $profileData;
     } else {
         return null;
     }
