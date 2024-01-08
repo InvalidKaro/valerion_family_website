@@ -10,7 +10,8 @@ const Login = () => {
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
   const [profilePicture, setProfilePicture] = useState(null);
   // eslint-disable-next-line no-unused-vars
-  
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   /**
    * Handles the login process.
    *
@@ -65,6 +66,34 @@ const Login = () => {
   };
   
 
+  
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send a request to your server to initiate the password reset process
+      const response = await fetch('http://localhost:80/forgot-password.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setMessage('Password reset email sent. Check your email for further instructions.');
+      } else {
+        setMessage('Failed to initiate password reset. Please check your email and try again.');
+      }
+    } catch (error) {
+      console.error('Error during password reset:', error);
+      setMessage('An error occurred during password reset. Please try again later.');
+    }
+  };
+  
+  
   const handleLogout = () => {
     setUserLoggedOut();
     // Add logic to handle logout, e.g., redirect to the login page
@@ -80,6 +109,7 @@ const Login = () => {
   }, [isLoggedIn, navigate]);
   return (
     <main>
+      
       <div className="logout">
         {isLoggedIn ? (
           <a href="/" onClick={handleLogout}>
@@ -111,15 +141,35 @@ const Login = () => {
                     </a>
                   )}
                 </form>
+                <div className="forgot-password-form">
+                <h1>Forgot Password</h1>
+                <form onSubmit={handleForgotPassword}>
+                  <label htmlFor="email">Enter your email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button type="submit" className="btn">
+                    Reset Password
+                  </button>
+                </form>
+                <p>{message}</p>
+              </div>
                 {loginMessage && (
                 <p className="error-message">{loginMessage}</p>
                 )}
 
               </div>
+            
+              
             )}
           </>
         )}
       </div>
+      
     </main>
   );
 };
