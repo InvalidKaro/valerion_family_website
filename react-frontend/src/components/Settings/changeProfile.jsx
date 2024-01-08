@@ -6,8 +6,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 const ChangeProfile = () => {
   const { user, loginUser } = useUser(); // Use the useUser hook here
   const [message, setMessage] = useState('');
-
-  const fetchProfilePicture = async () => {
+  const [profilePicture, setProfilePicture] = useState('');
+  const fetchProfilePicture = async (e) => {
+    e.preventDefault();
     const url = 'http://localhost:80/checkProfilePicture.php';
   
     try {
@@ -28,7 +29,10 @@ const ChangeProfile = () => {
           if (!data.filename.startsWith('profile_pictures/')) {
             data.filename = 'profile_pictures/' + data.filename;
           }
-
+          setProfilePicture({
+            url: data.filename,
+            fileType: data.fileType,
+        });
           loginUser({
             ...user,
             profilePicture: {
@@ -43,6 +47,7 @@ const ChangeProfile = () => {
     } finally {
     }
   };
+  
   
   
   const handleProfilePictureUpload = async (e) => {
@@ -128,15 +133,15 @@ const ChangeProfile = () => {
 
     {/* Display current profile picture */}
     
-    {user.profilePicture && (
+    {user.profileData && (
       <div className="current-profile-picture">
-        <p>File Type: {user.profilePicture.fileType}</p>
-        <p>URL: {user.profilePicture.url}</p>
-        {console.log(user.profilePicture.url)}
-        {['gif', 'jpg', 'jpeg', 'png'].includes(user.profilePicture.fileType) ? (
+        <p>File Type: {user.profileData.profileInfo.filetype}</p>
+        <p>URL: {user.profileData.profileInfo.filename}</p>
+        {console.log(user.profileData.url)}
+        {['gif', 'jpg', 'jpeg', 'png'].includes(user.profileData.profileInfo.filetype) ? (
           // eslint-disable-next-line jsx-a11y/img-redundant-alt
           <img
-            src={`http://localhost:80/${user.profilePicture.url}`}
+            src={`http://localhost:80/${user.profileData.profileInfo.filename}`}
             alt="Profile Picture"
             style={{ maxWidth: '100%', marginTop: '10px' }}
           />
@@ -145,6 +150,7 @@ const ChangeProfile = () => {
         )}
       </div>
     )}
+    
 
 
     {message && <p>{message}</p>} {/* This returns an error message if any */}

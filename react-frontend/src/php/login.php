@@ -37,9 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $storedPassword = $row['password'];
 
                 if (password_verify($password, $storedPassword)) {
+                    // Retrieve profile picture information
+                    $profileInfo = retrieveProfilePicture($conn, $username);
+
                     $response = [
                         'success' => true,
                         'message' => 'Login successful',
+                        'profileInfo' => $profileInfo,
                     ];
                 } else {
                     $response = [
@@ -64,9 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
 
             if ($stmt->affected_rows > 0) {
+                // Retrieve profile picture information
+                $profileInfo = retrieveProfilePicture($conn, $username);
+
                 $response = [
                     'success' => true,
                     'message' => 'Password changed successfully',
+                    'profileInfo' => $profileInfo,
                 ];
             } else {
                 $response = [
@@ -99,4 +107,24 @@ $conn->close();
 
 header('Content-Type: application/json');
 echo json_encode($response);
+
+// Function to retrieve profile picture information
+function retrieveProfilePicture($conn, $username) {
+    $stmt = $conn->prepare("SELECT profile_pictures.filename, profile_pictures.filetype FROM users 
+                           JOIN profile_pictures ON users.id = profile_pictures.userid 
+                           WHERE users.username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        return [
+            'filename' => $result['filename'],
+            'fileType' => $result['filetype']
+        ];
+    } else {
+        return null;
+    }
+}
 ?>

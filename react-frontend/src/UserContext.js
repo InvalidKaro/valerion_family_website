@@ -17,7 +17,9 @@ export const UserProvider = ({ children }) => {
     */
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
+      console.log("Stored", JSON.parse(storedUser))
       setUser(JSON.parse(storedUser));
+      console.log(user)
     }
   }, []);
 

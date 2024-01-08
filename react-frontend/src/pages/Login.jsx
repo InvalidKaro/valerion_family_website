@@ -7,9 +7,8 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
-
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
-
+  const [profilePicture, setProfilePicture] = useState(null);
   // eslint-disable-next-line no-unused-vars
   
   /**
@@ -34,7 +33,27 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          loginUser({ username: username });
+          // Fetch profile picture data after successful login
+          fetch('http://localhost:80/login.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: username, password:  password }),
+          })
+            .then((profileResponse) => profileResponse.json())
+            .then((profileData) => {
+              // Include profile picture data in loginUser function
+              if (!profileData.profileInfo.filename.startsWith('profile_pictures/')) {
+                profileData.profileInfo.filename = 'profile_pictures/' + profileData.profileInfo.filename;
+              }
+              loginUser({ username: username, profileData: profileData });
+            })
+            .catch((profileError) => {
+              console.error('Error during profile picture fetch:', profileError);
+              // Still log in the user even if fetching profile data fails
+              loginUser({ username: username });
+            });
         } else {
           setLoginMessage('Login failed. Please check your credentials.');
         }
@@ -44,6 +63,7 @@ const Login = () => {
         setLoginMessage('An error occurred during login');
       });
   };
+  
 
   const handleLogout = () => {
     setUserLoggedOut();
