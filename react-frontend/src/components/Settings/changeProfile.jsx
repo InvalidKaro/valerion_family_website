@@ -100,7 +100,10 @@ const ChangeProfile = () => {
 
         // If the upload was successful, update the user context with the new profile picture URL
         if (data.success) {
-          loginUser({ ...user, profilePicture: { url: data.url, fileType: data.fileType} });
+          if (!data.filename.startsWith('profile_pictures/')) {
+            data.filename = 'profile_pictures/' + data.filename;
+          }
+          loginUser({ ...user, profileData: {profileInfo: {filetype: data.fileType, filename: data.filename}} });
         }
         console.log(user)
       } else {
