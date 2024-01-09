@@ -107,6 +107,7 @@ const ChangeProfile = () => {
         }
         console.log(user)
       } else {
+        
         // Set the error message from the response
         setMessage(data.message || 'An error occurred while uploading the profile picture.');
       }
