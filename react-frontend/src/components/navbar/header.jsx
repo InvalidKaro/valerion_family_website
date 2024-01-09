@@ -10,9 +10,14 @@ const Header = () => {
   const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
   const [dropdownVisible, setDropdownVisible] = useState(false); // Added state for dropdown
 
-  const handleBuyClick = () => {
+  const handleBuyClick = (e) => {
     console.log('Buy button clicked');
+    e.preventDefault();
+
     // Add logic to handle the buy button click, e.g., redirect to the purchase page
+    navigate("/Shop")
+  
+
   };
 
   const handleUserIconClick = (e) => {
