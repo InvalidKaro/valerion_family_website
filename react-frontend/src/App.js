@@ -12,6 +12,7 @@ import Family from './pages/Family.jsx';
 import Supporters from './pages/Supporters.jsx';
 import Help from './pages/Help.jsx';
 import Shop from './pages/Shop.jsx';
+import Art from './pages/Art.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/help" element={<Help />} />
             <Route path="/supporters" element={<Supporters />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn}/>} />
 
           </Routes>
         </Router>

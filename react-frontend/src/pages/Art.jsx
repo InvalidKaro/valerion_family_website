@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/App.css';
 import { useUser } from '../UserContext';
-import ProductItems from '../components/productItems';
+import UploadArt from '../components/Art/uploadArt';
 
-function Shop() {
+function Art() {
   const { user } = useUser();
-
+  const [isUserLoggedIn] = useState('')
 
   return (
-    <div className="Shop">
-        <head>
-          <title>Shop</title>
-        </head>
+    <div className="Art">
+        <UploadArt isUserLoggedIn={isUserLoggedIn}></UploadArt>
+
       <main>
-        <ProductItems></ProductItems>
         {user && user.username ? ( // Check if user and username exist
           <div>
             <h1>Welcome, {user.username}!</h1>
@@ -30,4 +28,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Art;
