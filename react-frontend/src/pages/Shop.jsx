@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/App.css';
 import { useUser } from '../UserContext';
+import ProductItems from '../components/productItems';
 
 function Home() {
   const { user } = useUser();
@@ -12,7 +13,7 @@ function Home() {
           <title>Shop</title>
         </head>
       <main>
-        
+        <ProductItems></ProductItems>
         {user && user.username ? ( // Check if user and username exist
           <div>
             <h1>Welcome, {user.username}!</h1>
