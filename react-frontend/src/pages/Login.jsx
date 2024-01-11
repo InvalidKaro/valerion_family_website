@@ -69,7 +69,7 @@ const Login = () => {
   
   const handleForgotPassword = async (e) => {
     e.preventDefault();
-
+    console.log('Email:', email);
     try {
       // Send a request to your server to initiate the password reset process
       const response = await fetch('http://localhost:80/mailer.php', {
@@ -77,7 +77,7 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: email }),
       });
 
       const data = await response.json();
