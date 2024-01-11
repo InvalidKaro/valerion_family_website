@@ -72,7 +72,7 @@ const Login = () => {
 
     try {
       // Send a request to your server to initiate the password reset process
-      const response = await fetch('http://localhost:80/forgot-password.php', {
+      const response = await fetch('http://localhost:80/mailer.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
