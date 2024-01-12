@@ -83,7 +83,7 @@ const Login = () => {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('Password reset email sent. Check your email for further instructions.');
+        setMessage('Password reset email sent. Check your email.');
       } else {
         setMessage('Failed to initiate password reset. Please check your email and try again.');
       }
