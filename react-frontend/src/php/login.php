@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $storedPassword = $row['password'];
+                $discriminator = $row['discriminator'];
 
                 if (password_verify($password, $storedPassword)) {
                     // Retrieve profile picture information
@@ -44,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'success' => true,
                         'message' => 'Login successful',
                         'profileInfo' => $profileInfo,
+                        'discriminator' => $discriminator
                     ];
                 } else {
                     $response = [

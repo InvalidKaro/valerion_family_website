@@ -67,7 +67,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          loginUser({ username: username });
+          loginUser({ username: username, discriminator: data.discriminator });
           setShowLoginForm(false);
         } else {
           setLoginMessage('Registration failed. Please try again.');

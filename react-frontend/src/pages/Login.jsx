@@ -44,6 +44,7 @@ const Login = () => {
           })
             .then((profileResponse) => profileResponse.json())
             .then((profileData) => {
+              console.log('Profile data:', profileData);
               // Include profile picture data in loginUser function
               if (!profileData.profileInfo.filename.startsWith('profile_pictures/')) {
                 profileData.profileInfo.filename = 'profile_pictures/' + profileData.profileInfo.filename;
