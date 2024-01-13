@@ -59,3 +59,31 @@ header {
 .login-form button {
   padding: 8px;
 }
+
+/* Extra small devices (phones) */
+@media only screen and (max-width: 475px) {}
+
+/* Small devices */
+@media only screen and (max-width: 639px) {}
+
+/* Medium devices */
+@media only screen and (max-width: 767px) {}
+
+/* Large devices */
+@media only screen and (max-width: 1023px) {
+  .header {
+    display: none;
+  }
+}
+
+/* Extra large devices */
+@media only screen and (max-width: 1279px) {}
+
+/* 2XL devices */
+@media only screen and (max-width: 1535px) {}
+
+/* Full HD devices */
+@media only screen and (max-width: 1919px) {}
+
+/* 2K devices */
+@media only screen and (max-width: 2559px) {}
