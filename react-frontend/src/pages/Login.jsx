@@ -18,6 +18,34 @@ const Login = () => {
    * @param {object} e - The event object.
    * @return {void}
    */
+/*
+import React from 'react';
+import { AES } from 'react-crypto-js';
+
+const MyComponent = () => {
+  const plaintext = 'Hello, World!';
+  const secretKey = 'my-secret-key';
+
+  // Encrypt
+  const ciphertext = AES.encrypt(plaintext, secretKey).toString();
+  console.log('Encrypted:', ciphertext);
+
+  // Decrypt
+  const bytes = AES.decrypt(ciphertext, secretKey);
+  const decryptedText = bytes.toString();
+
+  return (
+    <div>
+      <p>Encrypted: {ciphertext}</p>
+      <p>Decrypted: {decryptedText}</p>
+    </div>
+  );
+};
+
+export default MyComponent;
+*/
+
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {
@@ -50,6 +78,7 @@ const Login = () => {
                 profileData.profileInfo.filename = 'profile_pictures/' + profileData.profileInfo.filename;
               }
               loginUser({ username: username, profileData: profileData });
+              navigate('/');
             })
             .catch((profileError) => {
               console.error('Error during profile picture fetch:', profileError);
