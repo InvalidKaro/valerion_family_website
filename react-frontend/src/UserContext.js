@@ -49,6 +49,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+
 /**
  * Returns the user context from the UserContext.
  *
