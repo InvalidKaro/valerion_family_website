@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
       setUser(JSON.parse(storedUser));
       console.log(user)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
     /**

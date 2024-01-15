@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
+  // eslint-disable-next-line no-unused-vars
   const [profilePicture, setProfilePicture] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState('');

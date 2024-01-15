@@ -24,32 +24,6 @@ const Login = () => {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (!username || !password) {
-      setLoginMessage('Please enter both username and password.');
-      return;
-    }
-    fetch('http://localhost:80/login.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          loginUser({ username: username });
-        } else {
-          setLoginMessage('Login failed. Please check your credentials.');
-        }
-      })
-      .catch((error) => {
-        console.error('Error during login:', error);
-        setLoginMessage('An error occurred during login');
-      });
-  };
 
   const handleLogout = () => {
     setUserLoggedOut();
@@ -96,7 +70,7 @@ const Login = () => {
           <>
             {!isLoggedIn && (
               <div className="login-form">
-                <form onSubmit={handleLogin}>
+                <form>
                   <input
                     type="email"
                     placeholder="Email"
