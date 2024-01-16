@@ -14,21 +14,23 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM products";
+$id = $_GET['id']; // Assuming you pass the id as a query parameter
+
+$sql = "SELECT * FROM products WHERE id = $id";
 $result = $conn->query($sql);
 
-$products = [];
+$product = null;
 
 if ($result->num_rows > 0) {
-  while ($row = $result->fetch_assoc()) {
-    $product = [
-      'id' => $row['id'],
-      'pictureUrl' => $row['picture_url'],
-      'title' => $row['title'],
-      'price' => $row['price'],
-      'author' => $row['author']
-    ];
-  }
+  $row = $result->fetch_assoc();
+  $product = [
+    'id' => $row['id'],
+    'pictureUrl' => $row['picture_url'],
+    'title' => $row['title'],
+    'price' => $row['price'],
+    'author' => $row['author'],
+    'description' => $row['description']
+  ];
 }
 
 $conn->close();

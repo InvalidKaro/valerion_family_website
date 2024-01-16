@@ -7,7 +7,13 @@ $imagePath = $_GET['image'];
 $image = imagecreatefromjpeg($imagePath);
 
 // Load the watermark image
-$watermark = imagecreatefrompng('localhost:80/Art/watermark.png');
+$watermark_data = file_get_contents('localhost:80/Art/watermark.png');
+$watermark = imagecreatefromstring($watermark_data);
+// Enable alpha blending for the watermark image
+imagealphablending($watermark, true);
+
+// Preserve transparency of the watermark image
+imagesavealpha($watermark, true);
 
 // Get the dimensions of the original image and the watermark image
 $imageWidth = imagesx($image);
@@ -17,6 +23,7 @@ $watermarkHeight = imagesy($watermark);
 
 // Calculate the position to place the watermark (bottom right corner with some padding)
 $padding = 8;
+
 $positionX = $imageWidth - $watermarkWidth - $padding;
 $positionY = $imageHeight - $watermarkHeight - $padding;
 

@@ -7,7 +7,8 @@ const UploadArt = () => {
   const [image, setImage] = useState(null);
   const [prize, setPrize] = useState('');
   const [title, setTitle] = useState('');
-
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -20,6 +21,13 @@ const UploadArt = () => {
     setTitle(e.target.value);
   };
 
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,12 +35,14 @@ const UploadArt = () => {
     formData.append('image', image) ;
     formData.append('prize', prize);
     formData.append('title', title);
+    formData.append('description', description);
+    formData.append('category', category);
     console.log(user)
     console.log("fdfsdf")
 
     formData.append('username', user.username);
     console.log(formData)
-    console.log(formData)
+    console.log(formData.get('description'))
 
     console.log(formData)
 
@@ -70,7 +80,7 @@ const UploadArt = () => {
     >
       <div style={{ marginTop: '100px' }}>
         <label htmlFor="image">Upload Art Image:</label>
-        <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} />
+        <input type="file" id="image" name="image" accept="image/jpeg, image/png" onChange={handleImageChange} />
       </div>
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="prize">Set Prize:</label>
@@ -79,6 +89,20 @@ const UploadArt = () => {
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="title">Title:</label>
         <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
+      </div>
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="description">Description:</label>
+        <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} />
+      </div>
+      <div style={{ marginBottom: '10px' }}>
+        <label htmlFor="category">Category:</label>
+        <select id="category" name="category" value={category} onChange={handleCategoryChange}>
+          <option value="">Select a category</option>
+          <option value="category1">Category 1</option>
+          <option value="category2">Category 2</option>
+          <option value="category3">Category 3</option>
+          {/* Add more options as needed */}
+        </select>
       </div>
       <button
         type="submit"
