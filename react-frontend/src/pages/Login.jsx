@@ -47,6 +47,8 @@ export default MyComponent;
 */
 
 
+
+// Login function, when using https/a domain this will automatically be encrypted
   const handleLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {

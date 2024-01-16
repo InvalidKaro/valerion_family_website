@@ -18,6 +18,7 @@ const ProductItems = () => {
   return (
     <div style={{ marginTop: '75px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {products && products.map(product => (
+        <a href={`/product/${product.id}`}>
         <div key={product.id} style={{ marginBottom: '75px' }}>
           <div
             style={{
@@ -53,6 +54,7 @@ const ProductItems = () => {
           <p>Price: {product.price}</p>
           <p>Author: {product.author}</p>
         </div>
+        </a>
       ))}
     </div>
   );
