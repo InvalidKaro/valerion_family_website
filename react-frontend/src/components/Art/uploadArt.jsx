@@ -65,7 +65,7 @@ const UploadArt = () => {
 
   // Check if user is logged in and a username is given
   if (!user) {
-    return null;
+    return null; // Render Error page or smt if user is not logged in
   }
 
   return (
