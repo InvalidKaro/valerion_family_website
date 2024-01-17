@@ -3,6 +3,9 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
+
+require_once 'db.inc.php';
+
 $json_data = file_get_contents('php://input');
 error_log("Received JSON data: $json_data");
 $data = json_decode($json_data, true);
@@ -14,11 +17,8 @@ $password = "b59]UY]jp9@ASDac";
 $dbname = "art";
 $uploadDirectory = "Art/"; // Directory to store the uploaded profile pictures
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = get_db_connection();
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the form data

@@ -3,6 +3,8 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
+require_once 'db.inc.php';
+
 // Database configuration
 $servername = "localhost";
 $username = "root";
@@ -24,12 +26,8 @@ if (!empty($json_data) && $data !== null) {
 }
 
 // Create database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = get_db_connection();
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Get the token from the database
 $stmt = $conn->prepare("SELECT reset_token FROM users WHERE mail = ?");
