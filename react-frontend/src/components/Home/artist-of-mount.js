@@ -16,7 +16,7 @@ const AofM = () => {
    *
    * @return {void}
   */
-  const fetchData = async () => {
+  /*const fetchData = async () => {
     try {
       // Fetch data from localhost:80/month.php
       const response = await fetch('http://localhost:80/month.php');
@@ -44,23 +44,25 @@ const AofM = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []);*/
 
   return (
     <section className="container aOfM">
       <div className="aOfM__sec">
         <div className="aOfM__header">
-          <p>Art of the mount</p>
+          <p>Art of the Month</p>
           <div className="vertical-line"></div>
-          <p>Artist of mount</p>
+          <p>Artist of the Month</p>
         </div>
         <div className="aofM__imgs">
           <div className="img__box">
-            <img src={artOfMountData[0]?.Art} alt="Art of the Mount" />
+            {/* <img src={artOfMountData[0]?.Art} alt="Art of the Mount" /> */}
+            <img src={art_of_mount_img} alt="Art of the Month" />
             <div className="price">{artPrice}$</div>
           </div>
           <div className="img__box">
-            <img src={artistOfMountData[0]?.Artist} alt="Artist of Mount" />
+            {/* <img src={artistOfMountData[0]?.Artist} alt="Artist of Mount" /> */}
+            <img src={artist_of_mount_img} alt="Artist of Month" />
             <div className="price">{artistPrice}$</div>
           </div>
         </div>

@@ -14,6 +14,7 @@ header {
   border-bottom: 0.2px solid rgba(255, 255, 255, 0.5);
 }
 
+
 .header__menu {
   margin: 0;
   display: flex;
@@ -59,3 +60,45 @@ header {
 .login-form button {
   padding: 8px;
 }
+
+.hamburger-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  display: none;
+}
+/* Extra small devices (phones) */
+@media only screen and (max-width: 475px) {}
+
+/* Small devices */
+@media only screen and (max-width: 639px) {}
+
+/* Medium devices */
+@media only screen and (max-width: 767px) {}
+
+/* Large devices */
+@media only screen and (max-width: 1023px) {
+  .hamburger-button {
+    display: flex;
+  }
+  .header__menu {
+    display: none;
+  }
+
+}
+
+/* Extra large devices */
+@media only screen and (max-width: 1279px) {
+  .header__link a {
+  text-decoration: none;
+  font-size: var(--size-md);
+}}
+
+/* 2XL devices */
+@media only screen and (max-width: 1535px) {}
+
+/* Full HD devices */
+@media only screen and (max-width: 1919px) {}
+
+/* 2K devices */
+@media only screen and (max-width: 2559px) {}
