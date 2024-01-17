@@ -52,10 +52,10 @@
 }
 
 .rating {
-  font-size: 0; /* Remove space between inline-block elements */
+  font-size: 10px; /* Remove space between inline-block elements */
 }
 
-.star {
+.card__stars__sec {
   display: inline-block;
   width: 40px; /* Adjust as needed */
   height: 40px; /* Adjust as needed */

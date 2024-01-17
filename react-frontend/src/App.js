@@ -13,6 +13,7 @@ import Supporters from './pages/Supporters.jsx';
 import Help from './pages/Help.jsx';
 import Shop from './pages/Shop.jsx';
 import Art from './pages/Art.jsx';
+import ProductDetail from './pages/productDetail.jsx'; // Import the ProductDetail component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 
@@ -20,7 +21,6 @@ function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-
 
   return (
     <div className="App">
@@ -30,15 +30,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} />} />
             <Route path="/history" element={<History />} />
-            <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture}/>} />
+            <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />} />
             <Route path="/signup" element={<Register />} />
-            <Route path="/settings" element={<AccountSettings usernames={username}  profilePicture={profilePicture} />} />
+            <Route path="/settings" element={<AccountSettings usernames={username} profilePicture={profilePicture} />} />
             <Route path="/family" element={<Family />} />
             <Route path="/help" element={<Help />} />
             <Route path="/supporters" element={<Supporters />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn}/>} />
-
+            <Route path="/shop" element={<Shop isUserLoggedIn={isUserLoggedIn} />} />
+            <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn} />} />
+            <Route path="/product/:productId" element={<ProductDetail />} />
           </Routes>
         </Router>
       </UserProvider>

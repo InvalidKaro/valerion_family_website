@@ -1,57 +1,74 @@
-import review_profile_img from '../../images/artOfMount.jpg'
-// Import Swiper React components
+import { useState, useEffect } from 'react';
+import review_profile_img from '../../images/artOfMount.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Navigation, Pagination } from 'swiper/modules';
 
-import { Navigation, Pagination,} from 'swiper/modules';
-
-const demo_card = (
-<SwiperSlide className="review__card">
- <div className="card_top_section">
-    <img class="card__img"  src={review_profile_img} alt="" />
-    <h1 className="card__username">Veskata</h1>
- </div>
-<p className="card__review"><span>" </span>The best website for AI generated images. I made 10K in first month!<span> "</span></p>
-<div className="card__stars__sec">
-    <div class="rating">
-        <span class="star full"></span>
-        <span class="star full"></span>
-        <span class="star half"></span>
-        <span class="star empty"></span>
-        <span class="star empty"></span>
-    </div>
-</div> 
-</SwiperSlide>
-);
-
+import '../../styles/reviews.css'; // Import the CSS file for the Reviews component
 
 const Reviews = () => {
-    return (
-        <>
-        <section class="container">
-          <Swiper
-           slidesPerView={2}
-           spaceBetween={100}
-           centeredSlides={false}
-           navigation={true}
-           pagination={{
-             clickable: true,
-           }}
-           modules={[Navigation, Pagination]}
-           className="reviews-container"
-          >
-             {demo_card}
-             {demo_card}
-             {demo_card}
-             {demo_card}
-          </Swiper>
-        </section>
-        </>
-      );
-}
- 
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:80/reviews.php')
+      .then((response) => response.json())
+      .then((data) => {
+        setReviews(data);
+        console.log('reviews:', data); // Add this line to log the reviews
+      })
+      .catch((error) => {
+        console.log('reviews:', reviews); // Add this line to log the reviews
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const renderReviews = () => {
+    return reviews.map((review) => (
+      <SwiperSlide key={review.author} className="review__card">
+        <div className="card_top_section">
+          <img className="card__img" src={review.profile_img} alt="" />
+          <h1 className="card__username">{review.author}</h1>
+        </div>
+        <p className="card__review">
+          <span>" </span>
+          {review.text}
+          <span> "</span>
+        </p>
+        <div className="card__stars__sec">
+          <div className="rating">
+            {[...Array(review.stars)].map((_, index) => (
+              <span key={index} className="star full"></span>
+            ))}
+            {[...Array(5 - review.stars)].map((_, index) => (
+              <span key={index} className="star empty"></span>
+            ))}
+          </div>
+        </div>
+      </SwiperSlide>
+    ));
+  };
+
+  return (
+    <>
+      <section className="container">
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={140}
+          centeredSlides={false}
+          navigation={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Navigation, Pagination]}
+          className="reviews-container"
+        >
+          {renderReviews()}
+        </Swiper>
+      </section>
+    </>
+  );
+};
+
 export default Reviews;

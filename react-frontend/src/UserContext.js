@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
       setUser(JSON.parse(storedUser));
       console.log(user)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
     /**
@@ -47,6 +48,7 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
 
 /**
  * Returns the user context from the UserContext.

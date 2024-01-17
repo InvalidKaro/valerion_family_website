@@ -3,6 +3,8 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
+
+
 $json_data = file_get_contents('php://input');
 error_log("Received JSON data: $json_data");
 $data = json_decode($json_data, true);
@@ -11,7 +13,7 @@ print($data);
 $servername = "localhost";
 $username = "root";
 $password = "b59]UY]jp9@ASDac";
-$dbname = "login";
+$dbname = "art";
 $uploadDirectory = "Art/"; // Directory to store the uploaded profile pictures
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,17 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $prize = $_POST['prize'];
     $username = $_POST['username'];
     $title = $_POST['title'];
-    
+    $description = $_POST['description'];
+    $category = $_POST['category'];
 
     // Check if the user exists
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        // Fetch the user ID
-        $userId = $result->fetch_assoc()['id'];
+   
 
         // Generate a unique filename for the uploaded image
         $newFilename = uniqid() . '_' . $image['name'];
@@ -45,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Move the uploaded file to the specified destination
         if (move_uploaded_file($image['tmp_name'], $destination)) {
             // Insert a new record into the database
-            $insertStmt = $conn->prepare("INSERT INTO artwork (userid, image, prize, title) VALUES (?, ?, ?, ?)");
-            $insertStmt->bind_param("isss", $userId, $newFilename, $prize, $title);
+            $insertStmt = $conn->prepare("INSERT INTO products (author, picture_url, price, title, descr, category) VALUES (?, ?, ?, ?, ?, ?)");
+            $insertStmt->bind_param("sissss", $username, $newFilename, $prize, $title, $description, $category);
             $insertStmt->execute();
 
             if ($insertStmt->affected_rows > 0) {
@@ -80,12 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     }
 
-    $stmt->close();
-} else {
-    $response = [
-        'success' => false,
-        'message' => 'Invalid request method',
-    ];
-}
+    $insertStmt->close();
+    $conn->close();
 
 echo json_encode($response);

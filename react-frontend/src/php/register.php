@@ -21,11 +21,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 error_log(print_r($data, true));
-// Assuming you have a 'users' table with columns 'username' and 'password'
+
 $username = $data['username'];
 $password = $data['password'];
 $mail = $data['mail'];
-
 
 function generateToken($length = 32)
 {
@@ -36,9 +35,40 @@ $resetToken = generateToken();
 // Hash the password before storing it in the database
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+// Check if the username already exists in the database
+$stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($count);
+$stmt->fetch();
+$stmt->close();
+
+if ($count > 0) {
+    // Username already exists, generate a unique discriminator
+    $unique = false;
+    while (!$unique) {
+        $discriminator = '#' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+
+        // Check if the combination of username and discriminator already exists
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = ? AND discriminator = ?");
+        $stmt->bind_param("ss", $username, $discriminator);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($count == 0) {
+            $unique = true;
+        }
+    }
+} else {
+    // Username does not exist, use the default discriminator
+    $discriminator = '#' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+}
+
 // Use prepared statements to prevent SQL injection
-$stmt = $conn->prepare("INSERT INTO users (username, password, mail, reset_token) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("isss", $username, $hashedPassword, $mail, $resetToken);
+$stmt = $conn->prepare("INSERT INTO users (username, password, mail, reset_token, discriminator) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $username, $hashedPassword, $mail, $resetToken, $discriminator);
 
 // Update the user's reset token in the database
 
@@ -47,7 +77,8 @@ $response = []; // Initialize a response array
 if ($stmt->execute()) {
     $response['success'] = true;
     $response['message'] = 'User registered successfully';
-
+    $response['discriminator'] = $discriminator;
+    
     $to = $mail;
     $subject = 'Welcome to V-Arts';
     $message = '<html><body>';
