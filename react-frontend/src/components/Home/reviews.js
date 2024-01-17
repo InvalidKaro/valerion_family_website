@@ -34,8 +34,8 @@ const Reviews = () => {
         <>
         <section class="container">
           <Swiper
-           slidesPerView={3}
-           spaceBetween={140}
+           slidesPerView={2}
+           spaceBetween={100}
            centeredSlides={false}
            navigation={true}
            pagination={{

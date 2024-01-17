@@ -16,18 +16,6 @@ function Home() {
     <div className="App">
       <main>
         <Hero />
-
-        {user && user.username ? ( // Check if user and username exist
-          <div>
-            <h1>Welcome, {user.username}!</h1>
-            {/* Add more user information if needed */}
-          </div>
-        ) : (
-          <div>
-            <h1>Welcome!</h1>
-          </div>
-        )}
-
         <Reviews />
         <AofM />
       </main>
