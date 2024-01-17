@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
-import Header from './header';
+import Header from './components/navbar/header.jsx';
 import './styles/header.css';
-import Hero from './hero.js'
-import './styles/hero.css';
-import AofM from './artist-of-mount.js';
-import './styles/artist-of-mount.css';
-import Reviews from './reviews.js';
 import './styles/reviews.css';
+import Home from './pages/Home.jsx';
+import History from './pages/History.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import AccountSettings from './pages/AccountSettings.jsx';
+import Family from './pages/Family.jsx';
+import Supporters from './pages/Supporters.jsx';
+import Help from './pages/Help.jsx';
+import Shop from './pages/Shop.jsx';
+import Art from './pages/Art.jsx';
+import ProductDetail from './pages/productDetail.jsx'; // Import the ProductDetail component
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './UserContext';
 
 function App() {
+  const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
+
   return (
     <div className="App">
-      <Header/>
-      <main>
-        <Hero/>
-        <Reviews/>
-        <AofM/>
-      </main>
+      <UserProvider>
+        <Router>
+          <Header setUser={setUsername} />
+          <Routes>
+            <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/settings" element={<AccountSettings usernames={username} profilePicture={profilePicture} />} />
+            <Route path="/family" element={<Family />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/supporters" element={<Supporters />} />
+            <Route path="/shop" element={<Shop isUserLoggedIn={isUserLoggedIn} />} />
+            <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn} />} />
+            <Route path="/product/:productId" element={<ProductDetail />} />
+          </Routes>
+        </Router>
+      </UserProvider>
     </div>
   );
 }

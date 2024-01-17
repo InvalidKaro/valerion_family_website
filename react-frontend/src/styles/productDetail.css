@@ -1,0 +1,26 @@
+
+  
+  .title {
+    font-size: 200px;
+    margin-bottom: 10px;
+    margin-top: 150px;
+  }
+  
+  .price {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  .copyright {
+    font-size: 20px;
+  }
+  
+  .author {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .product-image {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+  }
