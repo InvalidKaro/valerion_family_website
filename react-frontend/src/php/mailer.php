@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-require_once 'db.inc.php';
+require_once 'localhost:80/db.inc.php';
 
 // Database configuration
 $servername = "localhost";
