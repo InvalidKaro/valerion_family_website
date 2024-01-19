@@ -60,6 +60,8 @@ const Login = () => {
     if (isLoggedIn) {
       // Reload the page once after successful login
       navigate('/');
+      
+    
       window.location.reload();
     }
   }, [isLoggedIn, navigate]);
