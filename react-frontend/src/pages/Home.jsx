@@ -7,15 +7,16 @@ import '../styles/artist-of-mount.css';
 import Reviews from '../components/Home/reviews.js';
 import '../styles/reviews.css';
 import { useUser } from '../UserContext';
+import Flyout from '../components/Flyout.jsx';
 
 function Home() {
   const { user } = useUser();
-
 
   return (
     <div className="App">
       <main>
         <Hero />
+        {user && user.username && <Flyout user={user.username} duration={3000} />}
         <Reviews />
         <AofM />
       </main>

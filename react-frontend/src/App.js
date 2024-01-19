@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/navbar/header.jsx';
 import './styles/header.css';
@@ -13,6 +13,7 @@ import Supporters from './pages/Supporters.jsx';
 import Help from './pages/Help.jsx';
 import Shop from './pages/Shop.jsx';
 import Art from './pages/Art.jsx';
+import CookiePopup from './components/Cookies.jsx';
 import ProductDetail from './pages/productDetail.jsx'; // Import the ProductDetail component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
@@ -21,9 +22,16 @@ function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
+  const [showCookiePopup, setShowCookiePopup] = useState(true);
+
+
 
   return (
     <div className="App">
+
+    {showCookiePopup && (
+        <CookiePopup />
+      )}
       <UserProvider>
         <Router>
           <Header setUser={setUsername} />

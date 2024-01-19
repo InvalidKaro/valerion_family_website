@@ -35,49 +35,74 @@
 }
 
 .card__img {
-  width: 3.5em;
-  width: 3.5em;
+  width: 4m;
+  width: 4em;
   border-radius: 100px;
 }
 
 .card__username {
   font-size: var(--size-3xl);
   font-weight: 600;
+  margin-top: 0px;
 }
 
 .card__review {
   text-align: center;
   line-height: 1.4em;
   width: 100%;
+  margin-top: 60px;
 }
 
+.span{
+  font-size: var(--size-2xl);
+  font-weight: 600;
+}
 .rating {
-  font-size: 10px; /* Remove space between inline-block elements */
+  font-size: var(--size-2xl);
+  margin-bottom: -80px;
 }
 
 .card__stars__sec {
-  display: inline-block;
-  width: 40px; /* Adjust as needed */
-  height: 40px; /* Adjust as needed */
-  background-image: url("../images/icons8-star-48.png"); /* Replace with your star icon */
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10px;
+  margin-top: 60px;
 }
 
 .full {
   /* Background position for a full star */
-  background-position: 0 0;
+  content: '★';
+
+  color:gold
 }
 
 .half {
   /* Background position for a half star */
-  background-position: -40px 0; /* Adjust half-star position */
+  content: '★';
+
 }
 
 .empty {
   /* Background position for an empty star */
-  background-position: -40px 0; /* Adjust empty star position */
+  content: '★';
+
 }
 
+.full::before {
+  content: '★';
+  color: yellow;
+}
+
+.half::before {
+  content: '☆';
+  color: yellow;
+}
+
+.empty::before {
+  content: '☆';
+  color: gray;
+}
 .wave {
   height: 200px;
   z-index: 2;
