@@ -29,7 +29,7 @@
  .button-container button {
     margin-left: 10px;
     padding: 10px 16px;
-    background-color: #2ecc71;
+    background-color: #e74c3c;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -39,15 +39,15 @@
  }
  
  .button-container button:hover {
-    background-color: #27ae60;
+    background-color: #841010;
  }
  
  .button-container button:last-child {
-    background-color: #e74c3c;
+    background-color: #2ecc71;
  }
  
  .button-container button:last-child:hover {
-    background-color: #c0392b;
+    background-color: #489066;
  }
  
  .switch {
