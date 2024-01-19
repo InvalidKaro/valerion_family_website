@@ -8,6 +8,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 import '../../styles/reviews.css'; // Import the CSS file for the Reviews component
 
+import WriteReviewButton from './writeReview';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
@@ -64,9 +65,13 @@ const Reviews = () => {
           modules={[Navigation, Pagination]}
           className="reviews-container"
         >
-          {renderReviews()}
+        {renderReviews()}
+vzr
         </Swiper>
+
       </section>
+      <WriteReviewButton setReviews={setReviews}/>
+
     </>
   );
 };

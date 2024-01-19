@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username']) && isset($_FILES['profilePicture'])) {
         $username = $_POST['username'];
         $profilePicture = $_FILES['profilePicture'];
+        
 
         // Check if the user exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
@@ -84,9 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $updateStmt->close();
                 } else {
                     // Insert a new record into profile_pictures table
-                    $insertStmt = $conn->prepare("INSERT INTO profile_pictures (userid, filename, filetype) VALUES (?, ?, ?)");
+                    $insertStmt = $conn->prepare("INSERT INTO profile_pictures (username, userid, filename, filetype) VALUES (?, ?, ?, ?)");
                     $filetype = pathinfo($destination, PATHINFO_EXTENSION);
-                    $insertStmt->bind_param("iss", $userId, $newFilename, $filetype);
+                    $insertStmt->bind_param("siss", $username, $userId, $newFilename, $filetype);
                     $insertStmt->execute();
 
                     if ($insertStmt->affected_rows > 0) {

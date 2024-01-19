@@ -30,7 +30,11 @@ const Login = () => {
     // Add logic to handle logout, e.g., redirect to the login page
   };
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    console.log('Username:', username);
+    console.log('Password:', password);
+    console.log('Mail:', mail);
     fetch('http://localhost:80/register.php', {
       method: 'POST',
       headers: {
@@ -41,8 +45,8 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          loginUser({ username: username, discriminator: data.discriminator });
-          setShowLoginForm(false);
+          loginUser({ username: username });
+          setLoginMessage('Successfully registered! Verification-Mail sent!');
         } else {
           setLoginMessage('Registration failed. Please try again.');
         }
@@ -70,7 +74,7 @@ const Login = () => {
           <>
             {!isLoggedIn && (
               <div className="login-form">
-                <form>
+                <form onSubmit={handleRegister} method='POST'>
                   <input
                     type="email"
                     placeholder="Email"
