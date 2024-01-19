@@ -39,11 +39,8 @@ const Reviews = () => {
         </p>
         <div className="card__stars__sec">
           <div className="rating">
-            {[...Array(review.stars)].map((_, index) => (
-              <span key={index} className="star full"></span>
-            ))}
-            {[...Array(5 - review.stars)].map((_, index) => (
-              <span key={index} className="star empty"></span>
+            {[...Array(5)].map((_, index) => (
+              <span key={index} className={index < review.stars ? "full" : "empty"}></span>
             ))}
           </div>
         </div>
