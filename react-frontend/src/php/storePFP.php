@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'];
         $profilePicture = $_FILES['profilePicture'];
         
-
+        var_dump($profilePicture);
+        var_dump($username);
         // Check if the user exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows > 0) {
             // Fetch the user ID
-            $userId = $result->fetch_assoc()['id'];
+            $userId = $result->fetch_assoc()['user_id'];
 
             // Check if the user already has a profile picture
             $checkStmt = $conn->prepare("SELECT * FROM profile_pictures WHERE userid = ?");

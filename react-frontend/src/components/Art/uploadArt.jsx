@@ -9,6 +9,7 @@ const UploadArt = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -55,13 +56,30 @@ const UploadArt = () => {
       .then((data) => {
         console.log(data)
         // Handle success or display error message
-        
-      })
+        setImageUrl(data.url)
+        const url = 'http://localhost:80/Art/' + data.url;
+        fetch('http://localhost:80/waterMark.php', {
+          method: 'POST',
+          body: imageUrl,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            // Handle success or display error message
+          })
+          .catch((error) => {
+            // Handle error
+            console.error(error);
+          });
+          })
       .catch((error) => {
         // Handle error
         console.error(error);
       });
+    
+    
   };
+
 
   // Check if user is logged in and a username is given
   if (!user) {

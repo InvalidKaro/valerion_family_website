@@ -1,7 +1,7 @@
 <?php
 
 // Get the image file path from the query parameter
-$imagePath = $_GET['image'];
+$imagePath = $_GET[''];
 
 // Load the original image
 $image = imagecreatefromjpeg($imagePath);
