@@ -11,16 +11,19 @@ import '../../styles/reviews.css'; // Import the CSS file for the Reviews compon
 import WriteReviewButton from './writeReview';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-
   useEffect(() => {
     fetch('http://localhost:80/reviews.php')
       .then((response) => response.json())
       .then((data) => {
-        setReviews(data);
-        console.log('reviews:', data); // Add this line to log the reviews
+        const formattedReviews = data.map((review) => ({
+          ...review,
+          stars: parseInt(review.stars) // Convert stars to a number
+        }));
+        setReviews(formattedReviews);
+        console.log('reviews:', formattedReviews);
       })
       .catch((error) => {
-        console.log('reviews:', reviews); // Add this line to log the reviews
+        console.log('reviews:', reviews);
         console.error('Error fetching data:', error);
       });
   }, []);
@@ -63,7 +66,7 @@ const Reviews = () => {
           className="reviews-container"
         >
         {renderReviews()}
-vzr
+
         </Swiper>
 
       </section>
