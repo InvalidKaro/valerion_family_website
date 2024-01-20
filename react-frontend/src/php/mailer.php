@@ -3,17 +3,24 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-require_once 'localhost:80/db.inc.php';
+// Function to connect to the database
+function get_db_connection() {
+    $servername = "localhost";
+    $username = "root";
+    $password = "b59]UY]jp9@ASDac";
+    $dbname = "login";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    return $conn;
+}
 
-// Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
-$dbname = "login";
 
 $json_data = file_get_contents('php://input');
 error_log("Received JSON data: $json_data");
 $data = json_decode($json_data, true);
+
 
 // Check if JSON data is received and decoding is successful
 if (!empty($json_data) && $data !== null) {
@@ -30,10 +37,10 @@ $conn = get_db_connection();
 
 
 // Get the token from the database
-$stmt = $conn->prepare("SELECT reset_token FROM users WHERE mail = ?");
+$stmt = $conn->prepare("SELECT reset_token, username FROM users WHERE mail = ?");
 $stmt->bind_param('s', $mail);
 $stmt->execute();
-$stmt->bind_result($reset_token);
+$stmt->bind_result($reset_token, $username);
 $stmt->fetch();
 $stmt->close();
 
@@ -45,6 +52,8 @@ if ($reset_token) {
     $to = $mail;
     $subject = 'Password Reset';
     $message = '<html><body>';
+    $message .= 'Dear ' . $username . ',<br>';
+    $message .= 'We received a request to reset your password. If you did not make this request, please ignore this email.<br>';
     $message .= '<h1>To reset your password, <a href="http://localhost/reset-password.php?token=' . $reset_token . '">click here</a>.</h1>';
     $message .= '</body></html>';
     $headers = 'From: varts.dev@gmail.com' . "\r\n" .

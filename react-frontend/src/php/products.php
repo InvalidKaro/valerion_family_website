@@ -2,10 +2,18 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-require_once 'db.inc.php';
 
-// Replace with your database credentials
-$conn = get_db_connection();
+$servername = "localhost";
+$username = "root";
+$password = "b59]UY]jp9@ASDac";
+$dbname = "art";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+;
 
 
 $sql = "SELECT * FROM products";
@@ -20,12 +28,15 @@ if ($result->num_rows > 0) {
       'pictureUrl' => $row['picture_url'],
       'title' => $row['title'],
       'price' => $row['price'],
-      'author' => $row['author']
+      'author' => $row['author'],
+      'category' => $row['category']
     ];
+    $products[] = $product;
+
   }
 }
 
 $conn->close();
 
-echo json_encode($product);
+echo json_encode($products);
 ?>

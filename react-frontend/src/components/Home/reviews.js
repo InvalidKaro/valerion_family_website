@@ -8,6 +8,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 import '../../styles/reviews.css'; // Import the CSS file for the Reviews component
 
+import WriteReviewButton from './writeReview';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
@@ -38,11 +39,8 @@ const Reviews = () => {
         </p>
         <div className="card__stars__sec">
           <div className="rating">
-            {[...Array(review.stars)].map((_, index) => (
-              <span key={index} className="star full"></span>
-            ))}
-            {[...Array(5 - review.stars)].map((_, index) => (
-              <span key={index} className="star empty"></span>
+            {[...Array(5)].map((_, index) => (
+              <span key={index} className={index < review.stars ? "full" : "empty"}></span>
             ))}
           </div>
         </div>
@@ -64,9 +62,13 @@ const Reviews = () => {
           modules={[Navigation, Pagination]}
           className="reviews-container"
         >
-          {renderReviews()}
+        {renderReviews()}
+vzr
         </Swiper>
+
       </section>
+      <WriteReviewButton setReviews={setReviews}/>
+
     </>
   );
 };
