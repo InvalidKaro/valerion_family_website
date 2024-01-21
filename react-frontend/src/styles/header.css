@@ -37,7 +37,11 @@ header {
 }
 
 .header__user__icon {
-  width: var(--size-3xl);
+  width: var(--size-4xl);
+  border-radius: 100%;
+  cursor: pointer;
+  height: var(--size-4xl);
+  ;
 }
 
 .header__rsection {

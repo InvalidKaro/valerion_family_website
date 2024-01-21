@@ -38,14 +38,17 @@ const ProductItems = () => {
       });
   }, []);
 
-  return (
-    <div style={{ marginTop: '75px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {Object.entries(groupedProducts).map(([category, products]) => (
-        <div key={category} style={{ marginBottom: '75px' }}>
-          <h2>{category}</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {products.map((product) => (
-              <div key={product.id} style={{  marginBottom: '75px', marginRight: '20px' }}>
+  // ... (previous code remains unchanged)
+
+return (
+  <div style={{ marginTop: '75px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    {Object.entries(groupedProducts).map(([category, products]) => (
+      <div key={category} style={{ marginBottom: '75px' }}>
+        <h2>{category}</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {products.map((product) => (
+            
+              <div style={{  marginBottom: '75px', marginRight: '20px' }}>
                 <div
                   style={{
                     position: 'relative',
@@ -54,6 +57,7 @@ const ProductItems = () => {
                     overflow: 'hidden',
                   }}
                 >
+                  <a key={product.id} href={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <img
                     src={product.pictureUrl}
                     alt={product.title}
@@ -64,6 +68,8 @@ const ProductItems = () => {
                       borderRadius: '35px',
                     }}
                   />
+                  </a>
+
                   <div
                     style={{
                       position: 'absolute',
@@ -82,12 +88,12 @@ const ProductItems = () => {
                 <p>Price: {product.price}</p>
                 <p>Author: {product.author}</p>
               </div>
-            ))}
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
+      </div>
+    ))}
+  </div>
+);
 };
 
 export default ProductItems;

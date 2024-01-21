@@ -4,9 +4,9 @@ import logo from '../../images/v-arts-logo.png';
 import userLogo from '../../images/user.png';
 import '../../styles/Login.css';
 import { useAuth } from '../../pages/auth';
-
+import { useUser } from '../../UserContext';
 const Header = () => {
-  
+  const { user } = useUser();
   const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
   const [dropdownVisible, setDropdownVisible] = useState(false); // Added state for dropdown
 
@@ -33,7 +33,16 @@ const Header = () => {
     }
   };
   
+  function getProfilePicture(user) {
+    if (user && user.profileData.profileInfo.filename) {
+      const Ulogo = `http://localhost:80/${user.profileData.profileInfo.filename}`;
+      return Ulogo;
+    } else {
+      const Ulogo = '../../images/user.png';
 
+      return Ulogo;
+    }
+  }
   const handleLogout = () => {
     setUserLoggedOut();
     // Add logic to handle logout, e.g., redirect to the login page
@@ -54,7 +63,7 @@ const Header = () => {
         <div className="header__user__section">
           <a href="#" onClick={handleUserIconClick} className="user-icon">
             <img
-              src={userLogo}
+              src={getProfilePicture(user)}
               alt="userLogo"
               className="header__user__icon"
             />

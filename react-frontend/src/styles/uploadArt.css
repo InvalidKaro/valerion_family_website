@@ -1,0 +1,76 @@
+/* uploadArt.css */
+
+form {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 300px;
+    margin: 200px;
+  }
+  
+  #image {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #3e3e3e;
+    padding: 15px;
+    border-radius: 80px;
+    background-color: #59595946;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 18px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+  }
+  
+  #image:hover {
+    background-color: #a29898;
+  }
+  
+  input[type="text"] {
+    margin-bottom: 10px;
+    border-color: #a29898;
+    border-radius: 80px;
+    padding: 8px;
+    width: 100%;
+  }
+  input[type="number"] {
+    margin-bottom: 10px;
+    border-color: #a29898;
+    border-radius: 80px;
+    padding: 8px;
+    width: 100%;
+  }
+  
+  button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: blue;
+    color: white;
+    border: none;
+  }
+  
+  button.selected {
+    background-color: #3399ff;
+    color: #fff;
+    border-color: #3399ff;
+  }
+  
+    
+  .formContainer {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .imageContainer {
+    margin-top: -600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  
+  .imageDetails {
+    text-align: right;
+  }
+  /* Add more specific styling as needed */
