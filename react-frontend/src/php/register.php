@@ -1,7 +1,7 @@
 <?php
 
 // Allow Headers
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verifyToken = bin2hex(random_bytes(32));
 
     // Prepare and execute the SQL query to insert the values into the "users" table
-    $stmt = $conn->prepare("INSERT INTO users (username, password, mail, reset_token, verification_token) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (username, password, mail, reset_token, verification_token) VALUES (?, ?, ?, ?, ?);");
     $stmt->bind_param("sssss", $username, $hashedPassword, $mail, $resetToken, $verifyToken);
     $stmt->execute();
     $stmt->close();

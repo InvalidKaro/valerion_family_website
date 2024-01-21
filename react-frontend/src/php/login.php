@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // For login, verify the password
             $password = $data['password'];
 
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt = $conn->prepare("SELECT * FROM users WHERE mail = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // For password change, update the password
             $newPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
 
-            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE mail = ?");
             $stmt->bind_param("ss", $newPassword, $username);
             $stmt->execute();
 
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $conn->close();
 
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 echo json_encode($response);
@@ -116,8 +116,8 @@ echo json_encode($response);
 // Function to retrieve profile picture information
 function retrieveProfilePicture($conn, $username) {
     $stmt = $conn->prepare("SELECT profile_pictures.filename, profile_pictures.filetype FROM users 
-                           JOIN profile_pictures ON users.id = profile_pictures.userid 
-                           WHERE users.username = ?");
+                           JOIN profile_pictures ON users.user_id = profile_pictures.userid 
+                           WHERE users.mail = ?");
     $stmt->bind_param('s', $username);
     $stmt->execute();
 

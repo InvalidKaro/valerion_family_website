@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     'title' => $row['title'],
     'price' => $row['price'],
     'author' => $row['author'],
-    'description' => $row['description']
+    'description' => $row['descr']
   ];
 }
 
