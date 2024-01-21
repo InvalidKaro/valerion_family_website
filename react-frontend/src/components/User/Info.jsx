@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/userinfo.css';
+import { useParams } from 'react-router-dom';
+
 
 const UserInfo = () => {
   const [userx, setUserx] = useState({});
   const [loading, setLoading] = useState(true);
+  const { username } = useParams(); // Extract the username from the URL parameter
 
   document.title = userx.username + "'s Profile";
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const username = 'Karo';
         const response = await fetch(`http://localhost:80/userInfo.php?username=${username}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }
         const data = await response.json();
-
+        setUserx(data);
         // Capitalize the first letter of each word in the roles property
         const capitalizedRoles = data.roles.map(role => {
           return role.replace(/\b\w/g, char => char.toUpperCase());
@@ -52,6 +54,15 @@ const UserInfo = () => {
 
   return (
     <div className='user_section'>
+        <br></br>        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
       <h2>User Information</h2>
       <div className='user_info_section'>
         <p>Username: {userx.username}</p>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/userinfo.css';
-
+import { useParams } from 'react-router-dom';
 const UserProducts = () => {
   const [userx, setUserx] = useState([]);
+  const { username } = useParams(); // Extract the username from the URL parameter
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const username = 'Karo';
         const response = await fetch(`http://localhost:80/userInventory.php?username=${username}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');

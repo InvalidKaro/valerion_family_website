@@ -4,13 +4,14 @@ import '../../styles/userinfo.css';
 
 const ReviewDetail = () => {
   const [Review, setReview] = useState(null);
+  const { username } = useParams(); // Extract the username from the URL parameter
 
   useEffect(() => {
     // Fetch the product details based on the productId
     fetchReview();
   }, []);
   const fetchReview = () => {
-    fetch(`http://localhost:80/userReviews.php?username=Karo`) // Update the URL to your PHP script
+    fetch(`http://localhost:80/userReviews.php?username=${username}`) // Update the URL to your PHP script
       .then(response => response.json())
       .then(data => {
         setReview(data);
@@ -31,7 +32,7 @@ const ReviewDetail = () => {
       {Review.map((review, index) => (
         
         <div key={index}>
-
+        
             <p>Author: {review.author}</p>
             <p>Review Text: {review.review_text}</p>
             <p>Rating:
