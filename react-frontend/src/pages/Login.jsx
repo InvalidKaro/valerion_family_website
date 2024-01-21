@@ -51,8 +51,8 @@ export default MyComponent;
 // Login function, when using https/a domain this will automatically be encrypted
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!username || !password) {
-      setLoginMessage('Please enter both username and password.');
+    if (!email || !password || !username) {
+      setLoginMessage('Please enter username, mail and password.');
       return;
     }
     fetch('http://localhost:80/login.php', {
@@ -60,7 +60,7 @@ export default MyComponent;
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({ username: email, password: password }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -71,7 +71,7 @@ export default MyComponent;
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: username, password:  password }),
+            body: JSON.stringify({ username: email, password:  password }),
           })
             .then((profileResponse) => profileResponse.json())
             .then((profileData) => {
@@ -153,11 +153,17 @@ export default MyComponent;
             {!isLoggedIn && (
               <div className="login-form">
                 <form onSubmit={handleLogin}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                   <input
                     type="email"
                     placeholder="Mail"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <input
                     type="password"

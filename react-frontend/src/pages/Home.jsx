@@ -8,10 +8,9 @@ import Reviews from '../components/Home/reviews.js';
 import '../styles/reviews.css';
 import { useUser } from '../UserContext';
 import Flyout from '../components/Flyout.jsx';
-
 function Home() {
   const { user } = useUser();
-
+  document.title = "Home";
   return (
     <div className="App">
       <main>

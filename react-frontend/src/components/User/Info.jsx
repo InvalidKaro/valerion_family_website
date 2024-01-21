@@ -5,6 +5,7 @@ const UserInfo = () => {
   const [userx, setUserx] = useState({});
   const [loading, setLoading] = useState(true);
 
+  document.title = userx.username + "'s Profile";
   useEffect(() => {
     const fetchUser = async () => {
       try {
