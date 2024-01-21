@@ -85,6 +85,7 @@ const Header = () => {
       {isLoggedIn && dropdownVisible && (
             <div className="dropdown-menu">
                 <div className="dropdown">
+                  <button className="dropdown-button" onClick={() => {navigate(`/user/${user.username}`); setDropdownVisible(false)}}>Profile</button>
                   <button className="dropdown-button" onClick={() => navigate('/Settings')}>Settings</button>
                   <button className="dropdown-button" onClick={handleLogout}>Logout</button>
                 </div>

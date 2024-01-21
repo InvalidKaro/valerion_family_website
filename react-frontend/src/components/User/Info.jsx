@@ -26,8 +26,11 @@ const UserInfo = () => {
             };
           });
 
-        // Update the userx object with the capitalized roles
-        const updatedUserx = { ...data, roles: capitalizedRoles, badges: capitalizedBadges };
+            // Sort the badges alphabetically by name
+        const sortedBadges = capitalizedBadges.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Update the userx object with the sorted badges
+        const updatedUserx = { ...data, roles: capitalizedRoles, badges: sortedBadges };
         setUserx(updatedUserx);
         setLoading(false);
 

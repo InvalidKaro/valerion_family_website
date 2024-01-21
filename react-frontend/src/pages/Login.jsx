@@ -154,8 +154,8 @@ export default MyComponent;
               <div className="login-form">
                 <form onSubmit={handleLogin}>
                   <input
-                    type="text"
-                    placeholder="Username"
+                    type="email"
+                    placeholder="Mail"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />

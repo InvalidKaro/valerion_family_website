@@ -5,7 +5,7 @@ import { useUser } from '../../UserContext';
 
 const WriteReviewButton = ({ setReviews }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState("");
   const { isLoggedIn } = useAuth();
   const { user } = useUser();
@@ -20,10 +20,6 @@ const WriteReviewButton = ({ setReviews }) => {
 
   const handleStarClick = (clickedRating) => {
     setRating(clickedRating);
-  };
-
-  const handleStarHover = (hoveredRating) => {
-    setRating(hoveredRating);
   };
 
 
@@ -86,7 +82,6 @@ const WriteReviewButton = ({ setReviews }) => {
                   key={num}
                   className={`star${num <= rating ? " active" : ""}`}
                   onClick={() => handleStarClick(num)}
-                  onMouseEnter={() => handleStarHover(num)}
                 >
                   &#9733;
                 </span>

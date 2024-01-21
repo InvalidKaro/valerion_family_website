@@ -109,22 +109,32 @@ li {
     position: relative;
     display: grid;
     flex-direction: column;}
-
 .badge-name-tooltip {
     visibility: hidden;
     width: 120px;
-    background-color: black;
-    color: white;
+    background-color: #555;
+    color: #fff;
     text-align: center;
-    padding: 5px 0;
     border-radius: 6px;
+    padding: 5px;
     position: absolute;
     z-index: 1;
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
 }
-
+    
+.badge-name-tooltip:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    transform: translateX(-50%);
+}
+    
 .badge-container:hover .badge-name-tooltip {
     visibility: visible;
 }
