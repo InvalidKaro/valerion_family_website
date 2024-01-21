@@ -15,6 +15,7 @@ import Shop from './pages/Shop.jsx';
 import Art from './pages/Art.jsx';
 import CookiePopup from './components/Cookies.jsx';
 import ProductDetail from './pages/productDetail.jsx'; // Import the ProductDetail component
+import UserPage from './pages/User.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/shop" element={<Shop isUserLoggedIn={isUserLoggedIn} />} />
             <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn} />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
+            <Route path="/user/:username" element={<UserPage />} />
           </Routes>
         </Router>
       </UserProvider>

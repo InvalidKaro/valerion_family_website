@@ -36,7 +36,9 @@ const ProductDetail = () => {
         <p className="title">{product.title}</p>
         <p className="price">Price: {product.price}</p>
         <p className="author">
+        <a href={`/user/${product.author}`} className='author-link' style={{ textDecoration: 'underline', color: 'inherit' }}>
             Author: {product.author}
+        </a>
             <sup className='copyright'>&copy;</sup>
         </p>
         <img className="product-image" src={product.pictureUrl} alt="Product" />

@@ -48,44 +48,49 @@ const Header = () => {
     // Add logic to handle logout, e.g., redirect to the login page
   };
   return (
-    <header className="container header">
-      <a href="/"><img src={logo} alt="logo" className="header__logo"/></a>
-      <nav>
-        <ul className="header__menu">
-          <li className="header__link"><a href="History">Our History</a></li>
-          <li className="header__link"><a href="Family">Family Tree</a></li>
-          <li className="header__link"><a href="Supporters">Supporters</a></li>
-          <li className="header__link"><a href="Help">Need Help?</a></li>
-        </ul>
-      </nav>
-      <div className="header__rsection">
-        <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
-        <div className="header__user__section">
-          <a href="#" onClick={handleUserIconClick} className="user-icon">
-            <img
-              src={getProfilePicture(user)}
-              alt="userLogo"
-              className="header__user__icon"
-            />
+    <div className='box-header'>
+      <header className="container header">
+        <a href="/"><img src={logo} alt="logo" className="header__logo"/></a>
+        <nav>
+          <ul className="header__menu">
+            <li className="header__link"><a href="History">Our History</a></li>
+            <li className="header__link"><a href="Family">Family Tree</a></li>
+            <li className="header__link"><a href="Supporters">Supporters</a></li>
+            <li className="header__link"><a href="Help">Need Help?</a></li>
+          </ul>
+        </nav>
+        <div className="header__rsection">
+          <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
+          <div className="header__user__section">
+            <a href="#" onClick={handleUserIconClick} className="user-icon">
+              <img
+                src={getProfilePicture(user)}
+                alt="userLogo"
+                className="header__user__icon"
+              />
+            </a>
+          </div>
+          <div className="hamburger-button">
+          <a href="#" class="" onclick="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
           </a>
-          {isLoggedIn && dropdownVisible && (
-            <div className="dropdown">
-              <button onClick={() => navigate('/Settings')}>Settings</button>
-              <button onClick={handleLogout}>Logout</button>
+          
+          </div>
+        </div>
+      </header>
+      {isLoggedIn && dropdownVisible && (
+            <div className="dropdown-menu">
+                <div className="dropdown">
+                  <button className="dropdown-button" onClick={() => navigate('/Settings')}>Settings</button>
+                  <button className="dropdown-button" onClick={handleLogout}>Logout</button>
+                </div>
             </div>
           )}
-        </div>
-        <div className="hamburger-button">
-        <a href="#" class="" onclick="toggleMenu()">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </a>
-        </div>
-      </div>
-    </header>
+    </div>
   );
 };
 

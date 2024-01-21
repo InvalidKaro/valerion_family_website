@@ -86,7 +86,9 @@ return (
                 </div>
                 <h3>{product.title}</h3>
                 <p>Price: {product.price}</p>
-                <p>Author: {product.author}</p>
+                <a href={`/user/${product.author}`} className='author-link' style={{ textDecoration: 'underline', color: 'inherit' }}>
+                  Author: {product.author}
+                </a>              
               </div>
           ))}
         </div>
