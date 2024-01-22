@@ -38,8 +38,7 @@ const Header = () => {
       const Ulogo = `http://localhost:80/${user.profileData.profileInfo.filename}`;
       return Ulogo;
     } else {
-      const Ulogo = '../../images/user.png';
-
+      const Ulogo = userLogo
       return Ulogo;
     }
   }

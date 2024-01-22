@@ -19,6 +19,7 @@ import UserPage from './pages/User.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import UserAdmin from './components/User/Admin.jsx';
+import Admin from './pages/Admin.jsx';
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -49,10 +50,9 @@ function App() {
             <Route path="/upload" element={<Art username={username} isUserLoggedIn={isUserLoggedIn} />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/user/:username" element={<UserPage username={username}/>} />
-
+            <Route path='/admin' element={<Admin />} />
           </Routes>
         </Router>
-        <component UserAdmin />
 
       </UserProvider>
     </div>
