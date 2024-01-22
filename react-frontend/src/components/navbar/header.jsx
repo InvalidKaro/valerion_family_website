@@ -44,8 +44,13 @@ const Header = () => {
       <nav>
         <ul className="header__menu">
           <li className="header__link"><a href="History">Our History</a></li>
-          <li className="header__link"><a href="Family">Family Tree</a></li>
           <li className="header__link"><a href="Supporters">Supporters</a></li>
+          <li className="menu__market">
+            <div className='trapezium'>
+              <a className='menu__market__text' href="Market">Market</a>
+            </div>
+          </li>
+          <li className="header__link"><a href="FAQs">FAQs</a></li>
           <li className="header__link"><a href="Help">Need Help?</a></li>
         </ul>
       </nav>
