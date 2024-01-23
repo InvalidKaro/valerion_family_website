@@ -74,15 +74,14 @@ const Header = () => {
 
               <div class="trapezoid">
               </div>
-              <svg width="200" height="100">
-
-                <polygon points="30,10 170,10 140,90 60,90" fill="#058AA3"/>
-                <a href="Shop">
-                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white">
-                  Market
-                </text>
-                </a>
-              </svg>
+              <svg width="300" height="150">
+  <polygon points="40,20 260,20 220,130 80,130" fill="#058AA3"/>
+  <a href="Shop">
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="24">
+      Market
+    </text>
+  </a>
+</svg>
             </li>
             <li className="header__link"><a href="Family">FAQ's</a></li>
             <li className="header__link"><a href="Help">Need Help?</a></li>
