@@ -73,22 +73,32 @@ const Header = () => {
             <li className="header__link">
 
               <div class="trapezoid">
-              </div>
-              <svg width="300" height="150">
-  <polygon points="40,20 260,20 220,130 80,130" fill="#058AA3"/>
+              <svg width="300" height="75" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <polygon points="50,10 250,10 220,70 80,70" fill="#058AA3" filter="url(#glow)"/>
   <a href="Shop">
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="24">
+    <text x="150" y="40" dominant-baseline="middle" text-anchor="middle" fill="white"  class="market_text">
       Market
     </text>
   </a>
 </svg>
+              </div>
+              
             </li>
             <li className="header__link"><a href="Family">FAQ's</a></li>
             <li className="header__link"><a href="Help">Need Help?</a></li>
           </ul>
         </nav>
         <div className="header__rsection">
-          <a href="#" onClick={handleBuyClick}><button className="btn">BUY</button></a>
+         <button className="buy-button" type="button" onClick={handleBuyClick}>BUY</button>
           <div className="header__user__section">
             <a href="#" onClick={handleUserIconClick} className="user-icon">
               <img
