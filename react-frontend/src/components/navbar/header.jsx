@@ -1,14 +1,29 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../images/v-arts-logo.png';
 import userLogo from '../../images/user.png';
 import '../../styles/Login.css';
 import { useAuth } from '../../pages/auth';
 import { useUser } from '../../UserContext';
+import '../../styles/header.css';
+
 const Header = () => {
   const { user } = useUser();
   const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
   const [dropdownVisible, setDropdownVisible] = useState(false); // Added state for dropdown
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleBuyClick = (e) => {
     console.log('Buy button clicked');
@@ -47,14 +62,29 @@ const Header = () => {
     // Add logic to handle logout, e.g., redirect to the login page
   };
   return (
+
     <div className='box-header'>
-      <header className="container header">
+      <header className={`header ${isScrolled ? 'hidden' : ''}`}>
         <a href="/"><img src={logo} alt="logo" className="header__logo"/></a>
         <nav>
           <ul className="header__menu">
-            <li className="header__link"><a href="History">Our History</a></li>
-            <li className="header__link"><a href="Family">Family Tree</a></li>
+            <li className="header__link"><a href="History">Family Tree</a></li>
             <li className="header__link"><a href="Supporters">Supporters</a></li>
+            <li className="header__link">
+
+              <div class="trapezoid">
+              </div>
+              <svg width="200" height="100">
+
+                <polygon points="30,10 170,10 140,90 60,90" fill="#058AA3"/>
+                <a href="Shop">
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white">
+                  Market
+                </text>
+                </a>
+              </svg>
+            </li>
+            <li className="header__link"><a href="Family">FAQ's</a></li>
             <li className="header__link"><a href="Help">Need Help?</a></li>
           </ul>
         </nav>

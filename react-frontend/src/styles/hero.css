@@ -19,6 +19,17 @@
 
 }
 
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired opacity */
+  z-index: 1;
+}
+
 .hero h1 {
   font-size: var(--size-7xl);
   background-color: rgba(255, 255, 255, 0);
@@ -31,10 +42,17 @@
 }
 
 .hero__motto {
-  font-size: var(--size-md);
+  font-size: var(--size-1xl);
+  line-height: 1em;
   background-color: rgba(255, 255, 255, 0);
   font-weight: 300;
   margin-top: -1.5em;
+  text-shadow: 5px 4px 6px rgba(0,0,0,0.75);
+}
+.hero h1,.hero p, .hero__motto {
+  position: relative;
+  z-index: 2;
+  color: white; /* Set the text color to ensure contrast with the overlay */
 }
 
 /* Extra small devices (phones) */

@@ -33,20 +33,23 @@ function App() {
 
   useEffect(() => {
     const listenToScroll = () => {
-      let heightToHideFrom = 200;
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let heightToHideFrom = 500;
+      const winScroll = window.pageYOffset;
       setHeight(winScroll);
       setIsVisible(winScroll <= heightToHideFrom);
+      console.log(winScroll);
+      console.log(winScroll <= heightToHideFrom); // Check if this logs the expected value
+
     };
-  
+
     window.addEventListener('scroll', listenToScroll);
-  
+
     // Clean up the event listener when the component is unmounted
     return () => {
       window.removeEventListener('scroll', listenToScroll);
     };
   }, []);
-  
+
   return (
     <div className="App">
 
