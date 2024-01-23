@@ -20,14 +20,33 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import UserAdmin from './components/User/Admin.jsx';
 import Admin from './pages/Admin.jsx';
+import './styles/header.css'; // Import the CSS file with transition styles
+
+
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const [showCookiePopup, setShowCookiePopup] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
+  const [height, setHeight] = useState(0)
 
-
-
+  useEffect(() => {
+    const listenToScroll = () => {
+      let heightToHideFrom = 200;
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      setHeight(winScroll);
+      setIsVisible(winScroll <= heightToHideFrom);
+    };
+  
+    window.addEventListener('scroll', listenToScroll);
+  
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('scroll', listenToScroll);
+    };
+  }, []);
+  
   return (
     <div className="App">
 
@@ -36,7 +55,7 @@ function App() {
       )}
       <UserProvider>
         <Router>
-          <Header setUser={setUsername} />
+          <Header setUser={setUsername} isVisible={isVisible} />
           <Routes>
             <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} />} />
             <Route path="/history" element={<History />} />
