@@ -14,16 +14,28 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
+  let prevScrollY = window.scrollY;
 
-    window.addEventListener('scroll', handleScroll);
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    if (currentScrollY > prevScrollY) {
+      // Scrolling down
+      setIsScrolled(true);
+    } else {
+      // Scrolling up
+      setIsScrolled(currentScrollY > 300); // Adjust the threshold as needed
+    }
+
+    prevScrollY = currentScrollY;
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
 
   const handleBuyClick = (e) => {
     console.log('Buy button clicked');

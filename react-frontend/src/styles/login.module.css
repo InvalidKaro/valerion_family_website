@@ -1,0 +1,50 @@
+.input[type="email"],.input[type="password"],.input[type="text"] 
+{
+    margin-bottom: 10px;
+    border: 2px solid #a29898;
+    border-radius: 20px;
+    padding: 12px;
+    width: 100%;
+    text-align: center;
+    transition: border-color 0.3s cubic-bezier(0.58,-0.25, 0.58, 1);
+    
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5); 
+    /* Added a subtle white glow shadow */
+    
+}
+.input[type="email"]:focus,.input[type="password"]:focus,.input[type="text"]:focus 
+{
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 10px rgba(66, 133, 244, 0.7), 0 0 20px rgba(66, 133, 244, 0.3); /* Updated box-shadow on focus */
+}
+.input[type="email"]:hover,.input[type="password"]:hover,.input[type="text"]:hover 
+{   
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: 0 0 10px rgba(105, 152, 228, 0.7); /* Added a subtle box-shadow on focus */
+}
+.link {
+    background-color: transparent;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 50px;
+}

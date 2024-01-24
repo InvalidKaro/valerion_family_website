@@ -21,7 +21,7 @@ import { UserProvider } from './UserContext';
 import UserAdmin from './components/User/Admin.jsx';
 import Admin from './pages/Admin.jsx';
 import './styles/header.css'; // Import the CSS file with transition styles
-
+import ForgotPassword from './pages/forgotPassword.jsx';
 
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -73,6 +73,7 @@ function App() {
             <Route path="/product/:productId" element={<ProductDetail />} />
             <Route path="/user/:username" element={<UserPage username={username}/>} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/forgotPassword' element={<ForgotPassword />} />
           </Routes>
         </Router>
 

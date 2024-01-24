@@ -1,8 +1,9 @@
 // Login.js
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './auth';
-
-
+import loginStyle from '../styles/login.module.css';
+import buttonStyle from '../styles/button.module.css';
+import textStyle from '../styles/TextStyle.module.css';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -13,6 +14,8 @@ const Login = () => {
   // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [failedAttempts, setFailedAttempts] = useState(0);
+
   /**
    * Handles the login process.
    *
@@ -90,11 +93,14 @@ export default MyComponent;
             });
         } else {
           setLoginMessage('Login failed. Please check your credentials.');
+          setFailedAttempts(prevAttempts => prevAttempts + 1);
+
         }
       })
       .catch((error) => {
         console.error('Error during login:', error);
         setLoginMessage('An error occurred during login');
+        setFailedAttempts(prevAttempts => prevAttempts + 1);
       });
   };
   
@@ -102,28 +108,7 @@ export default MyComponent;
   
   const handleForgotPassword = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    try {
-      // Send a request to your server to initiate the password reset process
-      const response = await fetch('http://localhost:80/mailer.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setMessage('Password reset email sent. Check your email.');
-      } else {
-        setMessage('Failed to initiate password reset. Please check your email and try again.');
-      }
-    } catch (error) {
-      console.error('Error during password reset:', error);
-      setMessage('An error occurred during password reset. Please try again later.');
-    }
+    navigate('/forgotPassword');
   };
   
   
@@ -143,7 +128,7 @@ export default MyComponent;
   return (
     <main>
       
-      <div className="logout">
+      <div className={loginStyle.container}>
         {isLoggedIn ? (
           <a href="/" onClick={handleLogout}>
             Logout
@@ -151,58 +136,57 @@ export default MyComponent;
         ) : (
           <>
             {!isLoggedIn && (
-              <div className="login-form">
-                <form onSubmit={handleLogin}>
+              
+              <div className={loginStyle.form}>
+                <h1 className={textStyle.h1} style={{ marginTop: '100px', marginBottom: '-50px'}}>Log into your account</h1>
+
+                <form onSubmit={handleLogin} autocomplete="off" className={loginStyle.form}>
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className={loginStyle.input}
                   />
                   <input
                     type="email"
                     placeholder="Mail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    className={loginStyle.input}
                   />
                   <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={loginStyle.input}
                   />
-                  <button type="submit" className="btn" onClick={handleLogin}>
+                  <button type="submit" className={buttonStyle.glow_btn} onClick={handleLogin} style={{ marginTop: '20px' }}>
                     Login
                   </button>
                   {!isLoggedIn && (
-                    <a href="/Signup">
-                      Register
+                    <a href="/Signup" className={loginStyle.link} style={{ marginTop: '10px' }}>
+                      Don't have an account yet?
+                      <br></br>
+                      <br></br>
+                      S I G N U P
                     </a>
+                
                   )}
                 </form>
-                <div className="forgot-password-form">
-                <h1>Forgot Password</h1>
-                <form onSubmit={handleForgotPassword}>
-                  <label htmlFor="email">Enter your email:</label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                  <button type="submit" className="btn">
-                    Reset Password
-                  </button>
-                </form>
-                <p>{message}</p>
-              </div>
                 {loginMessage && (
-                <p className="error-message">{loginMessage}</p>
+                <p className={textStyle.error}>{loginMessage}</p>
                 )}
 
+                {failedAttempts >= 2 && (
+                  <button className={buttonStyle.glow_btn} onClick={handleForgotPassword} style={{ marginTop: '10px' }}>
+                    Forgot Password?
+                  </button>
+                )}
+              
+              
               </div>
-            
               
             )}
           </>
