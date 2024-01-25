@@ -10,7 +10,26 @@ p {
     margin: 0;
     text-align: center;
     align-content: center;
+    background-color: transparent;
 }
+
+.a_p {
+    font-size: var(--size-lg);
+    margin: 0;
+    text-align: center;
+    align-content: center;
+    background-color: transparent;
+
+}
+
+
+
+.a_p + .a_p {
+    margin-top: 100%; /* Adjust the value to increase or decrease the gap */
+}
+
+
+
 .label {
     font-size: var(--size-xl);
     font-weight: 600;
@@ -33,3 +52,15 @@ p {
     /* Add any additional styles specific to the error messages */
     /* Add other styles as needed */
 }
+
+
+.a_h1 {
+    font-size: var(--size-4xl);
+    font-weight: 700;
+    align-content: center;
+    margin: 0;
+    text-align: center;
+    color: #e3e9ef; /* Adjust the color to your preference */
+    text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.9); /* Add a subtle text shadow for depth */
+    letter-spacing: 3px; /* Increase letter spacing for emphasis */
+    }

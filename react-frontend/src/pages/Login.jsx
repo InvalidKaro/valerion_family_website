@@ -1,6 +1,7 @@
 // Login.js
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './auth';
+import CaptchaComponent from '../components/Captcha/captchaClient'; // Import CaptchaComponent
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
@@ -15,7 +16,12 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
-
+  document.addEventListener('DOMContentLoaded', function() {
+    // Clear form fields
+    document.querySelectorAll('input').forEach(function(input) {
+      input.value = '';
+    });
+  });
   /**
    * Handles the login process.
    *
@@ -127,7 +133,6 @@ export default MyComponent;
   }, [isLoggedIn, navigate]);
   return (
     <main>
-      
       <div className={loginStyle.container}>
         {isLoggedIn ? (
           <a href="/" onClick={handleLogout}>
@@ -137,16 +142,19 @@ export default MyComponent;
           <>
             {!isLoggedIn && (
               
-              <div className={loginStyle.form}>
-                <h1 className={textStyle.h1} style={{ marginTop: '100px', marginBottom: '-50px'}}>Log into your account</h1>
+              <div className={loginStyle.form_container}>
+                <h1 className={textStyle.a_h1} style={{ marginTop: '100px', marginBottom: '-50px'}}>
+                  Log into your account
+                </h1>
 
-                <form onSubmit={handleLogin} autocomplete="off" className={loginStyle.form}>
+                <form onSubmit={handleLogin} autocomplete="off" className={loginStyle.form} autoComplete="off">
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className={loginStyle.input}
+                    required
                   />
                   <input
                     type="email"
@@ -154,6 +162,7 @@ export default MyComponent;
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className={loginStyle.input}
+                    required
                   />
                   <input
                     type="password"
@@ -161,16 +170,19 @@ export default MyComponent;
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={loginStyle.input}
+                    required
                   />
                   <button type="submit" className={buttonStyle.glow_btn} onClick={handleLogin} style={{ marginTop: '20px' }}>
                     Login
                   </button>
                   {!isLoggedIn && (
                     <a href="/Signup" className={loginStyle.link} style={{ marginTop: '10px' }}>
-                      Don't have an account yet?
-                      <br></br>
-                      <br></br>
-                      S I G N U P
+                      <p className={loginStyle.a_p} style={{ marginBottom: '40px', fontSize: 'var(--size-xs)' }}>
+                        Don't have an account yet?
+                      </p>
+                      <p className={loginStyle.a_b} style={{ marginBottom: '5px', fontSize: 'var(--size-2xl)' }}>
+                        S I G N U P
+                      </p>
                     </a>
                 
                   )}
@@ -192,7 +204,8 @@ export default MyComponent;
           </>
         )}
       </div>
-      
+      <CaptchaComponent />
+
     </main>
   );
 };

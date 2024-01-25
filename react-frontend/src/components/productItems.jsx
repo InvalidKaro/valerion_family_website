@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import productStyles from '../styles/product.module.css'
 const ProductItems = () => {
   const [groupedProducts, setGroupedProducts] = useState({});
 
@@ -43,8 +43,8 @@ const ProductItems = () => {
 return (
   <div style={{ marginTop: '75px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
     {Object.entries(groupedProducts).map(([category, products]) => (
-      <div key={category} style={{ marginBottom: '75px' }}>
-        <h2>{category}</h2>
+      <div className={productStyles.cat_Container} key={category} style={{ marginBottom: '75px' }}>
+        <h2 className={productStyles.category}>{category}</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           {products.map((product) => (
             

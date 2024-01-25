@@ -1,7 +1,9 @@
 // Register.js
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './auth';
-
+import loginStyle from '../styles/login.module.css';
+import buttonStyle from '../styles/button.module.css';
+import textStyle from '../styles/TextStyle.module.css';	
 
 const Login = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -67,7 +69,7 @@ const Login = () => {
   }, [isLoggedIn, navigate]);
   return (
     <main>
-      <div className="logout">
+      <div className={loginStyle.container} style={{ marginTop: '10px' }}>
         {isLoggedIn ? (
           <a href="/" onClick={handleLogout}>
             Logout
@@ -75,31 +77,37 @@ const Login = () => {
         ) : (
           <>
             {!isLoggedIn && (
-              <div className="login-form">
+              <div className={loginStyle.loginForm} style={{ marginTop: '10px' }}>
                 <form onSubmit={handleRegister} method='POST'>
                   <input
                     type="email"
                     placeholder="Email"
                     value={mail}
                     onChange={(e) => setMail(e.target.value)}
+                    required
+                    className={loginStyle.input}
                   />
                   <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
+                    className={loginStyle.input}
                   />
                   <input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className={loginStyle.input}
                   />
                   
                   <button className="btn" onClick={handleRegister}>
                     Register
                   </button>
-                  <a href="/Login">
+                  <a href="/Login" className={loginStyle.link}>
                     Login
                   </a>
                 </form>

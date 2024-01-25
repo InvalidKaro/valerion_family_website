@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useUser } from '../../UserContext.js';
 import '../../styles/settings.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import loginStyle from '../../styles/login.module.css'
+import buttonStyle from '../../styles/button.module.css'
 const ChangePassword = () => {
   const { user } = useUser(); // Use the useUser hook here
   const [currentPassword, setCurrentPassword] = useState('');
@@ -89,15 +90,17 @@ const ChangePassword = () => {
     <p>Hello, {user.username}!</p>
 
     {/* Display current profile picture */}
-    <form onSubmit={handleChangePassword}>
-      <label>
+    <form onSubmit={handleChangePassword} className={loginStyle.form}>
+       <label className={loginStyle.label}>
         Current Password:
-        <div className="password-input-container">
+        <div className={loginStyle.box} style={{backgroundColor: 'none'}}>
           <input
             type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
             required
+            className={loginStyle.input}
+
           />
           {/* Change the fa-eye-slash if needed */}
           
@@ -109,14 +112,15 @@ const ChangePassword = () => {
           ></i>
         </div>
       </label>
-      <label>
+       <label className={loginStyle.label}>
         New Password:
-        <div className="password-input-container">
+        <div className={loginStyle.box} style={{backgroundColor: 'none'}}>
           <input
             type={showNewPassword ? "text" : "password"}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
+            className={loginStyle.input}
           />
           <i
             className={`password-toggle fas ${
@@ -126,14 +130,16 @@ const ChangePassword = () => {
           ></i>
         </div>
       </label>
-      <label>
+       <label className={loginStyle.label}>
         Confirm Password:
-        <div className="password-input-container">
+        <div className={loginStyle.box} style={{backgroundColor: 'none'}}>
           <input
             type={showConfirmPassword ? "text" : "password"}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className={loginStyle.input}
+
           />
           <i
             className={`password-toggle fas ${
@@ -144,7 +150,7 @@ const ChangePassword = () => {
         </div>
       </label>
       <br></br>
-      <button type="submit">Change Password</button>
+      <button type="submit" className={buttonStyle.glow_btn}>Change Password</button>
     </form>
     {message && <p>{message}</p>} {/* This returns an error message if any */}
 
