@@ -5,7 +5,7 @@ import CaptchaComponent from '../components/Captcha/captchaClient'; // Import Ca
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
-const Login = () => {
+const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginMessage, setLoginMessage] = useState('');
@@ -16,12 +16,18 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false); // Add the state for isCaptchaValid here
+
+
+
   document.addEventListener('DOMContentLoaded', function() {
     // Clear form fields
     document.querySelectorAll('input').forEach(function(input) {
       input.value = '';
     });
   });
+
+
   /**
    * Handles the login process.
    *
@@ -55,13 +61,21 @@ const MyComponent = () => {
 export default MyComponent;
 */
 
-
+  const closeModal = () => {
+    // Close the modal by setting LoginModalVisible to false
+    setLoginModalVisible(false);
+  };
 
 // Login function, when using https/a domain this will automatically be encrypted
   const handleLogin = (e) => {
     e.preventDefault();
     if (!email || !password || !username) {
       setLoginMessage('Please enter username, mail and password.');
+      return;
+    }
+    if (!isCaptchaValid) {
+      // If captcha is not valid, prevent login
+      setLoginMessage('Please complete the captcha.');
       return;
     }
     fetch('http://localhost:80/login.php', {
@@ -89,8 +103,9 @@ export default MyComponent;
               if (!profileData.profileInfo.filename.startsWith('profile_pictures/')) {
                 profileData.profileInfo.filename = 'profile_pictures/' + profileData.profileInfo.filename;
               }
-              loginUser({ username: username, profileData: profileData });
-              navigate('/');
+              loginUser({ username: username, profileData: profileData });              
+              setLoginModalVisible(false);
+
             })
             .catch((profileError) => {
               console.error('Error during profile picture fetch:', profileError);
@@ -141,73 +156,76 @@ export default MyComponent;
         ) : (
           <>
             {!isLoggedIn && (
-              
               <div className={loginStyle.form_container}>
-                <h1 className={textStyle.a_h1} style={{ marginTop: '100px', marginBottom: '-50px'}}>
-                  Log into your account
-                </h1>
+                <div className={loginStyle.overlay} onClick={() => setLoginModalVisible(false)} />
+                <div className={`${loginStyle.modal} ${loginModalVisible ? loginStyle.show : ''}` } >
+                  <form onSubmit={handleLogin} autoComplete="off" className={loginStyle.form} method='POST'>
+                  <div className={loginStyle.x} onClick={() => setLoginModalVisible(false)} >X</div>
 
-                <form onSubmit={handleLogin} autocomplete="off" className={loginStyle.form} autoComplete="off">
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={loginStyle.input}
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Mail"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={loginStyle.input}
-                    required
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={loginStyle.input}
-                    required
-                  />
-                  <button type="submit" className={buttonStyle.glow_btn} onClick={handleLogin} style={{ marginTop: '20px' }}>
-                    Login
-                  </button>
-                  {!isLoggedIn && (
-                    <a href="/Signup" className={loginStyle.link} style={{ marginTop: '10px' }}>
-                      <p className={loginStyle.a_p} style={{ marginBottom: '40px', fontSize: 'var(--size-xs)' }}>
-                        Don't have an account yet?
-                      </p>
-                      <p className={loginStyle.a_b} style={{ marginBottom: '5px', fontSize: 'var(--size-2xl)' }}>
-                        S I G N U P
-                      </p>
-                    </a>
-                
+                    <h1 className={textStyle.a_h1} >
+                      Log into your account
+                    </h1>
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    <input
+                      type="email"
+                      placeholder="Mail"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    {loginMessage && <p className={textStyle.error}>{loginMessage}</p>}
+                    <button
+                      type="submit"
+                      className={buttonStyle.glow_btn}
+                      onClick={handleLogin}
+                      style={{ marginTop: '30px', borderRadius: '25px' }}
+                    >
+                      Login
+                    </button>
+                    <p className={textStyle.a_p} style={{ marginBottom: '45px', fontSize: 'var(--size-xs)', marginTop: '30px' }}>
+                      Don't have an account yet?
+                    </p>
+                    {!isLoggedIn && (
+                      <a href="/Signup" className={loginStyle.link} style={{ marginTop: '10px' }}>
+                        <p className={textStyle.a_p} style={{ fontSize: 'var(--size-3xl)', letterSpacing: '0.3em', marginTop: '-40px' }}>
+                          SIGN UP
+                        </p>
+                      </a>
+                    )}
+                    <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
+                  </form>
+  
+                  {failedAttempts >= 2 && (
+                    <button className={buttonStyle.glow_btn} onClick={handleForgotPassword} style={{ marginTop: '10px' }}>
+                      Forgot Password?
+                    </button>
                   )}
-                </form>
-                {loginMessage && (
-                <p className={textStyle.error}>{loginMessage}</p>
-                )}
-
-                {failedAttempts >= 2 && (
-                  <button className={buttonStyle.glow_btn} onClick={handleForgotPassword} style={{ marginTop: '10px' }}>
-                    Forgot Password?
-                  </button>
-                )}
-              
-              
+  
+                </div>
               </div>
-              
             )}
           </>
         )}
       </div>
-      <CaptchaComponent />
-
     </main>
   );
+  
 };
 
 export default Login;

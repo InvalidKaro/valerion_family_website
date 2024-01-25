@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-
-const CaptchaComponent = () => {
-  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+import loginStyle from '../../styles/login.module.css';
+const CaptchaComponent = ({isCaptchaValid, setIsCaptchaValid}) => {
 
   const handleCaptchaChange = (value) => {
     // You can perform any validation or use the captcha value as needed
@@ -10,14 +9,14 @@ const CaptchaComponent = () => {
   };
 
   return (
-    <div>
       <ReCAPTCHA
         sitekey='6LfbpFspAAAAAN5ND2Li1euFVtOMSaeI8ejJzLxb'
         onChange={handleCaptchaChange}
+        onExpired={() => setIsCaptchaValid(false)}
+        theme='dark'
       />
-      {isCaptchaValid && <p>Captcha is valid!</p>}
-    </div>
   );
+
 };
 
 export default CaptchaComponent;

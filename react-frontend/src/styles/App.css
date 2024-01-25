@@ -52,6 +52,13 @@ button {
   cursor: pointer;
   color: inherit;
 }
+/* styles/global.css */
+
+body.blur {
+  overflow: hidden;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+}
 
 .btn {
   display: inline-block;

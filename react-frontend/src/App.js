@@ -20,7 +20,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import UserAdmin from './components/User/Admin.jsx';
 import Admin from './pages/Admin.jsx';
-import './styles/header.css'; // Import the CSS file with transition styles
 import ForgotPassword from './pages/forgotPassword.jsx';
 
 function App() {

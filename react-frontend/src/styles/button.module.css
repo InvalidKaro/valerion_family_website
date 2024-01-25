@@ -5,10 +5,13 @@
     width: 75%;
     letter-spacing: 0.05em;
     background-color: var(--clr-prim);
+    font-size: var(--size-2xl);
+    margin: 0;
     color: var(--clr-bg);
     padding: 0.5em 1em;
     border-radius: 6px;
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3),
-      0 6px 6px rgba(255, 255, 255, 0.5), 0 0 100px -10px var(--clr-prim);
+      0 6px 6px rgba(255, 255, 255, 0.5), 0 0 20px -10px var(--clr-prim);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+ 

@@ -88,13 +88,14 @@ export default MyComponent;
     <main>
       
       <div className={loginStyle.container} style={{ marginTop: '10px' }}>
+        
+        <form className={loginStyle.form} onSubmit={handleForgotPassword} style={{ marginTop: '100px' }}>
         <h1 classname={textStyle.h1}>Forgot Password</h1>
-        <p className={textStyle.text} style={{ marginTop: '30px' }}>
+        <p className={textStyle.text} style={{ marginTop: '80px', marginBottom: '50px'}}>
             Forgot your Password?<br />
             Enter your email and we will send you a link to reset your password.
         </p>
-        <form className={loginStyle.form} onSubmit={handleForgotPassword} style={{ marginTop: '50px' }}>
-        <label htmlFor="email" className={textStyle.label}>Enter your email:</label>
+        <label htmlFor="email" className={loginStyle.label}>Enter your email:</label>
         <input
             className={loginStyle.input}
             type="email"

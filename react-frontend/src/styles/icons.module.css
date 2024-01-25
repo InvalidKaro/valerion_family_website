@@ -1,0 +1,15 @@
+/* Common styles for user icon */
+.userIcon {
+    /* Add common styling for user icon */
+  }
+  
+  /* Styles for the default (blue) user logo */
+  .default {
+    filter: brightness(120%) sepia(100%) hue-rotate(190deg) saturate(200%) brightness(90%);
+}
+  
+  /* Styles for the database user logo (no additional filter) */
+  .fromDb {
+    /* Add any specific styles for the database image if needed */
+  }
+  

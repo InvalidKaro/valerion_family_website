@@ -78,7 +78,10 @@ const Login = () => {
           <>
             {!isLoggedIn && (
               <div className={loginStyle.loginForm} style={{ marginTop: '10px' }}>
-                <form onSubmit={handleRegister} method='POST'>
+                <form className={loginStyle.form} onSubmit={handleRegister} method='POST'>
+                <h1 className={textStyle.a_h1} style={{  marginBottom: '50px'}}>
+                  Create an account
+                </h1>
                   <input
                     type="email"
                     placeholder="Email"
@@ -103,18 +106,18 @@ const Login = () => {
                     required
                     className={loginStyle.input}
                   />
-                  
-                  <button className="btn" onClick={handleRegister}>
+                  {loginMessage && (
+                <p className={textStyle.error}>{loginMessage}</p>
+                )}
+
+                  <button className={buttonStyle.glow_btn} onClick={handleRegister} style={{ marginTop: '30px', borderRadius: '25px' }}>
                     Register
                   </button>
                   <a href="/Login" className={loginStyle.link}>
                     Login
                   </a>
                 </form>
-                {loginMessage && (
-                <p className="error-message">{loginMessage}</p>
-                )}
-
+                
               </div>
             )}
           </>

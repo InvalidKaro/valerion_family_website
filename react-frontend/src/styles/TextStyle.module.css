@@ -4,6 +4,8 @@ h1 {
     margin: 0;
     align-content: center;
     text-align: center;
+    margin-top: 20%;
+    background: none;
 }
 p {
     font-size: var(--size-lg);
@@ -11,6 +13,8 @@ p {
     text-align: center;
     align-content: center;
     background-color: transparent;
+    background: none;
+
 }
 
 .a_p {
@@ -19,15 +23,9 @@ p {
     text-align: center;
     align-content: center;
     background-color: transparent;
+    letter-spacing: 0.1em;
 
 }
-
-
-
-.a_p + .a_p {
-    margin-top: 100%; /* Adjust the value to increase or decrease the gap */
-}
-
 
 
 .label {
@@ -39,19 +37,19 @@ p {
 }
 .error {
     margin-top: 10px;
-    color: rgb(192, 0, 0);
-    text-shadow:  0 10px 20px rgba(255, 255, 255, 0.5),
-    0 6px 6px rgba(255, 255, 255, 0.5), 0 0 100px -10px var(--clr-prim);
+    color: rgb(247, 35, 49); /* Brighter red color for better visibility */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), /* Adjusted shadow for better visibility */
+                 0 2px 2px rgba(255, 255, 255, 0.1); /* Highlighting with a lighter shadow */
     font-size: var(--size-lg);
     margin: 0;
     text-align: center;
     font-weight: 1000;
     align-content: center;
-    background-color: transparent;
-
+    background: none; /* Adding a semi-transparent white background for contrast */
     /* Add any additional styles specific to the error messages */
     /* Add other styles as needed */
 }
+
 
 
 .a_h1 {
@@ -59,8 +57,10 @@ p {
     font-weight: 700;
     align-content: center;
     margin: 0;
+    margin-bottom: 20px;
     text-align: center;
     color: #e3e9ef; /* Adjust the color to your preference */
     text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.9); /* Add a subtle text shadow for depth */
     letter-spacing: 3px; /* Increase letter spacing for emphasis */
+    background: none;
     }
