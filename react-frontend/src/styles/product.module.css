@@ -1,5 +1,5 @@
 .container {
-
+    align-items: center;
 }
 
 .products {
@@ -20,4 +20,17 @@
 
 .product_image {
 
+}
+
+.art {
+    margin-top: 50px;
+}
+
+p {
+    margin-top: 150px;
+    font-size: var(--size-2xl);
+}
+
+.formContainer {
+    margin-top: 50px;
 }

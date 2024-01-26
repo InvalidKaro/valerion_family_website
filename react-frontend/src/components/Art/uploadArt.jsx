@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useUser } from '../../UserContext';
-import '../../styles/uploadArt.css';
-
-
+import productStyle from '../../styles/product.module.css'
+import textStyle from '../../styles/TextStyle.module.css'
+import loginStyle from '../../styles/login.module.css';
+import buttonStyle from '../../styles/button.module.css';
 const UploadArt = () => {
   const { user } = useUser();
 
@@ -95,8 +96,8 @@ const UploadArt = () => {
   // Check if user is logged in and a username is given
   if (!user) {
     return (
-      <div>
-        <p>Oops! It looks like you're not logged in. Please log in to upload your art.</p>
+      <div className={productStyle.container}>
+        <p className={productStyle.p}>Oops! It looks like you're not logged in. Please log in to upload your art.</p>
         {/* You can consider rendering an error page or redirecting to a login page */}
       </div>
     );
@@ -104,9 +105,10 @@ const UploadArt = () => {
   // Add the logic for rendering the upload form when the user is logged in
 
   return (
-    <div className="container">
-      <div className="formContainer">
+    <div className={productStyle.container}>
+      <div className={productStyle.formContainer}>
         <form
+          className={loginStyle.form}
           onSubmit={handleSubmit}
           style={{
             flexDirection: 'column',
@@ -115,39 +117,39 @@ const UploadArt = () => {
           }}
         >
           <div style={{ marginTop: '100px' }}>
-            <label htmlFor="image">Upload Art Image:</label>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/png" onChange={handleImageChange} />
+            <label className={loginStyle.label} htmlFor="image" >Upload Art Image:</label>
+            <input className={loginStyle.input} type="file" id="image" name="image" accept="image/jpeg, image/png" onChange={handleImageChange} />
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label htmlFor="prize">Set Prize:</label>
-            <input type="number" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
+            <input className={loginStyle.input} type="number" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label htmlFor="title">Set Title:</label>
-            <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
+            <input className={loginStyle.input} type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
           </div>
           <div style={{ marginBottom: '10px' }}>
             <label htmlFor="description">Set Description:</label>
-            <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} />
+            <input className={loginStyle.input} type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} />
           </div>
           <div style={{ marginBottom: '10px' }}>
-            <label htmlFor="category">Category:</label>
+            <label className={loginStyle.label} htmlFor="category">Category:</label>
             <div>
               <button
                 onClick={() => handleCategoryChange('category1')}
-                className={category === 'category1' ? 'selected' : ''}
+                className={buttonStyle.tag_button}
               >
                 Category 1
               </button>
               <button
                 onClick={() => handleCategoryChange('category2')}
-                className={category === 'category2' ? 'selected' : ''}
+                className={buttonStyle.tag_button}
               >
                 Category 2
               </button>
               <button
                 onClick={() => handleCategoryChange('category3')}
-                className={category === 'category3' ? 'selected' : ''}
+                className={buttonStyle.tag_button}
               >
                 Category 3
               </button>
