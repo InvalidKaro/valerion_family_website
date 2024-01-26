@@ -4,6 +4,9 @@ import productStyle from '../../styles/product.module.css'
 import textStyle from '../../styles/TextStyle.module.css'
 import loginStyle from '../../styles/login.module.css';
 import buttonStyle from '../../styles/button.module.css';
+import fileInputStyle from '../../styles/fileInput.module.css';
+import dropDownStyle from '../../styles/dropDown.module.css';
+
 const UploadArt = () => {
   const { user } = useUser();
 
@@ -107,64 +110,74 @@ const UploadArt = () => {
   return (
     <div className={productStyle.container}>
       <div className={productStyle.formContainer}>
+
         <form
           className={loginStyle.form}
           onSubmit={handleSubmit}
           style={{
-            flexDirection: 'column',
-            maxWidth: '300px',
             margin: '200px',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            
           }}
         >
-          <div style={{ marginTop: '100px' }}>
-            <label className={loginStyle.label} htmlFor="image" >Upload Art Image:</label>
-            <input className={loginStyle.input} type="file" id="image" name="image" accept="image/jpeg, image/png" onChange={handleImageChange} />
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <label htmlFor="prize">Set Prize:</label>
-            <input className={loginStyle.input} type="number" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <label htmlFor="title">Set Title:</label>
-            <input className={loginStyle.input} type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <label htmlFor="description">Set Description:</label>
-            <input className={loginStyle.input} type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} />
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <label className={loginStyle.label} htmlFor="category">Category:</label>
-            <div>
-              <button
-                onClick={() => handleCategoryChange('category1')}
-                className={buttonStyle.tag_button}
-              >
-                Category 1
-              </button>
-              <button
-                onClick={() => handleCategoryChange('category2')}
-                className={buttonStyle.tag_button}
-              >
-                Category 2
-              </button>
-              <button
-                onClick={() => handleCategoryChange('category3')}
-                className={buttonStyle.tag_button}
-              >
-                Category 3
-              </button>
-              {/* Add more buttons as needed */}
+          <h1 className={textStyle.a_h1} style={{ marginBottom: '30px', fontSize: 'var(--size-6xl)' }}>Sell your art</h1>
+          <div>
+            <div className={fileInputStyle.fileInputContainer}>
+              <label className={loginStyle.label} htmlFor="image">
+                Upload Art Image:
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/jpeg, image/png"
+                  onChange={handleImageChange}
+                  className={fileInputStyle.fileInput}
+                />
+                <span className={fileInputStyle.customFileButton}>Choose File</span>
+              </label>
             </div>
+          
+          
+            <label className={loginStyle.label} htmlFor="prize">Set Prize:</label>
+            <input className={loginStyle.input} type="number" min="0" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
+          
+            <label className={loginStyle.label} htmlFor="title">Set Title:</label>
+            <input className={loginStyle.input} type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
+          
+          
+            <label className={loginStyle.label} htmlFor="description">Set Description:</label>
+            <input className={loginStyle.input} type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} />
+          
+          
+            <div className={dropDownStyle.dropdown}>
+            <label className={loginStyle.label} htmlFor="category" style={{ marginTop: '30px'}}>
+              Choose category:
+              <select
+                id="category"
+                name="category"
+                onChange={(e) => handleCategoryChange(e.target.value)}
+                
+                value={category}
+                className={dropDownStyle.dropdown_select} // You can apply your buttonStyle here
+              >
+                <option value="" disabled selected>Select a category</option>
+
+                <option value="category1">Category 1</option>
+                <option value="category2">Category 2</option>
+                <option value="category3">Category 3</option>
+                {/* Add more options as needed */}
+              </select>
+            </label>
+          </div>
           </div>
           <button
             type="submit"
-            style={{
-              padding: '8px 16px',
-              borderRadius: '4px',
-              background: 'blue',
-              color: 'white',
-              border: 'none',
-            }}
+            className={buttonStyle.glow_btn}
+            style={{ marginTop: '25px', borderRadius: '25px', marginBottom: '25px' }}
           >
             Upload Art
           </button>

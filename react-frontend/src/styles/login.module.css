@@ -1,4 +1,6 @@
-.input[type="email"],.input[type="password"],.input[type="text"] 
+
+
+.input[type="email"],.input[type="password"],.input[type="text"],.input[type="number"]
 {
     margin-bottom: 20px;
     border: 2px solid #a29898;
@@ -10,18 +12,47 @@
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
 }
 
-.input[type="email"]:focus,.input[type="password"]:focus,.input[type="text"]:focus 
+.input[type="email"]:focus,.input[type="password"]:focus,.input[type="text"]:focus,.input[type="number"]:focus
 {
     border-color: #4285f4;
     outline: none;
     box-shadow: 0 0 10px rgba(66, 133, 244, 0.7), 0 0 20px rgba(66, 133, 244, 0.3); /* Updated box-shadow on focus */
 }
-.input[type="email"]:hover,.input[type="password"]:hover,.input[type="text"]:hover 
+.input[type="email"]:hover,.input[type="password"]:hover,.input[type="text"]:hover,.input[type="number"]:hover
 {   
     border-color: #4285f4;
     outline: none;
     box-shadow: 0 0 10px rgba(105, 152, 228, 0.7); /* Added a subtle box-shadow on focus */
 }
+.input[type='file'] {
+
+}
+
+/* Style for the spin buttons */
+input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 100%;
+    position: relative;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    background: none;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Hover effect for the spin buttons */
+input[type=number]:hover::-webkit-outer-spin-button,
+input[type=number]:hover::-webkit-inner-spin-button {
+    background-color: #4285f4;
+}
+
 .link {
     background-color: transparent;
     color: white;
@@ -66,6 +97,12 @@
 
 .label {
     background: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.5em;
+    white-space: nowrap;
+    font-size: var(--size-lg);
 
 }
 

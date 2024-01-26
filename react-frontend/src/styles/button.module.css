@@ -16,7 +16,7 @@
 }
  
 .tag_button {
-    display: inline-block;
+    display: inline-flex;
     font-weight: 600;
     text-decoration: none;
     width: 100%;
@@ -31,3 +31,7 @@
 .tag_button:focus {
   
 }
+.container {
+  display: flex;
+}
+
