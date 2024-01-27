@@ -21,13 +21,10 @@ const Register = ( {SignUpModalVisible, setSignUpModalVisible, closeModal } ) =>
   // eslint-disable-next-line no-unused-vars
   const [loginModalVisible, setLoginModalVisible] = useState(false); // Add the state for loginModalVisible here
 
-  const logIn = (e) => {
-    e.preventDefault();
-    setShowLoginForm(true);
-    setLoginModalVisible(false);
-  }
-
-
+  const handleLoginModalOpen = () => {
+    setSignUpModalVisible(false); // Close the signup/register modal
+    setLoginModalVisible(true); // Open the login modal
+  };
   const handleLogout = () => {
     setUserLoggedOut();
     // Add logic to handle logout, e.g., redirect to the login page
@@ -125,7 +122,7 @@ const Register = ( {SignUpModalVisible, setSignUpModalVisible, closeModal } ) =>
                       Already have an account?
                     </p>
                     {!isLoggedIn && (
-                      <button type='button' className={loginStyle.link} style={{ marginTop: '10px' }}> 
+                      <button type='button' className={loginStyle.link} style={{ marginTop: '10px' }} onClick={handleLoginModalOpen}> 
                         <p className={textStyle.a_p} style={{ fontSize: 'var(--size-3xl)', letterSpacing: '0.3em', marginTop: '-40px' }}>
                           LOG IN
                         </p>
