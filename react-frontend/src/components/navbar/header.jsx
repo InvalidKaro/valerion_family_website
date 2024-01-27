@@ -7,6 +7,7 @@ import { useAuth } from '../../pages/auth';
 import { useUser } from '../../UserContext';
 import '../../styles/header.css';
 import Login from '../../pages/Login';
+import Register from '../../pages/Register';
 
 const Header = () => {
   const { user } = useUser();
@@ -146,7 +147,10 @@ const Header = () => {
               </div>
             )}
       </div>
-      {LoginModalVisible && <Login setLoginModalVisible={setLoginModalVisible} />}
+      {LoginModalVisible && (
+      <Login setLoginModalVisible={setLoginModalVisible} />
+      )}
+
 
     </main>
   );

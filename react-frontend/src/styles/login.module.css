@@ -24,9 +24,7 @@
     outline: none;
     box-shadow: 0 0 10px rgba(105, 152, 228, 0.7); /* Added a subtle box-shadow on focus */
 }
-.input[type='file'] {
 
-}
 
 /* Style for the spin buttons */
 input[type=number]::-webkit-outer-spin-button, 

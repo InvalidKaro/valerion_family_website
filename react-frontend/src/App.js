@@ -62,7 +62,7 @@ function App() {
             <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} />} />
             <Route path="/history" element={<History />} />
             <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />} />
-            <Route path="/signup" element={<Register />} />
+            <Route path="/signup" element={<Register setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />}  />
             <Route path="/settings" element={<AccountSettings usernames={username} profilePicture={profilePicture} />} />
             <Route path="/family" element={<Family />} />
             <Route path="/help" element={<Help />} />

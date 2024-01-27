@@ -4,8 +4,9 @@ import { useAuth } from './auth';
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';	
-
-const Login = () => {
+import CaptchaComponent from '../components/Captcha/captchaClient';
+import Login from './Login';
+const Register = ( {SignUpModalVisible, setSignUpModalVisible, closeModal } ) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [mail, setMail] = useState('');
 
@@ -15,16 +16,16 @@ const Login = () => {
 
   const { isLoggedIn, loginUser, setUserLoggedOut, navigate } = useAuth();
 
+  // Later on it will be .env
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false); // Add the state for isCaptchaValid here
   // eslint-disable-next-line no-unused-vars
-  const handleUserIconClick = () => {
-    if (isLoggedIn) {
-      // Redirect to the Settings page if the user is logged in
-      navigate('/Settings');
-    } else {
-      setShowLoginForm(!showLoginForm);
-      setLoginMessage('');
-    }
-  };
+  const [loginModalVisible, setLoginModalVisible] = useState(false); // Add the state for loginModalVisible here
+
+  const logIn = (e) => {
+    e.preventDefault();
+    setShowLoginForm(true);
+    setLoginModalVisible(false);
+  }
 
 
   const handleLogout = () => {
@@ -49,6 +50,7 @@ const Login = () => {
         if (data.success) {
           loginUser({ username: username });
           setLoginMessage('Successfully registered! Verification-Mail sent!');
+          setSignUpModalVisible(false);
         } else {
           setLoginMessage('Registration failed. Please try again.');
         }
@@ -69,7 +71,7 @@ const Login = () => {
   }, [isLoggedIn, navigate]);
   return (
     <main>
-      <div className={loginStyle.container} style={{ marginTop: '10px' }}>
+      <div className={loginStyle.container}>
         {isLoggedIn ? (
           <a href="/" onClick={handleLogout}>
             Logout
@@ -77,54 +79,72 @@ const Login = () => {
         ) : (
           <>
             {!isLoggedIn && (
-              <div className={loginStyle.loginForm} style={{ marginTop: '10px' }}>
-                <form className={loginStyle.form} onSubmit={handleRegister} method='POST'>
-                <h1 className={textStyle.a_h1} style={{  marginBottom: '50px'}}>
-                  Create an account
-                </h1>
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={mail}
-                    onChange={(e) => setMail(e.target.value)}
-                    required
-                    className={loginStyle.input}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    className={loginStyle.input}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    className={loginStyle.input}
-                  />
-                  {loginMessage && (
-                <p className={textStyle.error}>{loginMessage}</p>
-                )}
+              <div className={loginStyle.form_container}>
+                <div className={loginStyle.overlay} onClick={(e) => setSignUpModalVisible(false)} />
+                <div className={`${loginStyle.modal} ${SignUpModalVisible ? loginStyle.show : ''}` } >
+                  <form onSubmit={handleRegister} autoComplete="off" className={loginStyle.form} method='POST'>
+                  <div className={loginStyle.x} onClick={ (e) => { setSignUpModalVisible(false); closeModal(false); } }>X</div>
 
-                  <button className={buttonStyle.glow_btn} onClick={handleRegister} style={{ marginTop: '30px', borderRadius: '25px' }}>
-                    Register
-                  </button>
-                  <a href="/Login" className={loginStyle.link}>
-                    Login
-                  </a>
-                </form>
+                    <h1 className={textStyle.a_h1} >
+                      Create  your account
+                    </h1>
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    <input
+                      type="email"
+                      placeholder="Mail"
+                      value={mail}
+                      onChange={(e) => setMail(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={loginStyle.input}
+                      required
+                    />
+                    {loginMessage && <p className={textStyle.error}>{loginMessage}</p>}
+                    <button
+                      type="submit"
+                      className={buttonStyle.glow_btn}
+                      onClick={handleRegister}
+                      style={{ marginTop: '30px', borderRadius: '25px' }}
+                    >
+                      Sign Up
+                    </button>
+                    <p className={textStyle.a_p} style={{ marginBottom: '45px', fontSize: 'var(--size-xs)', marginTop: '30px' }}>
+                      Already have an account?
+                    </p>
+                    {!isLoggedIn && (
+                      <button type='button' className={loginStyle.link} style={{ marginTop: '10px' }}> 
+                        <p className={textStyle.a_p} style={{ fontSize: 'var(--size-3xl)', letterSpacing: '0.3em', marginTop: '-40px' }}>
+                          LOG IN
+                        </p>
+                      </button>
+                    )}
+                    <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
+                  </form>
+  
                 
+  
+                </div>
               </div>
             )}
           </>
         )}
       </div>
+ 
     </main>
   );
 };
 
-export default Login;
+export default Register;

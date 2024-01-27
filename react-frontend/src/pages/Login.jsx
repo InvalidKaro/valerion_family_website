@@ -5,6 +5,9 @@ import CaptchaComponent from '../components/Captcha/captchaClient'; // Import Ca
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Register from './Register';
 const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,6 +20,7 @@ const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [message, setMessage] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false); // Add the state for isCaptchaValid here
+  const [SignUpModalVisible, setSignUpModalVisible] = useState(false);  
 
 
 
@@ -26,7 +30,15 @@ const Login = ({ loginModalVisible, setLoginModalVisible }) => {
       input.value = '';
     });
   });
-
+  const handleSignup = (e) => {
+    if (!isLoggedIn) {
+      // If not logged in, navigate to login
+      setSignUpModalVisible(!SignUpModalVisible);
+      console.log('Login modal visible:', SignUpModalVisible);
+    } else {
+      // If logged in, toggle dropdown visibility
+      }
+  };
 
   /**
    * Handles the login process.
@@ -64,6 +76,10 @@ export default MyComponent;
   const closeModal = () => {
     // Close the modal by setting LoginModalVisible to false
     setLoginModalVisible(false);
+  };
+  const openModal = () => {
+    // Close the modal by setting LoginModalVisible to false
+    setLoginModalVisible(true);
   };
 
 // Login function, when using https/a domain this will automatically be encrypted
@@ -124,7 +140,11 @@ export default MyComponent;
         setFailedAttempts(prevAttempts => prevAttempts + 1);
       });
   };
-  
+  const SignUpClick = (e) => {
+    setSignUpModalVisible(!SignUpModalVisible);
+
+
+  };
 
   
   const handleForgotPassword = async (e) => {
@@ -202,11 +222,11 @@ export default MyComponent;
                       Don't have an account yet?
                     </p>
                     {!isLoggedIn && (
-                      <a href="/Signup" className={loginStyle.link} style={{ marginTop: '10px' }}>
+                      <button type= "button" className={loginStyle.link} style={{ marginTop: '10px' }} onClick={SignUpClick} >
                         <p className={textStyle.a_p} style={{ fontSize: 'var(--size-3xl)', letterSpacing: '0.3em', marginTop: '-40px' }}>
                           SIGN UP
                         </p>
-                      </a>
+                      </button>
                     )}
                     <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
                   </form>
@@ -223,6 +243,12 @@ export default MyComponent;
           </>
         )}
       </div>
+  
+      {SignUpModalVisible && (
+      <Register  SignUpModalVisible={SignUpModalVisible} setSignUpModalVisible={setSignUpModalVisible} closeModal={closeModal} openModal={openModal}/>
+      )
+
+      }
     </main>
   );
   
