@@ -14,6 +14,7 @@ const CaptchaComponent = ({isCaptchaValid, setIsCaptchaValid}) => {
         onChange={handleCaptchaChange}
         onExpired={() => setIsCaptchaValid(false)}
         theme='dark'
+        style={{transform:"scale(1.0)", transformOrigin:"0 0"}}
       />
   );
 

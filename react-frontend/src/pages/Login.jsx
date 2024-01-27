@@ -166,6 +166,7 @@ export default MyComponent;
       window.location.reload();
     }
   }, [isLoggedIn, navigate]);
+
   return (
     <main>
       <div className={loginStyle.container}>
@@ -218,17 +219,23 @@ export default MyComponent;
                     >
                       Login
                     </button>
-                    <p className={textStyle.a_p} style={{ marginBottom: '45px', fontSize: 'var(--size-xs)', marginTop: '30px' }}>
-                      Don't have an account yet?
-                    </p>
+                      <br></br>
+                      <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
+
                     {!isLoggedIn && (
-                      <button type= "button" className={loginStyle.link} style={{ marginTop: '10px' }} onClick={SignUpClick} >
-                        <p className={textStyle.a_p} style={{ fontSize: 'var(--size-3xl)', letterSpacing: '0.3em', marginTop: '-40px' }}>
-                          SIGN UP
-                        </p>
+                      <button type= "button" className={loginStyle.link} style={{  }} onClick={SignUpClick} >
+                         <p className={textStyle.a_p} style={{ fontSize: 'var(--size-lg)', marginTop: '1%', overflow: 'show', textDecoration: 'underline' }}>
+                            Don't have an account yet? 
+                      </p>
+                      <a href='#' className={loginStyle.link} style={{ marginTop: '1%', fontSize: 'var(--size-lg)', color: '#0197B2', textDecoration: 'none' }}>
+                      
+                      <br></br>
+
+                        Sign Up
+                        </a>
+                    
                       </button>
                     )}
-                    <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
                   </form>
   
                   {failedAttempts >= 2 && (

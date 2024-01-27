@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { ReactSVG } from 'react-svg';
+
 import React, { useState, useEffect } from 'react';
 import logo from '../../images/v-arts-logo.png';
 import userLogo from '../../images/user.png';
@@ -69,8 +71,13 @@ const Header = () => {
       const Ulogo = `http://localhost:80/${user.profileData.profileInfo.filename}`;
       return { src: Ulogo, isFromDb: true };
     } else {
-      const Ulogo = userLogo
-      return { src: Ulogo, isFromDb: false };
+      const svgString = `<svg width="1200" height="1200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" fill="#0197b2"/>
+      <path d="M15.581 16H8.506c-.413 0-.632-.459-.347-.758.847-.889 2.4-2.242 4.008-2.242 1.623 0 3.038 1.38 3.78 2.268.254.304.03.732-.366.732Z" fill="#0197b2" stroke="#0197b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="12" r="10" stroke="#0197b2" stroke-width="2"/>
+    </svg>`;
+      const Ulogo = `data:image/svg+xml,${encodeURIComponent(svgString)}`;
+    return { src: Ulogo, isFromDb: false };
     }
   }
   const handleLogout = () => {
@@ -121,7 +128,8 @@ const Header = () => {
                   src={getProfilePicture(user).src}
                   alt="userLogo"
                   className="header__user__icon"
-                  style={getProfilePicture(user).isFromDb ? {} : { filter: 'brightness(120%) sepia(100%) hue-rotate(190deg) saturate(200%) brightness(90%)' }}
+                  style={getProfilePicture(user).isFromDb ? {} : { alignContent: 'center', alignItems: 'center' }}
+                  onClick={handleUserIconClick}
                   />
               </a>
             </div>

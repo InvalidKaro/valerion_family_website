@@ -10,6 +10,10 @@
     text-align: center;
     transition: border-color 0.3s cubic-bezier(0.58,-0.25, 0.58, 1);
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+    border: #58585858 2px solid;
+    background: #343434;
+    color: white
+
 }
 
 .input[type="email"]:focus,.input[type="password"]:focus,.input[type="text"]:focus,.input[type="number"]:focus
@@ -77,15 +81,18 @@ input[type=number]:hover::-webkit-inner-spin-button {
     gap: 10px; /* Increased gap for more spacing between elements */
     margin-top: 100px; /* Increased margin at the top to make it longer */
     margin-bottom: 200px;
-    background-color: #343434; /* Adjusted background color to match the theme */
+    background-color: #1a1a1a; /* Adjusted background color to match the theme */
     border-radius: 20px; /* Adjusted the border-radius for a more rounded appearance */
     padding: 30px; /* Increased padding for a larger box */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Darker box-shadow with alpha value 0.8 */
-    height: 700px;
-    width: 550px;
+    height: 800px;
+    width: 600px;
     text-align: center;
     box-sizing: content-box;
     border: #58585858 2px solid;
+    box-shadow: 2px 2px 5px rgba(93, 93, 93, 0.209);
+
+    
 }
   
   

@@ -4,7 +4,7 @@ h1 {
     margin: 0;
     align-content: center;
     text-align: center;
-    margin-top: 20%;
+    margin-top: 7.5%;
     background: none;
 }
 p {
@@ -54,7 +54,7 @@ p {
 
 
 .a_h1 {
-    font-size: var(--size-4xl);
+    font-size: var(--size-5xl);
     font-weight: 700;
     align-content: center;
     margin: 0;
@@ -64,4 +64,5 @@ p {
     text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.9); /* Add a subtle text shadow for depth */
     letter-spacing: 3px; /* Increase letter spacing for emphasis */
     background: none;
+    
     }
