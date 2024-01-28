@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Mousewheel, Navigation, Pagination } from 'swiper/modules';
 
 import '../../styles/reviews.css'; // Import the CSS file for the Reviews component
 
@@ -62,7 +62,7 @@ const Reviews = () => {
           pagination={{
             clickable: true,
           }}
-          modules={[Navigation, Pagination]}
+          modules={[Navigation, Pagination, Mousewheel]}
           className="reviews-container"
         >
         {renderReviews()}

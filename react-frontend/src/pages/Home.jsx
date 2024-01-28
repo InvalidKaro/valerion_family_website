@@ -16,7 +16,7 @@ function Home() {
       <main>
         <Hero />
         {user && user.username && <Flyout user={user.username} duration={3000} />}
-        <Reviews />
+        <Reviews isLoggedIn={user && user.username}/>
         <AofM />
       </main>
     </div>

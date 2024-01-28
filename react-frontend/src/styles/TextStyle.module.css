@@ -66,3 +66,29 @@ p {
     background: none;
     
     }
+    textarea {
+        width: 100%; /* Adjust as per your design */
+        height: 400px; /* Adjust as per your design */
+        padding: 10px;
+        margin-bottom: 10px; /* Adjust as per your design */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+        overflow: hidden; /* Added to prevent text from going out of the form */
+
+      }
+      
+ 
+      
+      /* Additional styles for the popup buttons */
+      .popup button {
+        margin-top: 10px; /* Adjust as per your design */
+        color: white;
+        background-color: #0197B2;
+        width: 40%; /* Adjust as per your design */
+        border-radius: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }

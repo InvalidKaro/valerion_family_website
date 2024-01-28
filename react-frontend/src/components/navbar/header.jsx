@@ -59,6 +59,8 @@ const Header = () => {
     if (!isLoggedIn) {
       // If not logged in, navigate to login
       setLoginModalVisible(!LoginModalVisible);
+      document.body.style.overflow = 'hidden';
+
       console.log('Login modal visible:', LoginModalVisible);
     } else {
       // If logged in, toggle dropdown visibility

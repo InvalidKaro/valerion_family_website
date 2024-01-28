@@ -5,7 +5,6 @@ import CaptchaComponent from '../components/Captcha/captchaClient'; // Import Ca
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Register from './Register';
 const Login = ({ loginModalVisible, setLoginModalVisible }) => {
@@ -76,10 +75,12 @@ export default MyComponent;
   const closeModal = () => {
     // Close the modal by setting LoginModalVisible to false
     setLoginModalVisible(false);
+
   };
   const openModal = () => {
     // Close the modal by setting LoginModalVisible to false
     setLoginModalVisible(true);
+
   };
 
 // Login function, when using https/a domain this will automatically be encrypted
@@ -121,6 +122,8 @@ export default MyComponent;
               }
               loginUser({ username: username, profileData: profileData });              
               setLoginModalVisible(false);
+              document.body.style.overflow = 'auto';
+
 
             })
             .catch((profileError) => {
@@ -142,6 +145,7 @@ export default MyComponent;
   };
   const SignUpClick = (e) => {
     setSignUpModalVisible(!SignUpModalVisible);
+    
 
 
   };

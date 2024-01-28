@@ -59,7 +59,7 @@ function App() {
         <Router>
           <Header setUser={setUsername} isVisible={isVisible} />
           <Routes>
-            <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} />} />
+            <Route path="/" element={<Home user={{ username, isUserLoggedIn }} setLoggedIn={setUserLoggedIn} isUserLoggedIn={isUserLoggedIn} />} />
             <Route path="/history" element={<History />} />
             <Route path="/login" element={<Login setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />} />
             <Route path="/signup" element={<Register setLoggedIn={setUserLoggedIn} set={setUsername} setProfilePicture={setProfilePicture} />}  />

@@ -22,7 +22,7 @@
     width: 100%;
     letter-spacing: 0.05em;
     background: none;
-    font-size: var(--size-1xl);
+    font-size: var(--size-2xl);
     margin: 0;
     color: var(--clr-bg);
     padding: 0.5em 1em;
@@ -35,3 +35,11 @@
   display: flex;
 }
 
+.closeButton {
+  margin-left: 100%;
+  color: #0197B2;
+  align-self: self-end;
+  font-weight: bold;
+  font-size: var(--size-2xl);
+  cursor: pointer;
+}

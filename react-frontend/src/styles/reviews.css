@@ -7,17 +7,18 @@
 
 .review__card {
   position: relative;
-  height: 90%;
+  height: 80%;
   gap: 0.6em;
   padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 0.2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 30px;
-
-  box-shadow: 5px 5px 10px 2px rgba(255, 255, 255, 0.2);
+  border: #58585858 3px solid;
+  
+  border-radius: 20px 20px 20px 20px;
+  background-color: #34343446;
+  overflow: visible;
 }
 
 .card_top_section {
@@ -27,11 +28,11 @@
   align-items: center;
   width: 100%;
   gap: 1em;
-  background-color: rgba(255, 255, 255, 0);
 }
 
 .review__card span {
   font-size: var(--size-3xl);
+  background: none;
 }
 
 .card__img {
@@ -59,15 +60,14 @@
 }
 .rating {
   font-size: var(--size-2xl);
-  margin-bottom: -80px;
 }
 
 .card__stars__sec {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10px;
-  margin-top: 60px;
+  background-color: #5858582b;
+  border-radius: 50px;
 }
 
 .full {
@@ -116,7 +116,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
 
@@ -142,7 +141,7 @@ textarea {
 }
 
 
-.popup button {
+.popup Xbutton {
   margin-top: 30px;
   padding: 8px;
   margin-left: 500px;
