@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import loginStyle from '../../styles/login.module.css';
 import buttonStyle from '../../styles/button.module.css';
 import textStyle from '../../styles/TextStyle.module.css';
 import ColorCheckboxes from '../../functions/checkBox'; // Assuming ColorCheckboxes.js is in the same directory
@@ -7,7 +6,6 @@ import popupStyle from '../../styles/TermsAndConditionsPopup.module.css'; // Imp
 
 const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const { setAccepted } = useState('');
   const openPopup = () => {
     setShowPopup(true);
     document.body.style.overflow = 'hidden';

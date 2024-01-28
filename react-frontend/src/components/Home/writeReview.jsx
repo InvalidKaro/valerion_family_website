@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../../pages/auth";
 import "../../styles/reviews.css";
 import { useUser } from '../../UserContext';
 import loginStyle from '../../styles/login.module.css';
@@ -13,7 +12,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
   const [reviewText, setReviewText] = useState("");
   const { user } = useUser();
   const [accept, setAccept] = useState(false); // Initialize accept state
-  const { hideButtons, setHideButtons} = useState('false');
+  const { hideButtons} = useState('false');
 
   const handleAcceptTerms = (accepted) => {
     setAccept(accepted);
@@ -70,8 +69,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
         throw new Error("Failed to upload review");
       }
   
-      const data = await response.json();
-      
+      // Close the popup
       // Handle the response from the server
       window.location.reload();
 

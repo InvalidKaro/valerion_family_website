@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import loginStyle from '../../styles/login.module.css';
 const CaptchaComponent = ({isCaptchaValid, setIsCaptchaValid}) => {
 
   const handleCaptchaChange = (value) => {

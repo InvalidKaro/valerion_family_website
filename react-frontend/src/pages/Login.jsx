@@ -5,7 +5,6 @@ import CaptchaComponent from '../components/Captcha/captchaClient'; // Import Ca
 import loginStyle from '../styles/login.module.css';
 import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Register from './Register';
 const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [username, setUsername] = useState('');
@@ -16,7 +15,6 @@ const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [profilePicture, setProfilePicture] = useState(null);
   // eslint-disable-next-line no-unused-vars
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false); // Add the state for isCaptchaValid here
   const [SignUpModalVisible, setSignUpModalVisible] = useState(false);  
@@ -29,15 +27,7 @@ const Login = ({ loginModalVisible, setLoginModalVisible }) => {
       input.value = '';
     });
   });
-  const handleSignup = (e) => {
-    if (!isLoggedIn) {
-      // If not logged in, navigate to login
-      setSignUpModalVisible(!SignUpModalVisible);
-      console.log('Login modal visible:', SignUpModalVisible);
-    } else {
-      // If logged in, toggle dropdown visibility
-      }
-  };
+
 
   /**
    * Handles the login process.
@@ -231,7 +221,7 @@ export default MyComponent;
                          <p className={textStyle.a_p} style={{ fontSize: 'var(--size-lg)', marginTop: '1%', overflow: 'show', textDecoration: 'underline' }}>
                             Don't have an account yet? 
                       </p>
-                      <a href='#' className={loginStyle.link} style={{ marginTop: '1%', fontSize: 'var(--size-lg)', color: '#0197B2', textDecoration: 'none' }}>
+                      <a href="#/" className={loginStyle.link} style={{ marginTop: '1%', fontSize: 'var(--size-lg)', color: '#0197B2', textDecoration: 'none' }}>
                       
                       <br></br>
 

@@ -30,6 +30,7 @@ export const useAuth = () => {
     } catch (error) {
       console.error('Error parsing stored user data:', error);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveUserInContext = (userData) => {

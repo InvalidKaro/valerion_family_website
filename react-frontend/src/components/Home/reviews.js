@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import review_profile_img from '../../images/artOfMount.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -26,6 +25,7 @@ const Reviews = () => {
         console.log('reviews:', reviews);
         console.error('Error fetching data:', error);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderReviews = () => {

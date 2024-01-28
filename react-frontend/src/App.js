@@ -18,7 +18,6 @@ import ProductDetail from './pages/productDetail.jsx'; // Import the ProductDeta
 import UserPage from './pages/User.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
-import UserAdmin from './components/User/Admin.jsx';
 import Admin from './pages/Admin.jsx';
 import ForgotPassword from './pages/forgotPassword.jsx';
 
@@ -26,9 +25,9 @@ function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
-  const [showCookiePopup, setShowCookiePopup] = useState(true);
+  const [showCookiePopup] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  const [height, setHeight] = useState(0)
+  const [setHeight] = useState(0)
 
   useEffect(() => {
     const listenToScroll = () => {
@@ -47,6 +46,7 @@ function App() {
     return () => {
       window.removeEventListener('scroll', listenToScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

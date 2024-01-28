@@ -1,15 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { ReactSVG } from 'react-svg';
 
 import React, { useState, useEffect } from 'react';
 import logo from '../../images/v-arts-logo.png';
-import userLogo from '../../images/user.png';
 import '../../styles/Login.css';
 import { useAuth } from '../../pages/auth';
 import { useUser } from '../../UserContext';
 import '../../styles/header.css';
 import Login from '../../pages/Login';
-import Register from '../../pages/Register';
 
 const Header = () => {
   const { user } = useUser();
