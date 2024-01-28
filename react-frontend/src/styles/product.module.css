@@ -1,35 +1,73 @@
-.container {
+/* ProductView.module.css */
+
+.productViewContainer {
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-}
-
-.products {
-
-}
-
-.category {
-
-}
-
-.cat_Container  {
-
-}
-
-.single_product {
-
-}
-
-.product_image {
-
-}
-
-.art {
-    margin-top: 50px;
-}
-
-p {
-    font-size: var(--size-2xl);
-}
-
-.formContainer {
-    margin-top: 50px;
-}
+  }
+  
+  .categoryContainer {
+    margin-bottom: 75px;
+  }
+  
+  .categoryTitle {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .productContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Center items horizontally */
+  }
+  
+  .productItem {
+    width: 18%; /* Adjust the width as needed */
+    margin-bottom: 30px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .productItem:hover {
+    transform: scale(1.05);
+  }
+  
+  .productImageContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Set the aspect ratio for a squared container (height is equal to width) */
+    overflow: hidden;
+  }
+  
+  .productImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px; /* Reduced border-radius for better aesthetics */
+  }
+  
+  .overlayContent {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.7); /* Increased opacity for better visibility */
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .productTitle {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .productPrice {
+    margin-top: 5px;
+  }
+  
+  .authorLink {
+    text-decoration: underline;
+    color: inherit;
+  }
+  

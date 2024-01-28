@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/productDetail.css';
-
+import detailStyle from '../styles/productDetail.module.css';
 const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -32,18 +31,23 @@ const ProductDetail = () => {
   }
 
   return (
-    <div>
-        <p className="title">{product.title}</p>
-        <p className="price">Price: {product.price}</p>
-        <p className="author">
-        <a href={`/user/${product.author}`} className='author-link' style={{ textDecoration: 'underline', color: 'inherit' }}>
-            Author: {product.author}
-        </a>
-            <sup className='copyright'>&copy;</sup>
+    <div className={detailStyle.product_detail_container}>
+      <div className={detailStyle.product_detail_image}>
+      <div className={detailStyle.product_image_container}>
+        <img className={detailStyle.product_image} src={product.pictureUrl} alt="Product" />
+      </div>
+      <div className={detailStyle.product_details}>
+        <h1 className={detailStyle.title}>{product.title}</h1>
+        <p className={detailStyle.author}>
+          By <a href={`/user/${product.author}`} className={detailStyle.author}>{product.author}</a>
         </p>
-        <img className="product-image" src={product.pictureUrl} alt="Product" />
-        <p className="description">{product.description}</p>
+        <p className={detailStyle.price}>${product.price}</p>
+        <p className={detailStyle.description}>{product.description}</p>
+        <p className={detailStyle.category}>{product.category}</p>
 
+        <button className={detailStyle.buy_button}>Add to Cart</button>
+      </div>
+      </div>
     </div>
   );
 };

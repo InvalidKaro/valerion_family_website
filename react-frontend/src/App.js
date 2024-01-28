@@ -27,7 +27,8 @@ function App() {
   const [profilePicture, setProfilePicture] = useState('');
   const [showCookiePopup] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
-  const [setHeight] = useState(0)
+  // eslint-disable-next-line no-unused-vars
+  const [ height, setHeight] = useState(0)
 
   useEffect(() => {
     const listenToScroll = () => {
