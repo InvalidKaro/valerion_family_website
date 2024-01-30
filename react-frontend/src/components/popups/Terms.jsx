@@ -6,12 +6,13 @@ import popupStyle from '../../styles/TermsAndConditionsPopup.module.css'; // Imp
 
 const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState('');
+
   const openPopup = () => {
     setShowPopup(true);
     document.body.style.overflow = 'hidden';
 
   };
-
   const closePopup = () => {
     setShowPopup(false);
     document.body.style.overflow = 'auto';
@@ -20,8 +21,14 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
 
   const acceptTerms = () => {
     console.log("Terms and Conditions accepted");
-    onAccept(true); // Call the onAccept callback with true to update the accept state
-    closePopup(); // Close the popup after accepting
+    setLoading(true);
+
+    // Simulate a delay of 3 seconds
+    setTimeout(() => {
+      onAccept(true); // Call the onAccept callback with true to update the accept state
+      closePopup(); // Close the popup after accepting
+      setLoading(false);
+    }, 3000);
   };
 
   return (
@@ -36,6 +43,7 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
 
   
       {showPopup && (
+        
         <div 
           className={popupStyle.popupContainer} 
           
@@ -103,7 +111,7 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
             <p style={{ fontSize: 'var(--size-lg)' }}>This platform disclaims liability for reviews authored by minors without parental approval or consent, emphasizing the necessity of parental supervision for minors in their online activities.</p>
             </footer>
   
-            <ColorCheckboxes acceptTerms={acceptTerms} />
+            <ColorCheckboxes acceptTerms={acceptTerms} loading={loading} setLoading={setLoading}/>
           </div>
         </div>
       )}
