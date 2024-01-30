@@ -20,7 +20,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import Admin from './pages/Admin.jsx';
 import ForgotPassword from './pages/forgotPassword.jsx';
-
+import TestPage from './pages/productTest.jsx';
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -36,9 +36,6 @@ function App() {
       const winScroll = window.pageYOffset;
       setHeight(winScroll);
       setIsVisible(winScroll <= heightToHideFrom);
-      console.log(winScroll);
-      console.log(winScroll <= heightToHideFrom); // Check if this logs the expected value
-
     };
 
     window.addEventListener('scroll', listenToScroll);
@@ -74,6 +71,7 @@ function App() {
             <Route path="/user/:username" element={<UserPage username={username}/>} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/forgotPassword' element={<ForgotPassword />} />
+            <Route path='/test' element={<TestPage />} />
           </Routes>
         </Router>
 

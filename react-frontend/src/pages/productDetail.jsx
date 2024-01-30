@@ -32,21 +32,23 @@ const ProductDetail = () => {
 
   return (
     <div className={detailStyle.product_detail_container}>
-      <div className={detailStyle.product_detail_image}>
-      <div className={detailStyle.product_image_container}>
-        <img className={detailStyle.product_image} src={product.pictureUrl} alt="Product" />
-      </div>
-      <div className={detailStyle.product_details}>
-        <h1 className={detailStyle.title}>{product.title}</h1>
-        <p className={detailStyle.author}>
-          By <a href={`/user/${product.author}`} className={detailStyle.author}>{product.author}</a>
-        </p>
-        <p className={detailStyle.price}>${product.price}</p>
-        <p className={detailStyle.description}>{product.description}</p>
-        <p className={detailStyle.category}>{product.category}</p>
+      <img className={detailStyle.product_image} src={product.pictureUrl} alt="Product" />
+      <div className={detailStyle.product_container}>
 
-        <button className={detailStyle.buy_button}>Add to Cart</button>
+   
+      <div className={detailStyle.product_details}>
+        <div classname={detailStyle.box}>
+          <h1 className={detailStyle.title}>{product.title}</h1>
+          <p className={detailStyle.price}>${product.price}</p>
+          <div style={{ width: '20%', borderBottom: '3px solid white', marginInline: '20px', marginTop: '20px' }}></div>
+          <p className={detailStyle.author}>
+            <a href={`/user/${product.author}`} className={detailStyle.author}>By {product.author}</a>
+          </p>
+          <p className={detailStyle.category}>{product.category}</p>
+          <button className={detailStyle.buy_button}>Add to Cart</button>
+          </div>
       </div>
+
       </div>
     </div>
   );
