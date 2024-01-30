@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import styles from '../../styles/admin.module.css';
 import '../../styles/userinfo.css';
-
+import SelectComponent from './select';
 const UsersDashboard = () => {
   const [users, setUsers] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState({});
@@ -79,13 +80,13 @@ const UsersDashboard = () => {
 
   return (
     <div>
-      <h3>User Inventory</h3>
+      <h3 className={styles.title}>Users</h3>
       {users.map((user, index) => (
-        <div key={index}>
+        <div key={index} className={styles.userContainer}>
           <p>Username: {user.username}</p>
-          <img src={`http://localhost:80/profile_pictures/${user.profile_pics}`} alt={user.username} className='user-image' style={{ width: '100px', height: '100px' }} />
+          <img src={`http://localhost:80/profile_pictures/${user.profile_pics}`} alt={user.username} className={styles.userImage} />
           <p>Roles: {user.roles}</p>
-          <select value={selectedRoles[user.user_id] || ''} onChange={(event) => handleRoleChange(user.user_id, event)}>
+          <select value={selectedRoles[user.user_id] || ''} onChange={(event) => handleRoleChange(user.user_id, event)} className={styles.roleSelect}>
             <option value="">Select role</option>
             {roles.map((role) => (
               <option key={role.id} value={role.name}>
@@ -93,7 +94,8 @@ const UsersDashboard = () => {
               </option>
             ))}
           </select>
-          <button onClick={() => handleRoleSubmit(user.user_id)}>Confirm</button>
+          <SelectComponent></SelectComponent>
+          <button onClick={() => handleRoleSubmit(user.user_id)} className={styles.confirmButton}>Confirm</button>
         </div>
       ))}
     </div>
