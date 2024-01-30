@@ -45,7 +45,10 @@ const ProductDetail = () => {
             <a href={`/user/${product.author}`} className={detailStyle.author}>By {product.author}</a>
           </p>
           <p className={detailStyle.category}>{product.category}</p>
-          <button className={detailStyle.buy_button}>Add to Cart</button>
+          <button className={detailStyle.buy_button}>Buy now</button>
+          <br></br>
+          <button className={detailStyle.cart_button}>Add to Cart</button>
+
           </div>
       </div>
 

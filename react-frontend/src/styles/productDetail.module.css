@@ -74,12 +74,31 @@
     cursor: pointer;
     margin-inline-start: -800px;
     margin-top: 6em;
+    display: inline;
   }
+  
   
   .buy_button:hover {
     background-color: #0056b3;
   }
   
+
+  .cart_button {
+    padding: 10px 20px;
+    font-size: var(--size-4xl);
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-inline-start: -800px;
+    display: inline;
+  }
+  
+  
+  .cart_button:hover {
+    background-color: #0056b3;
+  }
   .category {
     padding: 5px 5px;
     background-color: #343434;
@@ -117,12 +136,11 @@
     background-color: #1a1a1a; /* Adjusted background color to match the theme */
     border-radius: 20px;
     margin-left: 50px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Darker box-shadow with alpha value 0.8 */
     height: 70vh;
     width: 90vh;
     text-align: center;
-    border: #58585858 2px solid;
-    box-shadow: 2px 2px 5px rgba(93, 93, 93, 0.209);
+    border: #343434 1px solid;
+    box-shadow: 2px 2px 16px rgba(255, 255, 255, 0.147);
   }
 
   .box {
