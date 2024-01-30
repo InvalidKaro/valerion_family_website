@@ -58,15 +58,23 @@ const colourStyles = {
     }),
   };
   
-  const SelectComponent = (props) => {
+ 
+const SelectComponent = ({ value, onChange, options }) => {
+    console.log(options);
+    const handleChange = (selectedOption) => {
+      onChange(selectedOption);
+    };
+
+    console.log(colourOptions);
     return (
       <Select
+        name={value}
         closeMenuOnSelect={false}
         defaultValue={[colourOptions[0], colourOptions[1]]}
-        isMulti
         options={colourOptions}
         styles={colourStyles}
-        {...props}
+        value={options.find(option => option.value === value)}
+        onChange={handleChange}
       />
     );
   };
