@@ -7,7 +7,7 @@ import { colourOptions } from '../../data/data';
 console.log(colourOptions);
 // TypeScript type annotations removed for JavaScript compatibility
 const colourStyles = {
-    control: (styles) => ({ ...styles, backgroundColor: 'white' }),
+    control: (styles) => ({ ...styles, backgroundColor: 'white', zIndex: 5000, display: 'flex' }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       const color = chroma(data.color);
       return {
@@ -35,6 +35,7 @@ const colourStyles = {
               : color.alpha(0.3).css()
             : undefined,
         },
+        zIndex: 5000 // Set the z-index to ensure the options appear above other elements
       };
     },
     multiValue: (styles, { data }) => {
@@ -69,12 +70,16 @@ const SelectComponent = ({ value, onChange, options }) => {
     return (
       <Select
         name={value}
-        closeMenuOnSelect={false}
         defaultValue={[colourOptions[0], colourOptions[1]]}
         options={colourOptions}
-        styles={colourStyles}
+        styles={ { ...colourStyles, menuPortal: base => ({ ...base, zIndex: 9999 }) }} 
         value={options.find(option => option.value === value)}
         onChange={handleChange}
+        isSearchable={true}
+        tabIndex={20000}
+        menuPosition='absolute'
+        menuPortalTarget={document.body} 
+        closeMenuOnSelect={true}
       />
     );
   };

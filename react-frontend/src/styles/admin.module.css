@@ -41,4 +41,17 @@
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    z-index: 20;
+    display: inline-block;
+  }
+
+  .confirmButton,
+    SelectComponent {
+    display: inline-block;
+    }
+  .userRoles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: flex-end;
   }

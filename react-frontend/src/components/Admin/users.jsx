@@ -76,9 +76,19 @@ const UsersDashboard = () => {
   };
   const handleRoleChange = (userId, selectedValue) => {
     const roleName = selectedValue.value;
-    const roleId = roles.find((role) => role.name === roleName)?.id;
-    setSelectedRoles({ ...selectedRoles, [userId]: roleId });
-    console.log("Selected roles:", selectedRoles); // Log the selected roles
+    const roleId = roles.find((role) => role.id === roleName)?.id;
+    console.log(`Setting role for user ${userId} to:`, roleId);
+    console.log("Selected roles:", roleName); // Log the selected roles
+    setSelectedRoles({ [userId]: roleId });
+    console.log(
+      `Selected roles: ${Array.isArray(selectedRoles) ? selectedRoles.join(', ') : selectedRoles}`,
+      `User ID: ${userId}`,
+      `Role ID: ${roleId}`,
+      `Selected value: ${selectedValue}`,
+      `Roles: ${roles.map(role => role.name).join(', ')}`,
+      `Mapped roles to icons: ${mapRolesToIcons(roles).join(', ')}`,
+      `Role ID found: ${roles.find((role) => role.id === roleName)?.id}`
+    );
   };
 
   // Log the roles array to verify the role data
@@ -112,8 +122,14 @@ const UsersDashboard = () => {
       });
   };
 
-  const handleRoleDelete = (userId, roleId) => {
+  const handleRoleDelete = (userId) => {
     console.log(`Deleting role for user ${userId}`);
+    const roleId = selectedRoles[userId];
+
+    if (!roleId) {
+      console.error(`Role not selected for user ${userId}`);
+      return;
+    }
     // Send DELETE request to delete user roles
     fetch(`http://localhost:80/deleteRole.php`, {
       method: "POST",
@@ -140,7 +156,9 @@ const UsersDashboard = () => {
         ? "lightblue"
         : "white", // Set the background color of the entire option
       color: state.isSelected ? "white" : "black", // Customize the text color based on state
+      zIndex: 2000 // Set the z-index to ensure the options appear above other elements
     }),
+   
   };
   return (
     <div>
@@ -153,7 +171,10 @@ const UsersDashboard = () => {
             alt={user.username}
             className={styles.userImage}
           />
-          <p>Roles: {user.roles}</p>
+          <p className={styles.userRoles}>Roles: {user.roles}</p>
+
+          <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
+    <div>
 
           <p>Add role</p>
           <SelectComponent
@@ -182,12 +203,16 @@ const UsersDashboard = () => {
           />
           <button
             onClick={() =>
-              handleRoleDelete(user.user_id, selectedRoles[user.user_id])
+              handleRoleDelete(user.user_id)
             }
             className={styles.confirmButton}
           >
             Confirm
           </button>
+        </div>
+
+        </div>
+
         </div>
       ))}
     </div>
