@@ -147,19 +147,7 @@ const UsersDashboard = () => {
       });
   };
 
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected
-        ? "blue"
-        : state.isFocused
-        ? "lightblue"
-        : "white", // Set the background color of the entire option
-      color: state.isSelected ? "white" : "black", // Customize the text color based on state
-      zIndex: 2000 // Set the z-index to ensure the options appear above other elements
-    }),
-   
-  };
+
   return (
     <div>
       <h3 className={styles.title}>Users</h3>
@@ -183,7 +171,6 @@ const UsersDashboard = () => {
               handleRoleChange(user.user_id, selectedValue)
             }
             options={mapRolesToIcons(roles)}
-            style={customStyles} // Apply the custom styles to the SelectComponent
           />
           <button
             onClick={() => handleRoleSubmit(user.user_id)}
@@ -199,7 +186,6 @@ const UsersDashboard = () => {
               handleRoleChange(user.user_id, selectedValue)
             }
             options={mapRolesToIcons(roles)}
-            style={customStyles} // Apply the custom styles to the SelectComponent
           />
           <button
             onClick={() =>

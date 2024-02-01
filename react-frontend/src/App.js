@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
+import PayPal from "./components/payment/paypal.jsx";
 import AccountSettings from "./pages/AccountSettings.jsx";
 import Admin from "./pages/Admin.jsx";
 import Art from "./pages/Art.jsx";
@@ -115,6 +116,10 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/test" element={<TestPage />} />
+            <Route
+              path="/payment"
+              element={<PayPal isUserLoggedIn={isUserLoggedIn} />}
+            />
           </Routes>
         </Router>
       </UserProvider>

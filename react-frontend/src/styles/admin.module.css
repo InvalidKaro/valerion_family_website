@@ -33,6 +33,7 @@
   
   .roleSelect {
     margin: 10px 0;
+    width: 100%;
   }
   
   .confirmButton {
@@ -54,4 +55,31 @@
     flex-direction: column;
     align-items: flex-end;
     align-self: flex-end;
+  }
+
+/* colorOptions.css */
+.developer {
+    --fa-primary-color: #ffffff; /* Color for the 'Developer' option */
+  color: #000;
+  color: #FF8B00
+}
+  
+  .moderator {
+    color: #0052CC; /* Color for the 'Moderator' option */
+  }
+  
+  .artist {
+    color: #5243AA; /* Color for the 'Artist' option */
+  }
+  
+  .quarantine {
+    color: #FF5630; /* Color for the 'Quarantine' option */
+  }
+  
+  .manager {
+    color: #FF8B00; /* Color for the 'Manager' option */
+  }
+  
+  .user {
+    color: #FFC400; /* Color for the 'User' option */
   }
