@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useEffect, useState } from 'react';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { Mousewheel, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import '../../styles/reviews.css'; // Import the CSS file for the Reviews component
 
@@ -29,9 +29,9 @@ const Reviews = () => {
   }, []);
 
   const renderReviews = () => {
-    return reviews.map((review) => (
-      <SwiperSlide key={review.author} className="review__card">
-        <div className="card_top_section">
+    return reviews.map((review, index) => (
+      <SwiperSlide key={`${review.author}-${review.id || index}`} className="review__card">
+      <div className="card_top_section">
           <img className="card__img" src={review.profile_img} alt="" />
           <h1 className="card__username">{review.author}</h1>
         </div>

@@ -1,9 +1,9 @@
 // Login.js
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './auth';
-import loginStyle from '../styles/login.module.css';
-import buttonStyle from '../styles/button.module.css';
+import React, { useEffect, useState } from 'react';
 import textStyle from '../styles/TextStyle.module.css';
+import buttonStyle from '../styles/button.module.css';
+import loginStyle from '../styles/login.module.css';
+import { useAuth } from './auth';
 const ForgotPassword = () => {
   const [loginMessage] = useState('');
   const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
@@ -87,7 +87,7 @@ export default MyComponent;
   return (
     <main>
       
-      <div className={loginStyle.container} style={{ marginTop: '10px' }}>
+      <div className={loginStyle.container} style={{ marginTop: '10%', marginBottom: 0}}>
         
         <form className={loginStyle.form} onSubmit={handleForgotPassword} style={{ marginTop: '100px' }}>
         <h1 classname={textStyle.h1}>Forgot Password</h1>

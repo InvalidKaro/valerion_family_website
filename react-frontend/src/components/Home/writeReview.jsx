@@ -148,6 +148,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
               value={reviewText}
               onChange={handleReviewChange}
               className={loginStyle.input}
+              cols={40}
             ></textarea>
             <TermsAndConditionsPopup
               accept={accept}

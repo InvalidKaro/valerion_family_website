@@ -20,7 +20,6 @@ import ForgotPassword from "./pages/forgotPassword.jsx";
 import ProductDetail from "./pages/productDetail.jsx"; // Import the ProductDetail component
 import TestPage from "./pages/productTest.jsx";
 import "./styles/App.css";
-import "./styles/header.css";
 import "./styles/reviews.css";
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);

@@ -1,11 +1,11 @@
 // Login.js
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './auth';
+import React, { useEffect, useState } from 'react';
 import CaptchaComponent from '../components/Captcha/captchaClient'; // Import CaptchaComponent
-import loginStyle from '../styles/login.module.css';
-import buttonStyle from '../styles/button.module.css';
 import textStyle from '../styles/TextStyle.module.css';
+import buttonStyle from '../styles/button.module.css';
+import loginStyle from '../styles/login.module.css';
 import Register from './Register';
+import { useAuth } from './auth';
 const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
