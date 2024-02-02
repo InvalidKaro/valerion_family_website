@@ -1,206 +1,245 @@
 /* CSSTidy 2.0.3: Thu, 01 Feb 2024 15:35:57 -0600 */
-header
-{
-	position:fixed;
-	top:0;
-	width:100%;
-	transition:top .3s ease;
-	display:flex;
-	justify-content:space-around;
-	align-items:center;
-	justify-self:center;
-	padding-top:1rem;
-	padding-bottom:1rem;
-	z-index:10;
-	border-bottom:.2px solid #ffffff80
+header {
+  position: fixed;
+  top: 0;
+  transition: top 0.3s ease;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  justify-self: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  z-index: 10;
+  border-bottom: 0.2px solid #ffffff80;
+  max-width: 100%;
+  min-width: 100%;
+}
+.box_header {
+  max-width: 100%;
+}
+header.hidden {
+  top: -150px;
+  /* Adjust as needed based on your header height */
+  transition: top 0.9s ease;
+  /* Decreased transition duration for hiding */
 }
 
-header.hidden
-{
-	top:-150px;
-/* Adjust as needed based on your header height */
-	transition:top .9s ease
-/* Decreased transition duration for hiding */
+.market_text {
+  font-size: var(--size-2xl);
 }
 
-.market_text
-{
-	font-size:var(--size-2xl)
+.buy_button {
+  opacity: 0;
+  /* Make the button invisible */
 }
 
-.buy_button
-{
-	opacity:0
-/* Make the button invisible */
+.header__menu {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  gap: 2em;
 }
 
-.header__menu
-{
-	margin:0;
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	list-style:none;
-	padding:0;
-	gap:2em
+.header__link a {
+  text-decoration: none;
+  font-size: var(--size-lg);
 }
 
-.header__link a
-{
-	text-decoration:none;
-	font-size:var(--size-lg)
+.header__logo {
+  display: block;
+  cursor: pointer;
+  width: var(--size-5xl);
+  height: var(--size-5xl);
 }
 
-.header__logo
-{
-	display:block;
-	cursor:pointer;
-	width:var(--size-5xl);
-	height:var(--size-5xl)
+.header__user__icon {
+  width: var(--size-4xl);
+  border-radius: 100%;
+  cursor: pointer;
+  height: var(--size-4xl);
 }
 
-.header__user__icon
-{
-	width:var(--size-4xl);
-	border-radius:100%;
-	cursor:pointer;
-	height:var(--size-4xl)
+.header__rsection {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  margin-left: -3em;
 }
 
-.header__rsection
-{
-	display:flex;
-	justify-content:center;
-	gap:3em;
-	margin-left:-3em
+.login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.login_form
-{
-	display:flex;
-	flex-direction:column;
-	gap:10px
+.login_form input {
+  padding: 5px;
 }
 
-.login_form input
-{
-	padding:5px
+.login_form button {
+  padding: 8px;
 }
 
-.login_form button
-{
-	padding:8px
+.trapezoid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
-.trapezoid
-{
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center;
-	gap:1em
+.dropdown_menu {
+  display: flex;
+  margin-left: 80%;
+  margin-top: 5%;
+  background-color: #3f3f3f;
+  border-radius: 5px;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  z-index: 10;
 }
 
-.dropdown_menu
-{
-	display:flex;
-	margin-left:80%;
-	margin-top:5%;
-	background-color:#3f3f3f;
-	border-radius:5px;
-	justify-content:center;
-	width:300px;
-	height:200px;
-	position:absolute;
-	z-index:10
+.dropdown {
+  background-color: #3f3f3f;
+  margin-top: 50px;
+  border-radius: 50%;
+  width: 300px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.dropdown
-{
-	background-color:#3f3f3f;
-	margin-top:50px;
-	border-radius:50%;
-	width:300px;
-	height:100px;
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center
+.dropdown_button {
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3f3f3f;
+  color: #fff;
 }
 
-.dropdown_button
-{
-	cursor:pointer;
-	margin:5px 0;
-	padding:10px;
-	border-radius:5px;
-	border:none;
-	background-color:#3f3f3f;
-	color:#fff
+.hamburger {
+  display: block;
+  cursor: pointer;
 }
 
-.hamburger
-{
-	display:block;
-	cursor:pointer
+.hamburger_button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  display: none;
 }
 
-.hamburger_button
-{
-	cursor:pointer;
-	display:inline-block;
-	padding:10px;
-	display:none
-}
-
-/* Extra small devices (phones) */
+/*
 @media only screen and (max-width: 475px) {
 	
 }
 
-/* Small devices */
 @media only screen and (max-width: 639px) {
 	
 }
 
-/* Medium devices */
 @media only screen and (max-width: 767px) {
 	
 }
-
-/* Large devices */
+*/
 @media only screen and (max-width: 1023px) {
-	.hamburger-button
-	{
-		display:flex
-	}
+  .hamburger_button {
+    display: flex;
+  }
 
-	.header__menu
-	{
-		display:none
-	}
+  .header__menu {
+    display: none;
+  }
+  /* Add these styles to your existing CSS or create a new stylesheet */
+
+  /* Media query for smaller screens */
+
+  .menuContainer {
+    background-color: #333;
+    position: absolute;
+    top: 68px; /* Adjust the distance from the header as needed */
+    width: 100%;
+    z-index: 1000;
+    max-width: 100%;
+    min-width: 100%;
+    overflow-y: auto; /* Add scroll if content exceeds maximum height */
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu li {
+    padding: 1%;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    min-height: 10%; /* Minimum height for each menu item as a percentage of the viewport height */
+    font-size: clamp(
+      1.6vw,
+      2.5vh,
+      2.2rem
+    ); /* Font size using clamp() for responsiveness */
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: clamp(
+      1.6vw,
+      2.5vh,
+      2.2rem
+    ); /* Font size using clamp() for responsiveness */
+  }
+  .header__menu {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+	display: none;
+  }
+  
+
+  .header__rsection {
+	display: flex;
+	justify-content: center;
+	gap: 0;
+	margin-inline: auto;
+  }
+  
+  .header__logo {
+	margin-left: 100%;
+  }
+  
 }
 
-/* Extra large devices */
 @media only screen and (max-width: 1279px) {
-	.header__link a
-	{
-		text-decoration:none;
-		font-size:var(--size-md)
-	}
+  .header__link a {
+    text-decoration: none;
+    font-size: var(--size-md);
+  }
 }
 
-/* 2XL devices */
 @media only screen and (max-width: 1535px) {
-	
 }
 
-/* Full HD devices */
 @media only screen and (max-width: 1919px) {
-	
 }
 
-/* 2K devices */
 @media only screen and (max-width: 2559px) {
-	
 }

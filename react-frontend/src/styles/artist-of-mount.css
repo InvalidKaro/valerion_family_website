@@ -42,8 +42,8 @@
 
 .img__box img {
   z-index: 1;
-  width: 20em;
-  height: 20em;
+  max-width: 20em;
+  max-height: 20em;
   overflow: hidden;
   border-radius: 30px;
   box-shadow: 5px 5px 10px 2px rgba(255, 255, 255, 0.2);
@@ -53,10 +53,10 @@
   position: relative;
   font-weight: 700;
   width: fit-content;
-  top: -1em;
-  left: 8em;
+  top: 100%;
+  left: 50%;
   z-index: 2;
-  font-size: var(--size-4xl);
+  font-size: clamp(1rem, 1vw, 3.2rem);
   text-align: center;
   background-color: rgb(87, 215, 84);
   color: rgb(19, 113, 19);

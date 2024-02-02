@@ -1,10 +1,10 @@
 /* eslint-disable no-useless-escape */
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useState } from 'react';
 import { useUser } from '../../UserContext.js';
+import buttonStyle from '../../styles/button.module.css';
+import loginStyle from '../../styles/login.module.css';
 import '../../styles/settings.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import loginStyle from '../../styles/login.module.css'
-import buttonStyle from '../../styles/button.module.css'
 const ChangePassword = () => {
   const { user } = useUser(); // Use the useUser hook here
   const [currentPassword, setCurrentPassword] = useState('');

@@ -5,6 +5,7 @@
   --clr-bg: #1a1a1a;
   --clr-txt: white;
   --clr-prim: #e5e5e5;
+  --clr-blue: #008AA3;
 
   /*sizes*/
   --size-xxs: 0.5rem;
@@ -33,7 +34,8 @@
   z-index: 1;
   font-family: "League Spartan", sans-serif;
   font-weight: 500;
-  font-size: 22px;
+  font-size: clamp(1rem, 1vw, 3.2rem);
+  max-width: 100%;
 }
 
 li,
@@ -79,69 +81,10 @@ body.blur {
 }
 
 .container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  margin-inline: auto;
+
 }
 
 section {
   margin-top: 9rem;
-}
-
-/* Extra small devices (phones) */
-@media only screen and (max-width: 475px) {
-  .container {
-    max-width: 475px;
-  }
-}
-
-/* Small devices */
-@media only screen and (min-width: 476px) and (max-width: 639px) {
-  .container {
-    max-width: 639px;
-  }
-}
-
-/* Medium devices */
-@media only screen and (min-width: 640px) and (max-width: 767px) {
-  .container {
-    max-width: 767px;
-  }
-}
-
-/* Large devices */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    max-width: 1023px;
-  }
-}
-
-/* Extra large devices */
-@media only screen and (min-width: 1024px) and (max-width: 1279px) {
-  .container {
-    max-width: 1279px;
-  }
-}
-
-/* 2XL devices */
-@media only screen and (min-width: 1280px) and (max-width: 1535px) {
-  .container {
-    max-width: 1535px;
-  }
-}
-
-/* Full HD devices */
-@media only screen and (min-width: 1536px) and (max-width: 1919px) {
-  .container {
-    max-width: 1919px;
-  }
-}
-
-/* 2K devices */
-@media only screen and (min-width: 1920px) and (max-width: 2559px) {
-  .container {
-    max-width: 2559px;
-  }
 }
