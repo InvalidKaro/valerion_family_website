@@ -9,6 +9,8 @@ const Hero = () => {
         MozUserSelect: 'none',
         msUserSelect: 'none',
         userSelect: 'none',
+        maxWidth: '100%',
+        minWidth: '100%',
       };
     return (
             
