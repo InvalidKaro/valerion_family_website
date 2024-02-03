@@ -1,5 +1,5 @@
 // import hero_bg from '../../images/hero_bg.png';
-
+import heroStyles from '../../styles/hero.module.css';
 const Hero = () => {
     const sectionStyle = {
         cursor: 'default',
@@ -9,17 +9,15 @@ const Hero = () => {
         MozUserSelect: 'none',
         msUserSelect: 'none',
         userSelect: 'none',
-        maxWidth: '100%',
-        minWidth: '100%',
+
       };
     return (
             
-            <section style={sectionStyle} class="container hero">
-            <h1>Beyond Pixels: AI Artistry Marketplace </h1>
-            <p class="hero__motto">Your Dream, Our Work</p>
-            <p style={ { marginTop: '1%' }}>The most innovative place to buy and sell online art.</p>
-            {/* <img src={hero_bg} alt="hero-bg" className='hero-bg'/> */}
-            </section> 
+      <section style={sectionStyle} className={`${heroStyles.container} ${heroStyles.hero}`}>
+      <h1 className={heroStyles.hero__title}>Beyond Pixels: AI Artistry Market<wbr></wbr>place</h1>
+      <p className={heroStyles.hero__motto}>Your Dream, Our Work</p>
+      <p className={heroStyles.hero__description}>The most innovative place to buy and sell online art.</p>
+    </section>
             
     );
 }

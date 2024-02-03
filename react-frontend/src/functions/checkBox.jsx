@@ -22,8 +22,8 @@ export default function CheckBox({ acceptTerms, loading, setLoading }) {
     backgroundColor: checked ? "green" : "transparent",
     border: "2px solid green",
     borderRadius: "5px",
-    marginRight: "10px",
     marginTop: "10px",
+    marginInline: "auto",
     cursor: "pointer",
   };
 

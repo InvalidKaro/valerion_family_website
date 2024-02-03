@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import buttonStyle from '../../styles/button.module.css';
-import textStyle from '../../styles/TextStyle.module.css';
 import ColorCheckboxes from '../../functions/checkBox'; // Assuming ColorCheckboxes.js is in the same directory
 import popupStyle from '../../styles/TermsAndConditionsPopup.module.css'; // Import the CSS module
+import textStyle from '../../styles/TextStyle.module.css';
+import buttonStyle from '../../styles/button.module.css';
 
 const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -35,7 +35,7 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
     <>
       <span 
         onClick={openPopup} 
-        style={{ textDecoration: 'underline', cursor: 'pointer' }}
+        style={{ textDecoration: 'underline', cursor: 'pointer'}}
       >
         Terms and Conditions
         
@@ -49,7 +49,7 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
           
 
         >
-          <div className={popupStyle.popupContent} style={{ marginTop: "30%" }}>
+          <div className={popupStyle.popupContent} style={{ width: "80%", height: "100vh" }}>
           <button onClick={closePopup} className={buttonStyle.closeButton}>X</button>
 
             <h1 style={{ fontSize: 'var(--size-5xl)' }} className={textStyle.a_h1}>Terms and Conditions</h1>

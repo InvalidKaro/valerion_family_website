@@ -1,6 +1,12 @@
+/* hero.module.css */
+
+.container {
+  /* Styles for the container if any */
+}
+
 .hero {
   position: relative;
-  height: 35rem;
+  height: 50vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -9,18 +15,13 @@
   margin-top: 3.5rem;
   padding: 0.85rem;
   gap: 2em;
-  box-sizing: border-box;
   max-width: 100%;
   min-width: 100%;
-
-  /* margin-bottom: -5em; */
-
   background-color: rgba(129, 128, 128, 0.1);
   background-image: url('../../src/images/hero_bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  box-sizing: border-box;
 }
 
 .hero::after {
@@ -30,33 +31,30 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired opacity */
+  background-color: rgba(0, 0, 0, 0.5);
   max-width: 100%;
   min-width: 100%;
 }
 
-.hero h1 {
-  font-size: clamp(2.5rem, 5vw, 7rem); /* Adjust the min, preferred, and max values */
+.hero__title {
+  font-size: clamp(2.5rem, 5vw, 7rem);
   background-color: rgba(255, 255, 255, 0);
   line-height: 1em;
-}
-
-.hero p {
-  font-size: clamp(1.5rem, 2vw, 2.5rem); /* Adjust the min, preferred, and max values */
-  background-color: rgba(255, 255, 255, 0);
+  color: white;
 }
 
 .hero__motto {
-  font-size: clamp(1rem, 1.5vw, 1.5rem); /* Adjust the min, preferred, and max values */
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   line-height: 1em;
   background-color: rgba(255, 255, 255, 0);
   font-weight: 300;
-  margin-top: -1.5em;
+  margin-top: -1.25em;
   text-shadow: 5px 4px 6px rgba(0, 0, 0, 0.75);
+  color: white;
 }
 
-.hero h1, .hero p, .hero__motto {
-  position: relative;
-  z-index: 2;
-  color: white; /* Set the text color to ensure contrast with the overlay */
+.hero__description {
+  font-size: clamp(1.5rem, 2vw, 2.5rem);
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
 }

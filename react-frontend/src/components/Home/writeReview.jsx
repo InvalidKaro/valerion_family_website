@@ -3,7 +3,6 @@ import { useUser } from "../../UserContext";
 import textStyle from "../../styles/TextStyle.module.css";
 import buttonStyle from "../../styles/button.module.css";
 import loginStyle from "../../styles/login.module.css";
-import "../../styles/reviews.css";
 import TermsAndConditionsPopup from "../popups/Terms";
 
 const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
@@ -81,21 +80,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
   };
   return (
     <>
-      <button
-        onClick={openPopup}
-        className={buttonStyle.tag_button}
-        style={{
-          marginTop: "3%",
-          color: "white",
-          backgroundColor: "#0197B2",
-          width: "20%",
-          borderRadius: "13px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: "40%",
-        }}
-      >
+      <button onClick={openPopup} className={buttonStyle.tag_button} style={{ marginTop: 'clamp(3%, 1em, 5%)' }}>
         Write a review
       </button>
 
@@ -103,23 +88,30 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
         <div
           className="popup"
           style={{
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
-            height: "100%",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            zIndex: 2,
           }}
         >
           <div
             className={loginStyle.form}
-            style={{ height: "40%", overflow: "" }}
+            style={{
+              marginTop: `15em`,
+              width: `clamp(10em, 40em)`,
+              maxWidth: "40em",
+              marginBottom: "100vh",
+              marginInlineStart: "min(4em)",
+              marginInlineEnd: "min(4em)",
+            }}
           >
             <h2
-              style={{ fontSize: "var(--size-5xl)" }}
+              style={{ fontSize: "clamp(2.5rem, 5vw, 7rem)", overflow: "hidden" }}
               className={textStyle.a_h1}
             >
               Write a Review

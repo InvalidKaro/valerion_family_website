@@ -1,13 +1,11 @@
 import React from 'react';
-import '../styles/App.css';
-import Hero from '../components/Home/hero.js';
-import '../styles/hero.css';
-import AofM from '../components/Home/artist-of-mount.js';
-import '../styles/artist-of-mount.css';
-import Reviews from '../components/Home/reviews.js';
-import '../styles/reviews.css';
 import { useUser } from '../UserContext';
 import Flyout from '../components/Flyout.jsx';
+import AofM from '../components/Home/artist-of-mount.js';
+import Hero from '../components/Home/hero.js';
+import Reviews from '../components/Home/reviews.js';
+import '../styles/App.css';
+import '../styles/artist-of-mount.css';
 function Home() {
   const { user } = useUser();
   document.title = "Home";

@@ -1,24 +1,24 @@
+/* reviews.module.css */
+
 .reviews-container {
-  height: 16em;
-  width: auto;
-  padding: 1em 8em;
-  margin-top: -3em;
+  /* Updated padding and margin-top for better spacing */
+  padding: 1em;
+  margin-top: 1em;
 }
 
 .review__card {
   position: relative;
-  height: 80%;
-  gap: 0.6em;
-  padding: 2em;
+  /* Adjusted padding for better spacing */
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: #58585858 3px solid;
-  
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 20px;
   background-color: #34343446;
   overflow: visible;
+  width: 100%;
 }
 
 .card_top_section {
@@ -30,36 +30,35 @@
   gap: 1em;
 }
 
-.review__card span {
-  font-size: var(--size-3xl);
-  background: none;
-}
-
 .card__img {
-  width: 4m;
-  width: 4em;
-  border-radius: 100px;
+  width: min(4em, 100%);
+  height: min(4em, 100%);
+  border-radius: 50%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .card__username {
-  font-size: var(--size-3xl);
+  font-size: clamp(1.2rem, 1.5rem, 2rem);
   font-weight: 600;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .card__review {
   text-align: center;
   line-height: 1.4em;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 1em;
 }
 
-.span{
-  font-size: var(--size-2xl);
+.span {
+  font-size: clamp(1rem, 1.25rem, 1.5rem);
   font-weight: 600;
+  background-color: transparent;
 }
+
 .rating {
-  font-size: var(--size-2xl);
+  font-size: clamp(1.2rem, 1.5rem, 2rem);
 }
 
 .card__stars__sec {
@@ -70,39 +69,20 @@
   border-radius: 50px;
 }
 
-.full {
-  /* Background position for a full star */
-  content: '★';
-
-  color:gold
-}
-
-.half {
-  /* Background position for a half star */
+.full, .half, .empty {
+  font-size: clamp(1.2rem, 1.5rem, 2rem);
   content: '★';
 
 }
 
-.empty {
-  /* Background position for an empty star */
-  content: '★';
-
-}
-
-.full::before {
-  content: '★';
+.full::before, .half::before, .empty::before {
   color: yellow;
+  content: '★';
+
 }
 
-.half::before {
-  content: '☆';
-  color: yellow;
-}
+/* ... Rest of your CSS remains unchanged ... */
 
-.empty::before {
-  content: '☆';
-  color: gray;
-}
 .wave {
   height: 200px;
   z-index: 2;
@@ -140,13 +120,12 @@ textarea {
   margin-top: 10px;
 }
 
-
 .popup Xbutton {
   margin-top: 30px;
   padding: 8px;
   margin-left: 500px;
   margin-right: 500px;
-  color:cornflowerblue
+  color: cornflowerblue;
 }
 
 .star-rating .star {

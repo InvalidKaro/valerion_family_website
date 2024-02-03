@@ -1,0 +1,158 @@
+/* reviews.module.css */
+
+.container {
+    /* Updated padding and margin-top for better spacing */
+    margin-inline: calc(1em + 1vw);
+  
+
+  }
+  
+  .review__card {
+    position: relative;
+    /* Adjusted padding for better spacing */
+    padding: 2em;
+    gap: 1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: #58585858 3px solid;
+    border-radius: 20px;
+    background-color: #34343446;
+    overflow: visible;
+    
+  }
+  
+  .card_top_section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
+  }
+  
+  .card__img {
+    width: min(4em, 100%);
+    height: min(4em, 100%);
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .card__username {
+    font-size: clamp(1.2rem, 1.5rem, 2rem);
+    font-weight: 600;
+    margin-top: 0;
+  }
+  
+  .card__review {
+    text-align: center;
+    line-height: 1.4em;
+    width: 100%;
+    margin-top: 1em;
+  }
+  
+  .quotationMark {
+    font-size: clamp(1rem, 1.25rem, 1.5rem);
+    font-weight: 600;
+    background-color: transparent;
+    background: none;
+  }
+  
+  .rating {
+    font-size: clamp(1.2rem, 1.5rem, 2rem);
+  }
+  
+  .card__stars__sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5858582b;
+    border-radius: 50px;
+    padding: 0.15em;
+  }
+ 
+  .full, .half {
+    font-size: clamp(1.2rem, 1.5rem, 2rem);
+    content: '★';
+    color: gold;
+    background: none;
+
+  }
+  .empty {
+    font-size: clamp(1.2rem, 1.5rem, 2rem);
+    content: '★';
+    color: gray;
+    background: none;
+
+  }
+  
+  .full::before, .half::before  {
+    content: '★';
+    color: gold;
+    background: none;
+  }
+  .empty::before {
+    content: '★';
+    color: gray;
+    background: none;
+
+  }
+  
+  /* ... Rest of your CSS remains unchanged ... */
+  
+  .wave {
+    height: 200px;
+    z-index: 2;
+    margin-top: -6rem;
+    width: 100%;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+  }
+  
+  .popup Xbutton {
+    margin-top: 30px;
+    padding: 8px;
+    margin-left: 500px;
+    margin-right: 500px;
+    color: cornflowerblue;
+  }
+  
+  .star_rating .star {
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .star_rating .star.active {
+    color: gold;
+  }
+  

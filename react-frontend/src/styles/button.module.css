@@ -16,17 +16,7 @@
 }
  
 .tag_button {
-    display: inline-flex;
-    font-weight: 600;
-    text-decoration: none;
-    width: 100%;
-    letter-spacing: 0.05em;
-    background: none;
-    font-size: var(--size-2xl);
-    margin: 0;
-    color: var(--clr-bg);
-    padding: 0.5em 1em;
-    border-radius: 3px;
+    
 }
 .tag_button:focus {
   
@@ -36,10 +26,27 @@
 }
 
 .closeButton {
-  margin-left: 100%;
   color: #0197B2;
   align-self: self-end;
   font-weight: bold;
   font-size: var(--size-2xl);
   cursor: pointer;
+  margin-inline-end: -90%;
+}
+.tag_button {
+  display: inline-flex;
+  font-weight: 600;
+  text-decoration: none;
+  width: clamp(20%, 120px, 250px);
+  letter-spacing: 0.05em;
+  background: none;
+  font-size: clamp(1rem, 3vw, 2rem);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 13px;
+  background-color: #0197B2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
 }
