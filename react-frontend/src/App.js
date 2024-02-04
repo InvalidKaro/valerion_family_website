@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { UserProvider } from "./UserContext";
+
+import StandardErrorBoundary from "./functions/errorBoundary.jsx";
+
 import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
 import PayPal from "./components/payment/paypal.jsx";
+import TestPage from "./functions/Test.jsx";
 import AccountSettings from "./pages/AccountSettings.jsx";
 import Admin from "./pages/Admin.jsx";
 import Art from "./pages/Art.jsx";
@@ -18,8 +22,8 @@ import Supporters from "./pages/Supporters.jsx";
 import UserPage from "./pages/User.jsx";
 import ForgotPassword from "./pages/forgotPassword.jsx";
 import ProductDetail from "./pages/productDetail.jsx"; // Import the ProductDetail component
-import TestPage from "./pages/productTest.jsx";
 import "./styles/App.css";
+
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -49,10 +53,14 @@ function App() {
   return (
     <div className="App">
       {showCookiePopup && <CookiePopup />}
+
       <UserProvider>
         <Router>
+        <StandardErrorBoundary>
+          
           <Header setUser={setUsername} isVisible={isVisible} />
           <Routes>
+            
             <Route
               path="/"
               element={
@@ -119,8 +127,13 @@ function App() {
               element={<PayPal isUserLoggedIn={isUserLoggedIn} />}
             />
           </Routes>
+
+          </StandardErrorBoundary>
+
         </Router>
+
       </UserProvider>
+
     </div>
   );
 }

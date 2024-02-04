@@ -1,37 +1,34 @@
-import React, { Component } from 'react';
-import '../styles/flyout.css';
+import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
-  }
+const ErrorFallback = ({ error, resetErrorBoundary }) => (
+  <div>
+    <p>Something went wrong:</p>
+    <pre>{error.message}</pre>
+    <button onClick={resetErrorBoundary}>Try Again</button>
+  </div>
+);
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error(error, errorInfo);
-    this.setState({ error, errorInfo });
-  }
-  renderError() {
-    return (
-      <div className="flyout visible" style={{ backgroundColor: 'rgba(97, 0, 0, 0.81)', color: 'white' }}>
-        <h2>Error: Something went wrong</h2>
-        <p>{this.state.error && this.state.error.toString()}</p>
-        <pre>{this.state.errorInfo && this.state.errorInfo.componentStack}</pre>
-      </div>
-    );
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return this.props.errorRenderer ? this.props.errorRenderer(this.state.error, this.state.errorInfo) : this.renderError();
+const MyComponent = () => {
+  const fetchData = async () => {
+    const response = await fetch('https://api.example.com/data');
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
     }
 
-    return this.props.children;
-  }
-}
+    const result = await response.json();
+    return result;
+  };
 
-export default ErrorBoundary;
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => fetchData()}>
+      <div>
+        {/* Your component logic here */}
+        <button onClick={() => fetchData()}>Fetch Data</button>
+      </div>
+    </ErrorBoundary>
+  );
+};
+
+export default MyComponent;
