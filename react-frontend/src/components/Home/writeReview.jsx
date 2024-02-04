@@ -100,7 +100,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
           }}
         >
           <div
-            className={loginStyle.form}
+            className={loginStyle.form2}
             style={{
               marginTop: `15em`,
               width: `clamp(10em, 40em)`,
@@ -111,7 +111,7 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
             }}
           >
             <h2
-              style={{ fontSize: "clamp(2.5rem, 5vw, 7rem)", overflow: "hidden" }}
+              style={{ fontSize: "clamp(2.5rem, 5vw, 7rem)" }}
               className={textStyle.a_h1}
             >
               Write a Review

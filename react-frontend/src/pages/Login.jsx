@@ -18,6 +18,7 @@ const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false); // Add the state for isCaptchaValid here
   const [SignUpModalVisible, setSignUpModalVisible] = useState(false);  
+  const [captchaRef, setCaptchaRef] = useState(null);
 
 
 
@@ -74,65 +75,67 @@ export default MyComponent;
   };
 
 // Login function, when using https/a domain this will automatically be encrypted
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (!email || !password || !username) {
-      setLoginMessage('Please enter username, mail and password.');
-      return;
-    }
-    if (!isCaptchaValid) {
-      // If captcha is not valid, prevent login
-      setLoginMessage('Please complete the captcha.');
-      return;
-    }
-    fetch('http://localhost:80/login.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: email, password: password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
+const handleLogin = (e) => {
+  e.preventDefault();
+  if (!email || !password || !username) {
+    setLoginMessage('Please enter username, mail, and password.');
+    return;
+  }
+  if (!isCaptchaValid) {
+    // If captcha is not valid, prevent login
+    setLoginMessage('Please complete the captcha.');
+    return;
+  }
+  const token = captchaRef.current?.getValue();
+  console.log('Token:', token);
+
+  // Send login request
+  fetch('http://localhost:80/login.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username: email, password: password, token: token }),
+    timeout: 10000, // Set timeout to 10 seconds (adjust as needed)
+    
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        // Successful login, process profile data directly
+        setLoginMessage('Login successful!');
+        setFailedAttempts(0);
+  
+
+        console.log('Profile data:', data);
+  
+        // Include profile picture data in loginUser function
         if (data.success) {
-          // Fetch profile picture data after successful login
-          fetch('http://localhost:80/login.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username: email, password:  password }),
-          })
-            .then((profileResponse) => profileResponse.json())
-            .then((profileData) => {
-              console.log('Profile data:', profileData);
-              // Include profile picture data in loginUser function
-              if (!profileData.profileInfo.filename.startsWith('profile_pictures/')) {
-                profileData.profileInfo.filename = 'profile_pictures/' + profileData.profileInfo.filename;
-              }
-              loginUser({ username: username, profileData: profileData });              
-              setLoginModalVisible(false);
-              document.body.style.overflow = 'auto';
-
-
-            })
-            .catch((profileError) => {
-              console.error('Error during profile picture fetch:', profileError);
-              // Still log in the user even if fetching profile data fails
-              loginUser({ username: username });
-            });
+          if (!data.profileInfo.filename.startsWith('profile_pictures/')) {
+            data.profileInfo.filename = 'profile_pictures/' + data.profileInfo.filename;
+          }
+          loginUser({ username: username, profileData: data });
+          setLoginModalVisible(false);
+          document.body.style.overflow = 'auto';
         } else {
-          setLoginMessage('Login failed. Please check your credentials.');
-          setFailedAttempts(prevAttempts => prevAttempts + 1);
-
+          setLoginMessage('Error processing profile data.');
+          throw new Error('Profile data processing failed');
         }
-      })
-      .catch((error) => {
-        console.error('Error during login:', error);
-        setLoginMessage('An error occurred during login');
-        setFailedAttempts(prevAttempts => prevAttempts + 1);
-      });
-  };
+      } else {
+        setLoginMessage('Login failed. Please check your credentials.');
+        setFailedAttempts((prevAttempts) => prevAttempts + 1);
+        throw new Error('Login failed');
+      }
+    })
+    .catch((error) => {
+      console.error('Error during login:', error);
+      setLoginMessage('An error occurred during login');
+      setFailedAttempts((prevAttempts) => prevAttempts + 1);
+    })
+    .finally(() => {
+      captchaRef.current?.reset(); // Reset the captcha regardless of success or failure
+    });
+  };  
   const SignUpClick = (e) => {
     setSignUpModalVisible(!SignUpModalVisible);
     
@@ -177,7 +180,8 @@ export default MyComponent;
                   <form onSubmit={handleLogin} autoComplete="off" className={loginStyle.form} method='POST'>
                   <div className={loginStyle.x} onClick={() => setLoginModalVisible(false)} >X</div>
 
-                    <h1 className={textStyle.a_h1} >
+                    <h1 className={textStyle.a_h1}
+                    style={{ fontSize: 'clamp(2rem, 5vw, var(--size-6xl))'}} >
                       Log into your account
                     </h1>
                     <input
@@ -214,7 +218,7 @@ export default MyComponent;
                       Login
                     </button>
                       <br></br>
-                      <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} />
+                      <CaptchaComponent style={{ marginTop: '10px' }} isCaptchaValid={isCaptchaValid} setIsCaptchaValid={setIsCaptchaValid} setCaptchaRef={setCaptchaRef} />
 
                     {!isLoggedIn && (
                       <button type= "button" className={loginStyle.link} style={{  }} onClick={SignUpClick} >

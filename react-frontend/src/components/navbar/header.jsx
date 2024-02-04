@@ -62,7 +62,27 @@ const Header = () => {
       console.log("Login modal visible:", LoginModalVisible);
     } else {
       // If logged in, toggle dropdown visibility
+      // Get the dropdown menu element
       setDropdownVisible(!dropdownVisible);
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Get the dropdown menu element
+        const dropdownMenu = document.querySelector('.dropdown_menu');
+      
+        // Function to toggle the 'active' class on the dropdown menu
+        function toggleDropdown() {
+          dropdownMenu.classList.toggle('active');
+        }
+      
+        // Get the dropdown button element
+        const dropdownButton = document.querySelector('.dropdown_button');
+      
+        // Add a click event listener to the dropdown button
+        dropdownButton.addEventListener('click', toggleDropdown);
+      });
+      
+
+
     }
   };
 
@@ -217,10 +237,11 @@ const Header = () => {
           </div>
         </header>
         {isLoggedIn && dropdownVisible && (
-          <div className={headerStyles.dropdown_menu}>
-            <div className={headerStyles.dropdown}>
-              <button
-                className={headerStyles.dropdown_button}
+      <div className={`${headerStyles.dropdown_menu} ${dropdownVisible ? 'active' : ''}`} id="dropdown">
+        <div className={headerStyles.dropdown}>
+          <button
+            id="dropdown_button"
+            className={headerStyles.dropdown_button}
                 onClick={() => {
                   navigate(`/user/${user.username}`);
                   setDropdownVisible(false);

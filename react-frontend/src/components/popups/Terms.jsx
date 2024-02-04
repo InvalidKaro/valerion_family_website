@@ -49,7 +49,7 @@ const TermsAndConditionsPopup = ({ onAccept, accept,  }) => {
           
 
         >
-          <div className={popupStyle.popupContent} style={{ width: "80%", height: "100vh" }}>
+          <div className={popupStyle.popupContent} style={{ padding: '20px', }}>
           <button onClick={closePopup} className={buttonStyle.closeButton}>X</button>
 
             <h1 style={{ fontSize: 'var(--size-5xl)' }} className={textStyle.a_h1}>Terms and Conditions</h1>

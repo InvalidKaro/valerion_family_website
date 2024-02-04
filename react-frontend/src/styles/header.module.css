@@ -93,37 +93,51 @@ header.hidden {
 
 .dropdown_menu {
   display: flex;
-  margin-left: 80%;
-  margin-top: 5%;
-  background-color: #3f3f3f;
-  border-radius: 5px;
+  flex-direction: column;
+  width: 25%;
   justify-content: center;
-  width: 300px;
-  height: 200px;
+  margin-inline: auto;
+  padding: clamp(0.1vw, 1vh, 1rem);
+  background-color: #3f3f3f;
   position: absolute;
   z-index: 10;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  top: 108px; /* Adjust the distance from the header as needed */
+  overflow-y: auto; /* Add scroll if content exceeds maximum height */
+  transition: max-width 0.3s ease; /* Add transition for smooth animation */
 }
 
-.dropdown {
-  background-color: #3f3f3f;
-  margin-top: 50px;
-  border-radius: 50%;
-  width: 300px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.dropdown_menu.active {
+  width: 50%;
+  transition: width 0.3s ease; /* Add transition for smooth animation */
 }
+
+
 
 .dropdown_button {
   cursor: pointer;
-  margin: 5px 0;
-  padding: 10px;
+  gap: 1em;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  padding: clamp( 0.1vw,
+  1vh,
+  1rem);
   border-radius: 5px;
   border: none;
   background-color: #3f3f3f;
   color: #fff;
+  letter-spacing: 0.1em;
+
+  font-size: clamp(
+    0.1vw,
+    2vh,
+    1.5rem
+  ); 
 }
 
 .hamburger {
@@ -137,6 +151,53 @@ header.hidden {
   padding: 10px;
   display: none;
 }
+
+
+.menuContainer {
+  background-color: #333;
+  position: absolute;
+  top: 68px; /* Adjust the distance from the header as needed */
+  width: 100%;
+  z-index: 1000;
+  max-width: 100%;
+  min-width: 100%;
+  overflow-y: auto; /* Add scroll if content exceeds maximum height */
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  display: none; /* Hide the menu by default */
+}
+
+.menu li {
+  display: flex;
+  padding: 1%;
+  text-align: center;
+  border-bottom: 1px solid #555;
+  min-height: 10%; /* Minimum height for each menu item as a percentage of the viewport height */
+  font-size: clamp(
+    1.6vw,
+    2.5vh,
+    2.2rem
+  ); /* Font size using clamp() for responsiveness */
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: clamp(
+    1.6vw,
+    2.5vh,
+    2.2rem
+  ); /* Font size using clamp() for responsiveness */
+}
+
 
 /*
 @media only screen and (max-width: 475px) {
@@ -181,9 +242,12 @@ header.hidden {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 3;
+    width: 100%;
   }
 
   .menu li {
+    display: flex;
     padding: 1%;
     text-align: center;
     border-bottom: 1px solid #555;
@@ -206,7 +270,6 @@ header.hidden {
   }
   .header__menu {
 	margin: 0;
-	display: flex;
 	align-items: center;
 	justify-content: center;
 	list-style: none;
@@ -219,27 +282,124 @@ header.hidden {
 	display: flex;
 	justify-content: center;
 	gap: 0;
-	margin-inline: auto;
   }
   
   .header__logo {
 	margin-left: 100%;
   }
   
+
+}
+/* CSSTidy 2.0.3: Thu, 01 Feb 2024 15:35:57 -0600 */
+
+/* Your existing styles */
+
+@media only screen and (max-width: 1023px) {
+  .hamburger_button {
+    display: flex;
+  }
+
+  .header__menu {
+    display: flex;
+  }
+
+  .menuContainer {
+    display: flex;
+    background-color: #333;
+    position: absolute;
+    top: 83px; /* Adjust the distance from the header as needed */
+    width: 100%;
+    z-index: 1000;
+    max-width: 100%;
+    min-width: 100%;
+    overflow-y: auto; /* Add scroll if content exceeds maximum height */
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    
+  }
+
+  .menu li {
+    padding: 1%;
+    text-align: center;
+    border-bottom: 1px solid #555;
+    min-height: 10%; /* Minimum height for each menu item as a percentage of the viewport height */
+    font-size: clamp(1.6vw, 2.5vh, 2.2rem); /* Font size using clamp() for responsiveness */
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: clamp(1.6vw, 2.5vh, 2.2rem); /* Font size using clamp() for responsiveness */
+  }
+
+  .header__menu {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    display: none;
+    
+  }
+
+  .header__rsection {
+    gap: 0;
+    padding-inline: 2em;
+    margin-left: auto;
+  }
+
+  .header__logo {
+    margin-left: 100%;
+  }
+
+
+  .dropdown_menu {
+    display: flex;
+    width: 0;
+    justify-content: center;
+
+    margin-inline: auto;
+    padding: clamp( 0.1vw,
+    1vh,
+    1rem);
+    background-color: #3f3f3f;
+    position: absolute;
+    z-index: 10;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    top: 81px; /* Adjust the distance from the header as needed */
+    overflow-y: auto; /* Add scroll if content exceeds maximum height */
+    transition: width 0.3 ease
+  }
+  .dropdown_menu.active {
+    width: 75%; /* Set the width to show the dropdown */
+  }
 }
 
 @media only screen and (max-width: 1279px) {
   .header__link a {
     text-decoration: none;
-    font-size: var(--size-md);
+    font-size: clamp(1.6vw, 2.5vh, 2.2rem);
   }
 }
 
 @media only screen and (max-width: 1535px) {
+  /* Add additional styles for screens up to 1535px if needed */
 }
 
 @media only screen and (max-width: 1919px) {
+  /* Add additional styles for screens up to 1919px if needed */
 }
 
 @media only screen and (max-width: 2559px) {
+  /* Add additional styles for screens up to 2559px if needed */
 }

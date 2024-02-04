@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { PropagateLoader } from "react-spinners";
 
 export default function CheckBox({ acceptTerms, loading, setLoading }) {
   const [checked, setChecked] = useState(false);
@@ -16,7 +15,7 @@ export default function CheckBox({ acceptTerms, loading, setLoading }) {
 
   const checkboxStyle = {
     position: "relative",
-    display: "inline-block",
+    display: "block",
     width: "20px",
     height: "20px",
     backgroundColor: checked ? "green" : "transparent",
@@ -41,14 +40,13 @@ export default function CheckBox({ acceptTerms, loading, setLoading }) {
   const labelStyle = {
     cursor: "pointer",
     textAlign: "center",
-    display: "inline-block", // Added to display the label inline
+    display: "block", // Added to display the label inline
   };
 
   return (
     <div>
       {loading ? (
         <div>
-          <PropagateLoader color={"#36D7B7"} loading={loading} size={40} />
           <br /> <br />
         </div>
       ) : null}

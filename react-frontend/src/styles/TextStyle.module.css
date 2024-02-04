@@ -1,94 +1,82 @@
 h1 {
-    font-size: var(--size-4xl);
     font-weight: 600;
     margin: 0;
     align-content: center;
     text-align: center;
     margin-top: 7.5%;
     background: none;
-}
-p {
+  }
+  
+  p,
+  .a_p,
+  .label,
+  .error {
     font-size: var(--size-lg);
     margin: 0;
     text-align: center;
     align-content: center;
     background-color: transparent;
     background: none;
-
-}
-
-.a_p {
-    font-size: var(--size-lg);
-    margin: 0;
-    text-align: center;
-    align-content: center;
-    background-color: transparent;
+  }
+  
+  .a_p {
     letter-spacing: 0.1em;
-
-}
-
-
-.label {
+  }
+  
+  .label {
     font-size: var(--size-xl);
     font-weight: 600;
     margin: 0;
     align-content: center;
     text-align: center;
     gap: 1.5em;
-}
-.error {
+  }
+  
+  .error {
     margin-top: 10px;
-    color: rgb(247, 35, 49); /* Brighter red color for better visibility */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5), /* Adjusted shadow for better visibility */
-                 0 2px 2px rgba(255, 255, 255, 0.1); /* Highlighting with a lighter shadow */
+    color: rgb(247, 35, 49);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5),
+      0 2px 2px rgba(255, 255, 255, 0.1);
     font-size: var(--size-lg);
     margin: 0;
     text-align: center;
     font-weight: 1000;
     align-content: center;
-    background: none; /* Adding a semi-transparent white background for contrast */
-    /* Add any additional styles specific to the error messages */
-    /* Add other styles as needed */
-}
-
-
-
-.a_h1 {
-    font-size: var(--size-5xl);
-    font-weight: 700;
+    background: none;
+  }
+  
+  .a_h1 {
+    font-size: clamp(1rem, 5vw, var(--size-6xl));
+    font-weight: 800;
     align-content: center;
     margin: 0;
     margin-bottom: 20px;
     text-align: center;
-    color: #e3e9ef; /* Adjust the color to your preference */
-    text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.9); /* Add a subtle text shadow for depth */
-    letter-spacing: 3px; /* Increase letter spacing for emphasis */
+    color: #e3e9ef;
+    text-shadow: 2px 2px 2px rgba(88, 88, 88, 0.9);
+    letter-spacing: 0,1em;
     background: none;
-    
-    }
-    textarea {
-        width: 100%; /* Adjust as per your design */
-        height: 400px; /* Adjust as per your design */
-        padding: 10px;
-        margin-bottom: 10px; /* Adjust as per your design */
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        resize: vertical;
-        overflow: hidden; /* Added to prevent text from going out of the form */
-
-      }
-      
- 
-      
-      /* Additional styles for the popup buttons */
-      .popup button {
-        margin-top: 10px; /* Adjust as per your design */
-        color: white;
-        background-color: #0197B2;
-        width: 40%; /* Adjust as per your design */
-        border-radius: 13px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-      }
+  }
+  
+  textarea {
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    overflow: hidden;
+  }
+  
+  .popup button {
+    margin-top: 10px;
+    color: white;
+    background-color: #0197b2;
+    width: 40%;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }

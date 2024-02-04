@@ -6,7 +6,7 @@
     border: 2px solid #a29898;
     border-radius: 20px;
     padding: 15px;
-    width: 75%;
+    width: clamp(250px, 75%, 400px);
     text-align: center;
     transition: border-color 0.3s cubic-bezier(0.58,-0.25, 0.58, 1);
     box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
@@ -34,8 +34,10 @@
 input[type=number]::-webkit-outer-spin-button, 
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    width: 25px;
+    width: clamp(10px, 2.5vw, 20px);
     height: 100%;
+    font-size: clamp(10px, 2vw, 14px);
+
     position: relative;
     top: 0;
     right: 0;
@@ -56,6 +58,8 @@ input[type=number]:hover::-webkit-inner-spin-button {
 }
 
 .link {
+    font-size: clamp(12px, 2vw, 16px);
+
     background-color: transparent;
     color: white;
     padding: 8px 16px;
@@ -79,23 +83,35 @@ input[type=number]:hover::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
     gap: 10px; /* Increased gap for more spacing between elements */
-    margin-top: 100vh; /* Increased margin at the top to make it longer */
-    margin-bottom: 200px;
     background-color: #1a1a1a; /* Adjusted background color to match the theme */
     border-radius: 20px;
     padding: 30px; /* Increased padding for a larger box */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Darker box-shadow with alpha value 0.8 */
-    height: fit-content;
-    width: fit-content;
     text-align: center;
+    border: #58585858 2px solid;
+    box-shadow: 2px 2px 5px rgba(93, 93, 93, 0.209);
+    max-width: clamp(300px, 100%, 600px);
+    margin-inline: auto;
+    margin-top: clamp(6em, 10%, 8em);
+}
+  
+
+.form2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em; /* Increased gap for more spacing between elements */
+    background-color: #1a1a1a; /* Adjusted background color to match the theme */
+    border-radius: 20px;
+    padding: 2em; /* Increased padding for a larger box */
+    text-align: justify;
     box-sizing: content-box;
     border: #58585858 2px solid;
     box-shadow: 2px 2px 5px rgba(93, 93, 93, 0.209);
 
     
 }
-  
-  
 .box {
     background: none;
 }
@@ -105,9 +121,9 @@ input[type=number]:hover::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 1.5em;
+    gap: 1vw;
     white-space: nowrap;
-    font-size: var(--size-lg);
+    font-size: clamp(16px, 2vw, 24px);
 
 }
 
@@ -140,17 +156,17 @@ div {
 
 .overlay-container {
     position: fixed;
-    top: 0;
-    left: 0;
+
     width: 100%;
     height: 100%;
     z-index: 2000;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+
   }
   
   .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
+
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
@@ -166,15 +182,15 @@ div {
   
   .modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     z-index: 2000;
     transition: display 0.5s ease;
     backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+
   }
   
   .show {
@@ -194,3 +210,35 @@ div {
    margin-right: 10px;
    font-weight: 400;
   }
+
+
+  @media only screen and (max-width: 479px) {
+    .input[type="email"],
+    .input[type="password"],
+    .input[type="text"],
+    .input[type="number"] {
+      width: 100%;
+    }
+  
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      width: 100%;
+      font-size: clamp(10px, 4vw, 14px);
+    }
+  
+    .link {
+      font-size: clamp(12px, 4vw, 16px);
+    }
+  
+    .form {
+      padding: 15px;
+
+      max-width: 100%;
+      margin-top: clamp(15em, 30%, 20em);
+    }
+  
+    .label {
+      gap: 5px;
+      font-size: clamp(14px, 4vw, 20px);
+    }
+}

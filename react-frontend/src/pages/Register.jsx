@@ -1,11 +1,10 @@
 // Register.js
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './auth';
-import loginStyle from '../styles/login.module.css';
-import buttonStyle from '../styles/button.module.css';
-import textStyle from '../styles/TextStyle.module.css';	
+import React, { useEffect, useState } from 'react';
 import CaptchaComponent from '../components/Captcha/captchaClient';
-import Login from './Login';
+import textStyle from '../styles/TextStyle.module.css';
+import buttonStyle from '../styles/button.module.css';
+import loginStyle from '../styles/login.module.css';
+import { useAuth } from './auth';
 const Register = ( {SignUpModalVisible, setSignUpModalVisible, closeModal } ) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [mail, setMail] = useState('');
@@ -79,7 +78,7 @@ const Register = ( {SignUpModalVisible, setSignUpModalVisible, closeModal } ) =>
               <div className={loginStyle.form_container}>
                 <div className={loginStyle.overlay} onClick={(e) => setSignUpModalVisible(false)} />
                 <div className={`${loginStyle.modal} ${SignUpModalVisible ? loginStyle.show : ''}` } >
-                  <form onSubmit={handleRegister} autoComplete="off" className={loginStyle.form} method='POST'>
+                  <form onSubmit={handleRegister} autoComplete="off" className={loginStyle.form} style={{ height: 'max(900px)' }} method='POST'>
                   <div className={loginStyle.x} onClick={ (e) => { setSignUpModalVisible(false); closeModal(false); } }>X</div>
 
                     <h1 className={textStyle.a_h1} >

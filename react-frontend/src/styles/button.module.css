@@ -2,7 +2,7 @@
     display: inline-block;
     font-weight: 600;
     text-decoration: none;
-    width: 75%;
+    width: clamp(200px, (25vw + 10px), 350px);
     letter-spacing: 0.05em;
     background-color: var(--clr-prim);
     font-size: var(--size-2xl);
@@ -37,7 +37,6 @@
   display: inline-flex;
   font-weight: 600;
   text-decoration: none;
-  width: clamp(20%, 120px, 250px);
   letter-spacing: 0.05em;
   background: none;
   font-size: clamp(1rem, 3vw, 2rem);
