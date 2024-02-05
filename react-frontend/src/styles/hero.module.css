@@ -1,60 +1,111 @@
-/* hero.module.css */
+/* Existing styles remain unchanged */
 
 .container {
-  /* Styles for the container if any */
-}
-
-.hero {
+  /* Add your styles for the container class here */
   position: relative;
-  height: 50vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3rem;
-  padding: 0.85rem;
-  gap: 2em;
-  max-width: 100%;
-  min-width: 100%;
-  background-color: rgba(129, 128, 128, 0.1);
-  background-image: url('../../src/images/hero_bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.hero::after {
-  content: '';
+.frameOverlay {
+  /* Add your styles for the frameOverlay class here */
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  max-width: 100%;
-  min-width: 100%;
+  /* Adjust the overlay color and opacity as needed */
 }
 
-.hero__title {
-  font-size: clamp(2.5rem, 5vw, 7rem);
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* hero.module.css */
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: zoomIn 0.5s ease-in-out;
+  visibility: hidden; /* Initially set images to hidden */
+}
+
+.visible {
+  visibility: visible; /* Make images visible when this class is applied */
+}
+
+.hidden {
+  visibility: hidden; /* Hide images when this class is applied */
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 7vw, 8rem);
   background-color: rgba(255, 255, 255, 0);
   line-height: 1em;
   color: white;
 }
 
-.hero__motto {
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
+.heroMotto {
+  font-size: clamp(1.5rem, 3vw, 3rem);
   line-height: 1em;
   background-color: rgba(255, 255, 255, 0);
   font-weight: 300;
   margin-top: -1.25em;
-  text-shadow: 5px 4px 6px rgba(0, 0, 0, 0.75);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
   color: white;
 }
 
-.hero__description {
-  font-size: clamp(1.5rem, 2vw, 2.5rem);
+.heroDescription {
+  font-size: clamp(2rem, 4vw, 5rem);
   background-color: rgba(255, 255, 255, 0);
   color: white;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.zoomEffect {
+  animation: zoomIn 1s ease-out;
+}
+
+.pulsateEffect {
+  animation: pulsate 2s infinite ease-in-out;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroMotto {
+    font-size: 1.5rem;
+  }
+
+  .heroDescription {
+    font-size: 2rem;
+  }
 }
