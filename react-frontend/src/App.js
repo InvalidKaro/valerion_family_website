@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 
-import StandardErrorBoundary from "./functions/errorBoundary.jsx";
 
 import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
@@ -56,7 +55,6 @@ function App() {
 
       <UserProvider>
         <Router>
-        <StandardErrorBoundary>
           
           <Header setUser={setUsername} isVisible={isVisible} />
           <Routes>
@@ -128,7 +126,6 @@ function App() {
             />
           </Routes>
 
-          </StandardErrorBoundary>
 
         </Router>
 

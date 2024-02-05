@@ -1,14 +1,23 @@
 import React from 'react';
-import '../styles/App.css';
-import '../styles/shop.css';
 import { useUser } from '../UserContext';
-import { Link } from 'react-router-dom';
-import buttonStyle from '../styles/button.module.css';
 import ProductItems from '../components/productItems';
+import { useAuth } from "../pages/auth";
+import '../styles/App.css';
+import buttonStyle from '../styles/button.module.css';
+import '../styles/shop.css';
 
 function Shop() {
   const { user } = useUser();
+  const { navigate } = useAuth();
 
+
+  const uploadButtonClick = (e) => {
+    console.log("Buy button clicked");
+    e.preventDefault();
+
+    // Add logic to handle the buy button click, e.g., redirect to the purchase page
+    navigate("/upload");
+  };
 
   return (
     <div className="Shop">
@@ -16,9 +25,7 @@ function Shop() {
           <title>Shop</title>
         </head>
       <main className="shop-main">
-        <Link to="/upload">
-          <button className={buttonStyle.glow_btn} style={{ marginTop: '30px', borderRadius: '25px', width: '400px' }}>Upload your own</button>
-        </Link>
+          <button onClick={uploadButtonClick} className={buttonStyle.glow_btn} style={{ borderRadius: '25px', width: '30vh', marginInline: 'auto', display:'block' }}>Upload your own</button>
         <ProductItems></ProductItems>
         {user && user.username ? ( // Check if user and username exist
           <div>

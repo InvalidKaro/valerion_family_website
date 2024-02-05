@@ -23,10 +23,7 @@ const MyComponent = () => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => fetchData()}>
-      <div>
-        {/* Your component logic here */}
-        <button onClick={() => fetchData()}>Fetch Data</button>
-      </div>
+        
     </ErrorBoundary>
   );
 };

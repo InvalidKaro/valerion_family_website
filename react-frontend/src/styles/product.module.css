@@ -1,5 +1,7 @@
 /* ProductView.module.css */
-
+* {
+  text-align: center;
+}
 .productViewContainer {
     margin-top: 75px;
     display: flex;
@@ -50,7 +52,6 @@
   .overlayContent {
     position: absolute;
     bottom: 15px;
-    right: 15px;
     background-color: rgba(0, 0, 0, 0.7); /* Increased opacity for better visibility */
     color: #fff;
     padding: 4px 8px;
@@ -69,5 +70,90 @@
   .authorLink {
     text-decoration: underline;
     color: inherit;
+  }
+  
+
+  .menuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: clamp(20px, 5vw, 50px);
+    padding: 0 1em;
+  }
+  
+  .container {
+    margin-inline: calc(1em + 1vw);
+  }
+  
+  .productCard {
+    position: relative;
+    overflow: hidden;
+    padding: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    border: #58585858 3px solid;
+    border-radius: 20px;
+    background-color: #34343446;
+  }
+  
+  .productCard > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .productCard img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    border-radius: 1.5em;
+  }
+  
+  .productCard > div {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  .productInfo {
+    position: relative;
+    bottom: 15px;
+    color: #fff;
+  }
+  
+  .productTitle {
+    margin-inline: auto;
+    font-size: clamp(1.2rem, 1.5rem, 2rem);
+    font-weight: 600;
+  }
+  
+  .productPrice {
+    text-align: center;
+    font-size: clamp(1rem, 1.25rem, 1.75rem);
+    font-weight: 500;
+  }
+  
+  .authorLink {
+    text-decoration: underline;
+    color: inherit;
+    text-align: center;
+  }
+  
+  .productSlide {
+  }
+  
+  .productTitle,
+  .productPrice,
+  .authorLink {
+    margin: 0;
+    padding: 5px;
+    background: none;
   }
   
