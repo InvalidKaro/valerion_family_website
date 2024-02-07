@@ -110,7 +110,7 @@ const Header = () => {
         <div className={headerStyles.menuContainer}>
           <ul className={headerStyles.menu}>
             <li>
-              <a href="History">Family Tree</a>
+              <a href="History">About us</a>
             </li>
             <li>
               <a href="Supporters">Supporters</a>
@@ -139,7 +139,7 @@ const Header = () => {
           <nav>
             <ul className={headerStyles.header__menu}>
               <li className={headerStyles.header__link}>
-                <a href="History">Family Tree</a>
+                <a href="History">About us</a>
               </li>
               <li className={headerStyles.header__link}>
                 <a href="Supporters">Supporters</a>

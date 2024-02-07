@@ -25,39 +25,40 @@ const Hero = () => {
 
     const interval = setInterval(() => {
       setCurrentImage(prevImage => (prevImage + 1) % images.length);
-    }, 5000);
+    }, 7500);
 
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <main>
-    <section className={`${heroStyles.container} ${heroStyles.hero}`}>
-  <div className={heroStyles.imageContainer}>
-    {images.map((imageUrl, index) => (
-      <div
-        key={index}
-        className={`${heroStyles.heroImage} ${
-          index === currentImage ? heroStyles.visible : heroStyles.hidden
-        }`}
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      />
-    ))}
-  </div>
-  <div className={heroStyles.frameOverlay}></div>
-  <div className={heroStyles.heroContent}>
-  <h1 className={`${heroStyles.heroTitle} ${heroStyles.smoothEffect} ${heroStyles.zoomEffect}`}>
-  Beyond Pixels
-</h1>
-<p className={`${heroStyles.heroMotto} ${heroStyles.smoothEffect}`}>
-  AI Artistry Marketplace
-</p>
-<p className={`${heroStyles.heroDescription} ${heroStyles.smoothEffect} ${heroStyles.pulsateEffect}`}>
-  Your Dream, Our Work
-</p>
-
-  </div>
-</section>
+      <section className={`${heroStyles.container} ${heroStyles.hero}`}>
+        <div className={heroStyles.imageContainer}>
+          {images.map((imageUrl, index) => (
+            <img
+              key={index}
+              className={`${heroStyles.heroImage} ${
+                index === currentImage ? heroStyles.visible : heroStyles.hidden
+              }
+              ${heroStyles.zoomEffect}`}
+              src={imageUrl}
+              alt={`Hero ${index}`}
+            />
+          ))}
+        </div>
+        <div className={heroStyles.frameOverlay}></div>
+        <div className={heroStyles.heroContent}>
+          <h1 className={`${heroStyles.heroTitle} ${heroStyles.smoothEffect}`}>
+            Beyond Pixels
+          </h1>
+          <p className={`${heroStyles.heroMotto} ${heroStyles.smoothEffect}`}>
+            AI Artistry Marketplace
+          </p>
+          <p className={`${heroStyles.heroDescription} ${heroStyles.smoothEffect} ${heroStyles.pulsateEffect}`}>
+            Your Dream, Our Work
+          </p>
+        </div>
+      </section>
     </main>
   );
 };

@@ -1,0 +1,54 @@
+/* WhySection.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tabs {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
+    width: 100%; /* Ensure tabs take full width */
+  }
+  
+  .tabs button {
+    flex: 1; /* Each button takes an equal portion of the available space */
+    background-color: transparent;
+    border: none;
+    padding: 1em 2em; /* Adjust padding with relative units */
+    cursor: pointer;
+    font-size: 1em; /* Adjust font size with relative units */
+    color: white;
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out; /* Add transition for smooth animation */
+  }
+  
+  .tabs button:hover {
+    transform: scale(1.01); 
+    background-color: #008ba357;
+    color: white;
+  }
+
+  
+  .tabs button.active {
+    background-color: #008ba3;
+    color: white;
+  }
+  
+  .divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  .content {
+    text-align: center;
+    opacity: 1; /* Show content */
+    transition: opacity 0.5s ease; /* Add transition for smooth opacity change */
+  }
+  
+  .content p {
+    font-size: 1.125em; /* Adjust paragraph font size with relative units */
+    line-height: 1.5;
+  }
+  
