@@ -1,6 +1,5 @@
 import React, { Suspense, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import ErrorBoundary from "../../functions/errorBoundary"; // You will need to import the ErrorBoundary component
 
 const CaptchaComponent = ({ isCaptchaValid, setIsCaptchaValid, setCaptchaRef  }) => {
   const captchaRef = useRef(null)
@@ -26,7 +25,6 @@ const CaptchaComponent = ({ isCaptchaValid, setIsCaptchaValid, setCaptchaRef  })
   }
 
   return (
-    <ErrorBoundary errorRenderer={renderError}>
       <Suspense fallback={<div style={style}>Loading Captcha...</div>}>
         <ReCAPTCHA
           sitekey="6LfbpFspAAAAAN5ND2Li1euFVtOMSaeI8ejJzLxb"
@@ -43,7 +41,6 @@ const CaptchaComponent = ({ isCaptchaValid, setIsCaptchaValid, setCaptchaRef  })
           style={{style}}
         />
       </Suspense>
-    </ErrorBoundary>
   );
 };
 

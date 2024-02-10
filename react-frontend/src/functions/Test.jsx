@@ -1,4 +1,5 @@
 import React from 'react';
+import PaypalTest from '../components/payment/paypal';
 import '../styles/App.css';
 
 function Test() {
@@ -10,6 +11,7 @@ function Test() {
 
   return (
     <main>
+      <PaypalTest />
       <button onClick={simulateError} style={{ marginTop: 'clamp(3%, 1em, 5%)', color: 'red' }}>Simulate Error</button>
         <h1>
           <p>Lorem ipsum dolor sit amet. Nam dolores praesentium ea blanditiis galisum et inventore ipsam ut itaque saepe et omnis sequi. Sed adipisci unde est nulla galisum sit dolorem nemo ad molestiae distinctio eum unde error! Ut galisum dicta eum sint magni a pariatur quasi a dolore repellat sit dolor sunt vel Quis libero. </p>

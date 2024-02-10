@@ -68,7 +68,7 @@ const ButtonWrapper = ({ showSpinner }) => {
   );
 }
 
-function App() {
+function PayPalHandler() {
   return (
     <div style={{ maxWidth: "750px", minHeight: "200px", marginTop: "20%" }}>
       <PayPalScriptProvider options={{ clientId: "test", components: "buttons", currency: "USD" }}>
@@ -78,4 +78,4 @@ function App() {
   );
 }
 
-export default App;
+export default PayPalHandler

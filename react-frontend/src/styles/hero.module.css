@@ -74,6 +74,19 @@ background-size: cover;
   visibility: hidden; /* Hide images when this class is applied */
 }
 
+.heroContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  pointer-events: none;
+}
 
 .heroTitle,
 .heroMotto,
@@ -81,34 +94,32 @@ background-size: cover;
   color: white;
   z-index: 3000;
   position: absolute;
-  text-align: center; /* Center text horizontally */
   width: 100%; /* Ensure text takes full width */
-  margin: auto;
+  animation: growFromNowhere 1s ease forwards; /* Animation to grow from nowhere */
 }
 
 .heroTitle {
-  font-size: clamp(3rem, 7vw, 8rem);
+  font-size: clamp(2.5rem, 7vw, 8rem);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
   font-weight: 800;
-  top: 39%; /* Center vertically */
-  transform: translateY(-50%); /* Offset by half of its height to center vertically */
   transition: top 1s ease; /* Smooth transition for the top position */
-
+  top: clamp(20%, 30vh, 25%);
+  margin-top: 0;
 }
 
 .heroMotto {
   font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 300;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-  top: 70%; /* Adjust as needed */
-  transform: translateY(-200%); /* Offset by half of its height to center vertically */
+  top: clamp(20%, 45vh, 50%);
+
 }
 
 .heroDescription {
   font-size: clamp(2rem, 4vw, 5rem);
-  padding-bottom: 0.5em;
-  top: 75%; /* Adjust as needed */
-  transform: translateY(-50%); /* Offset by half of its height to center vertically */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  top: clamp(30%, 40vh, 60%);
+
 }
 
 
@@ -133,6 +144,17 @@ background-size: cover;
   }
 }
 
+@keyframes growFromNowhere {
+  from {
+    transform: scale(0.5); /* Start from small size */
+    opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+    transform: scale(1); /* Grow to normal size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
 .zoomEffect {
   animation: zoomIn 1s ease-in-out;
 }
@@ -142,16 +164,41 @@ background-size: cover;
 }
 
 /* Responsive Styles */
+/*
 @media screen and (max-width: 768px) {
   .heroTitle {
     font-size: 2.5rem;
+    margin-top: -4em;
   }
 
   .heroMotto {
     font-size: 1.5rem;
+    margin-top: -3.5em;
+
   }
 
   .heroDescription {
     font-size: 2rem;
+
   }
 }
+
+@media only screen and (max-width: 1023px) {
+  .heroTitle {
+    font-size: 2.5rem;
+    margin-top: -6em;
+  }
+
+  .heroMotto {
+    font-size: 1.5rem;
+    margin-top: -5.5em;
+
+  }
+
+  .heroDescription {
+    font-size: 2rem;
+    margin-top: -2em;
+  }
+}
+
+*/

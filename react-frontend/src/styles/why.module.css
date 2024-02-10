@@ -1,4 +1,5 @@
 /* WhySection.module.css */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -7,7 +8,7 @@
   
   .tabs {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line on smaller screens */
+    flex-wrap: no wrap; /* Allow buttons to wrap to the next line on smaller screens */
     width: 100%; /* Ensure tabs take full width */
   }
   
@@ -15,9 +16,9 @@
     flex: 1; /* Each button takes an equal portion of the available space */
     background-color: transparent;
     border: none;
-    padding: 1em 2em; /* Adjust padding with relative units */
+    padding: 2% 4%;
     cursor: pointer;
-    font-size: 1em; /* Adjust font size with relative units */
+    font-size: clamp(0.8em, 3vw, 1.2em);
     color: white;
     transition: transform 0.3s ease-in-out, border 0.3s ease-in-out; /* Add transition for smooth animation */
   }
@@ -48,7 +49,46 @@
   }
   
   .content p {
-    font-size: 1.125em; /* Adjust paragraph font size with relative units */
-    line-height: 1.5;
+    font-size: clamp(0.8em, 3vw, 1.125em);
+    ; /* Adjust paragraph font size with relative units */
+    line-height: clamp(1em, 3vw, 1.5em);
+    text-align: center;
+    opacity: 1; /* Show content */
+    transition: opacity 0.5s ease; /* Add transition for smooth opacity change */
   }
+  
+  /* WhySection.module.css */
+
+/* WhySection.module.css */
+
+    .textWithImageContainer {
+      position: relative; /* Set container to relative positioning */
+      display: inline-block; /* Ensure container only takes up space necessary */
+    }
+
+    .image {
+      width: calc(100% / 6 * 19); /* Aspect ratio 19:6 */
+      height: auto;
+    }
+
+    .textOverlay {
+      position: absolute; /* Position text absolutely within the container */
+      top: 50%; /* Place text in the middle vertically */
+      left: 50%; /* Place text in the middle horizontally */
+      transform: translate(-50%, -50%); /* Center text */
+      color: white; /* Set text color */
+      text-align: center; /* Center-align text */
+      width: 100%; /* Adjust width of text container */
+      font-size: clamp(0.5rem, 3vw, 3rem);
+      font-weight: bold;
+      padding: 0.5em;
+      background-color: rgba(0, 0, 0, 0.3); /* Add semi-transparent black background */
+      border-radius: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .title {
+      font-size: clamp(1.5rem, 3vw, 3rem);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: white;
+    }
   

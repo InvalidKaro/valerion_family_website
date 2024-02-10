@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import detailStyle from "../styles/productDetail.module.css";
 
+
 const ProductDetail = () => {
+  const [showPayPalButton, setShowPayPalButton] = useState(false);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    // Initialize cart state from localStorage or an empty array
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
@@ -14,6 +20,10 @@ const ProductDetail = () => {
     fetchProduct(productId);
   }, [productId]);
 
+
+  const handleButtonClick = () => {
+    setShowPayPalButton(true);
+  };
   const fetchProduct = (id) => {
     fetch(`http://localhost:80/productDetail.php?id=${id}`)
       .then((response) => response.json())
@@ -33,29 +43,24 @@ const ProductDetail = () => {
     setShowConfirmation(true);
     setTimeout(() => {
       setShowConfirmation(false);
-      setCart([...cart, product]);
+      const newCart = [...cart, product];
+      setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart)); // Save the updated cart to localStorage
+      console.log("Added to cart:", newCart);
     }, 1000);
-    console.log("Added to cart:", cart);
   };
 
 // Handle successful payment approval// Handle successful payment approval// Handle successful payment approval
+
 const handlePaymentApproval = (data) => {
   console.log("Payment approved:", data);
   // Extract relevant data from order details
-  const id = data.id;
-  const intent = data.intent;
-  const status = data.status;
-  const create_time = data.create_time;
-  const payer = data.payer;
-  const purchase_units = data.purchase_units;
+  const { id, intent, status, create_time, payer, purchase_units } = data;
 
   // Extract necessary fields from the extracted data
-  const buyer_id = payer.payer_id;
-  const product_id = purchase_units[0].reference_id;
-  const total_amount = purchase_units[0].amount.value;
-  const shipping_address = purchase_units[0].shipping.address.address_line_1;
-  const shipping_method = 'test'; // This information is not provided in the order details
-  const payment_method = purchase_units[0].payee.email_address;
+  const { payer_id } = payer;
+  const { reference_id, shipping: { address: { address_line_1 } } } = purchase_units[0];
+  const { email_address } = purchase_units[0].payee;
 
   // Create a FormData object
   const formData = new FormData();
@@ -67,12 +72,13 @@ const handlePaymentApproval = (data) => {
   formData.append('create_time', create_time);
   formData.append('buyer_id', 1);
   formData.append('product_id', productId);
-  formData.append('total_amount', total_amount);
-  formData.append('shipping_address', shipping_address);
-  formData.append('shipping_method', shipping_method);
-  formData.append('payment_method', payment_method);
+  formData.append('total_amount', purchase_units[0].amount.value);
+  formData.append('shipping_address', address_line_1);
+  formData.append('shipping_method', 'test');
+  formData.append('payment_method', email_address);
   formData.append('seller_id', "2");
   console.log('Order details:', formData); // Debugging statement
+
 
   // Send the order details to the server
   fetch('http://localhost:80/create-order.php', {
@@ -95,8 +101,7 @@ const handlePaymentApproval = (data) => {
     console.error('Error creating order:', error);
     alert('Error creating order. Please try again later.');
   });
-};
-
+}
 
 
   if (!product) {
@@ -115,19 +120,17 @@ const handlePaymentApproval = (data) => {
           <div className={detailStyle.box}>
             <h1 className={detailStyle.title}>{product.title}</h1>
             <p className={detailStyle.price}>${product.price}</p>
-            <div
-              style={{
-                width: "20%",
-                borderBottom: "3px solid white",
-                marginInline: "20px",
-                marginTop: "20px",
-              }}
-            ></div>
+            <p className={detailStyle.description}>{product.description}</p>
+    
             <div>
               {/* PayPal button */}
-              <PayPalScriptProvider options={{ clientId: "AcDIoMXbZyUPOjPOXmCoWScT-8jv6ejhq-w554g5vg6zsZ3tdCpYz6o7htsH-AOH4ZygmVvPu0Ry7rA5" }}>
+              {showPayPalButton ? (
+              
+              <PayPalScriptProvider options={{ clientId: "AcDIoMXbZyUPOjPOXmCoWScT-8jv6ejhq-w554g5vg6zsZ3tdCpYz6o7htsH-AOH4ZygmVvPu0Ry7rA5" , components: "buttons", currency: "USD" }}>
                 <PayPalButtons
-                  style={{ layout: "horizontal" }}
+                  style={{ layout: "vertical", shape: "pill", height: 40, label: "pay" }}
+                  forceReRender={[{amount: product.price}]}
+                  className={detailStyle.paypal_button}
                   createOrder={(data, actions) => {
                     return actions.order.create({
                       purchase_units: [
@@ -150,6 +153,9 @@ const handlePaymentApproval = (data) => {
                   }}
                 />
               </PayPalScriptProvider>
+              ) : (
+                <button type="button" className={detailStyle.buy_button} onClick={handleButtonClick}>Show PayPal Buttons</button>
+                )}
             </div>
             <button className={detailStyle.cart_button} onClick={handleAddToCart}>
               Add to Cart

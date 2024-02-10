@@ -17,8 +17,13 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
     setAccept(accepted);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const openPopup = () => {
     setShowPopup(true);
+    scrollToTop();
   };
 
   const closePopup = () => {
@@ -155,8 +160,8 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
                 marginTop: "3%",
                 color: "white",
                 backgroundColor: "#0197B2",
-                width: "40%",
-                borderRadius: "13px",
+                width: "50%",
+                borderRadius: "5px",
                 justifyContent: "center",
                 zIndex: "10",
               }}
@@ -170,8 +175,8 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
                 marginTop: "3%",
                 color: "white",
                 backgroundColor: "#0197B2",
-                width: "40%",
-                borderRadius: "13px",
+                width: "50%",
+                borderRadius: "5px",
                 justifyContent: "center",
                 zIndex: "10",
               }}

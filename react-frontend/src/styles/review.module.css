@@ -20,9 +20,30 @@
     border-radius: 20px;
     background-color: #34343446;
     overflow: visible;
-    
+    animation: fadeInUp 1s ease; /* Add fancy animation */
+    opacity: 1;
+    transform: translateY(20px); /* Initial position offscreen */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
   }
+
   
+
+
+.visible {
+  opacity: 1;
+  transform: translateY(0); /* Move element to its original position */
+}
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   .card_top_section {
     display: flex;
     flex-direction: row;

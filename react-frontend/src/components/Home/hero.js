@@ -51,11 +51,12 @@ const Hero = () => {
           <h1 className={`${heroStyles.heroTitle} ${heroStyles.smoothEffect}`}>
             Beyond Pixels
           </h1>
-          <p className={`${heroStyles.heroMotto} ${heroStyles.smoothEffect}`}>
-            AI Artistry Marketplace
-          </p>
+     
           <p className={`${heroStyles.heroDescription} ${heroStyles.smoothEffect} ${heroStyles.pulsateEffect}`}>
             Your Dream, Our Work
+          </p>
+          <p className={`${heroStyles.heroMotto} ${heroStyles.smoothEffect}`}>
+            AI Artistry Marketplace
           </p>
         </div>
       </section>
