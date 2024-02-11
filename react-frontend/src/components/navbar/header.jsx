@@ -110,19 +110,19 @@ const Header = () => {
         <div className={headerStyles.menuContainer}>
           <ul className={headerStyles.menu}>
             <li>
-              <a href="History">About us</a>
+              <a href="../History">About us</a>
             </li>
             <li>
-              <a href="Supporters">Supporters</a>
+              <a href="../Supporters">Supporters</a>
             </li>
             <li>
-              <a href="Shop">Market</a>
+              <a href="../Shop">Market</a>
             </li>
             <li>
-              <a href="Family">FAQ's</a>
+              <a href="../Family">FAQ's</a>
             </li>
             <li>
-              <a href="Help">Need Help?</a>
+              <a href="../Help">Need Help?</a>
             </li>
           </ul>
         </div>
@@ -139,10 +139,10 @@ const Header = () => {
           <nav>
             <ul className={headerStyles.header__menu}>
               <li className={headerStyles.header__link}>
-                <a href="History">About us</a>
+                <a href="../History">About us</a>
               </li>
               <li className={headerStyles.header__link}>
-                <a href="Supporters">Supporters</a>
+                <a href="../Supporters">Supporters</a>
               </li>
               <li className={headerStyles.header__link}>
                 <div className={headerStyles.trapezoid}>
@@ -165,7 +165,7 @@ const Header = () => {
                       fill="#058AA3"
                       filter="url(#glow)"
                     />
-                    <a href="Shop">
+                    <a href="../Shop">
                       <text
                         x="150"
                         y="40"
@@ -181,10 +181,10 @@ const Header = () => {
                 </div>
               </li>
               <li className={headerStyles.header__link}>
-                <a href="Family">FAQ's</a>
+                <a href="../Family">FAQ's</a>
               </li>
               <li className={headerStyles.header__link}>
-                <a href="Help">Need Help?</a>
+                <a href="../Help">Need Help?</a>
               </li>
             </ul>
           </nav>
