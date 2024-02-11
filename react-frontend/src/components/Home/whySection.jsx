@@ -40,31 +40,30 @@ const WhySection = () => {
   };
 
   return (
-    <section style={{marginTop: "4em"}}>
-    <div className={styles.container}>
-      <e className={styles.title}>What we offer?</e>
-      <div className={styles.tabs}>
-        <button className={activeTab === 'Buy' ? styles.active : ''} onClick={() => handleTabClick('Buy')}>
-          Buying
-        </button>
-        <button className={activeTab === 'Sell' ? styles.active : ''} onClick={() => handleTabClick('Sell')}>
-          Selling
-        </button>
-        <button className={activeTab === 'Trade' ? styles.active : ''} onClick={() => handleTabClick('Trade')}>
-          Trading
-        </button>
-      </div>
-      <div className={`${styles.content} ${displayText ? 'show' : ''}`}>
-        {displayText && (
-          <div className={styles.textWithImageContainer}>
-            <img src={displayText.image} alt="Image" className={styles.image} />
-            <div className={styles.textOverlay}>
-              <p>{displayText.text}</p>
+    <section style={{marginTop: "9em"}}>
+      <div className={styles.container}>
+        <h2 className={styles.title}>What we offer?</h2>
+        <div className={styles.tabs} style={{ fontSize: "1.5em"}}>
+          <input type="radio" id="buy" name="tab" className={styles.tab} checked={activeTab === 'Buy'} onChange={() => handleTabClick('Buy')} />
+          <label htmlFor="buy" className={`${activeTab === 'Buy' ? styles.active : ''} ${styles.tabLabel}`}>Buying</label>
+
+          <input type="radio" id="sell" name="tab" className={styles.tab} checked={activeTab === 'Sell'} onChange={() => handleTabClick('Sell')} />
+          <label htmlFor="sell" className={`${activeTab === 'Sell' ? styles.active : ''} ${styles.tabLabel}`}>Selling</label>
+
+          <input type="radio" id="trade" name="tab" className={styles.tab} checked={activeTab === 'Trade'} onChange={() => handleTabClick('Trade')} />
+          <label htmlFor="trade" className={`${activeTab === 'Trade' ? styles.active : ''} ${styles.tabLabel}`}>Trading</label>
+        </div>
+        <div className={`${styles.content} ${displayText ? 'show' : ''}`}>
+          {displayText && (
+            <div className={styles.textWithImageContainer}>
+              <img src={displayText.image} alt="Image" className={styles.image} />
+              <div className={styles.textOverlay}>
+                <p>{displayText.text}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
     </section>
   );
 }

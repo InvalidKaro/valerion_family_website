@@ -1,10 +1,8 @@
 /* Style for the dropdown container */
 .dropdown {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     display: inline-block;
+    max-width: fit-content;
   }
 
   /* Style for the dropdown button */

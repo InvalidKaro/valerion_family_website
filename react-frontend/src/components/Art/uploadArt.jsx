@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useUser } from '../../UserContext';
-import productStyle from '../../styles/product.module.css'
-import textStyle from '../../styles/TextStyle.module.css'
-import loginStyle from '../../styles/login.module.css';
+import textStyle from '../../styles/TextStyle.module.css';
 import buttonStyle from '../../styles/button.module.css';
-import fileInputStyle from '../../styles/fileInput.module.css';
 import dropDownStyle from '../../styles/dropDown.module.css';
+import fileInputStyle from '../../styles/fileInput.module.css';
+import loginStyle from '../../styles/login.module.css';
+import productStyle from '../../styles/product.module.css';
 
 const UploadArt = () => {
   const { user } = useUser();
@@ -115,9 +115,10 @@ const UploadArt = () => {
           className={loginStyle.form}
           onSubmit={handleSubmit}
           style={{
-            margin: '200px',
             height: '100%',
-            display: 'flex',
+            width: 'max-content',
+            padding: '20px',
+            display: 'flex-inline',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
@@ -127,7 +128,7 @@ const UploadArt = () => {
           <h1 className={textStyle.a_h1} style={{ marginBottom: '30px', fontSize: 'var(--size-6xl)' }}>Sell your art</h1>
           <div>
             <div className={fileInputStyle.fileInputContainer}>
-              <label className={loginStyle.label} htmlFor="image">
+              <label className={loginStyle.label} htmlFor="image" style={{ display: 'grid', position: 'relative' }}>
                 Upload Art Image:
                 <input
                   type="file"
@@ -144,7 +145,10 @@ const UploadArt = () => {
           
             <label className={loginStyle.label} htmlFor="prize">Set Prize:</label>
             <input className={loginStyle.input} type="number" min="0" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
-          
+           
+            <label className={loginStyle.label} htmlFor="prize">Set Amount:</label>
+            <input className={loginStyle.input} type="number" min="0" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
+           
             <label className={loginStyle.label} htmlFor="title">Set Title:</label>
             <input className={loginStyle.input} type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
           
@@ -154,7 +158,7 @@ const UploadArt = () => {
           
           
             <div className={dropDownStyle.dropdown}>
-            <label className={loginStyle.label} htmlFor="category" style={{ marginTop: '30px'}}>
+            <label className={loginStyle.label} htmlFor="category" style={{ marginTop: '1em', display: 'grid', position: 'relative' }}>
               Choose category:
               <select
                 id="category"
@@ -182,18 +186,18 @@ const UploadArt = () => {
             Upload Art
           </button>
         </form>
-        <div className="imageContainer">
-          {image && (
-            <div className="imageDetails">
-              <img src={URL.createObjectURL(image)} alt="Uploaded Art" style={{ maxWidth: '300px' }} />
-              <h2>{title || 'Title Placeholder'}</h2>
-              <p>{description || 'Description Placeholder'}</p>
-              <p>Prize: {prize || 'Prize Placeholder'}</p>
-              <p>Category: {category || 'Category Placeholder'}</p>
-            </div>
-          )}
-        </div>
       </div>
+      {image && (
+        <div className="imageContainer" style={{ display: 'block', marginLeft: '20px' }}>
+          <div className="imageDetails">
+            <img src={URL.createObjectURL(image)} alt="Uploaded Art" style={{ maxWidth: '300px' }} />
+            <h2>{title || 'Title Placeholder'}</h2>
+            <p>{description || 'Description Placeholder'}</p>
+            <p>Prize: {prize || 'Prize Placeholder'}</p>
+            <p>Category: {category || 'Category Placeholder'}</p>
+          </div>
+        </div>
+      )}
     </div>  
   );
   

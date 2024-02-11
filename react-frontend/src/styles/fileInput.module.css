@@ -1,21 +1,20 @@
-/* fileInput.module.css */
-
 .fileInputContainer {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .fileInput {
-    display: none;
-  }
-  
-  .customFileButton {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4285f4;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: center;
-  }
-  
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.customFileButton {
+  display: inline-block;
+  padding: 10px;
+  background-color: #4285f4;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: center;
+  max-width: 100%; /* Limit the button's width to 100% of its container */
+  /* Add additional responsive styles as needed */
+}

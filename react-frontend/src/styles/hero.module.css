@@ -111,14 +111,14 @@ background-size: cover;
   font-size: clamp(1.5rem, 3vw, 3rem);
   font-weight: 300;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-  top: clamp(20%, 45vh, 50%);
+  top: clamp(30%, 45vh, 55%);
 
 }
 
 .heroDescription {
   font-size: clamp(2rem, 4vw, 5rem);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-  top: clamp(30%, 40vh, 60%);
+  top: clamp(20%, 35vh, 70%);
 
 }
 

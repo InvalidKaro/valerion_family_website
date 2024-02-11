@@ -51,7 +51,7 @@ const Hero = () => {
           <h1 className={`${heroStyles.heroTitle} ${heroStyles.smoothEffect}`}>
             Beyond Pixels
           </h1>
-     
+ 
           <p className={`${heroStyles.heroDescription} ${heroStyles.smoothEffect} ${heroStyles.pulsateEffect}`}>
             Your Dream, Our Work
           </p>
