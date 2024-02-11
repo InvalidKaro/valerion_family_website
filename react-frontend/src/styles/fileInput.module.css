@@ -1,6 +1,12 @@
 .fileInputContainer {
   position: relative;
   margin-bottom: 20px;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  margin-inline: auto;
 }
 
 .fileInput {
@@ -8,13 +14,15 @@
 }
 
 .customFileButton {
-  display: inline-block;
-  padding: 10px;
+  padding: 0.5em 1em;
+  font-size: clamp(0.8em, 3vw, 1.125em);
+  border: none;
   background-color: #4285f4;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+  margin-inline: auto;
   align-self: center;
-  max-width: 100%; /* Limit the button's width to 100% of its container */
+  max-width: fit-content; /* Limit the button's width to 100% of its container */
   /* Add additional responsive styles as needed */
 }

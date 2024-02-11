@@ -16,6 +16,7 @@ const UploadArt = () => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [amount, setAmount] = useState('');
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -35,6 +36,10 @@ const UploadArt = () => {
   const handleCategoryChange = (selectedCategory) => {
     setCategory(selectedCategory);
   };
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -42,6 +47,7 @@ const UploadArt = () => {
     formData.append('image', image) ;
     formData.append('prize', prize);
     formData.append('title', title);
+    formData.append('amount', amount);
     formData.append('description', description);
     formData.append('category', category);
     console.log(user)
@@ -109,23 +115,22 @@ const UploadArt = () => {
 
   return (
     <div className={productStyle.container}>
-      <div className={productStyle.formContainer}>
+      <div className={productStyle.formContainer} style={{ display: 'flex' }}>
 
         <form
           className={loginStyle.form}
           onSubmit={handleSubmit}
           style={{
-            height: '100%',
-            width: 'max-content',
-            padding: '20px',
-            display: 'flex-inline',
+            width: 'fit-content',
+            maxWidth: 'fit-content',
+            display: 'grid',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            
+            marginInline: '0',
           }}
         >
-          <h1 className={textStyle.a_h1} style={{ marginBottom: '30px', fontSize: 'var(--size-6xl)' }}>Sell your art</h1>
+          <h1 className={textStyle.a_h1} style={{ marginBottom: '1rem', fontSize: 'clamp(2rem, 8vw, 5rem)' }}>Sell your art</h1>
           <div>
             <div className={fileInputStyle.fileInputContainer}>
               <label className={loginStyle.label} htmlFor="image" style={{ display: 'grid', position: 'relative' }}>
@@ -147,7 +152,7 @@ const UploadArt = () => {
             <input className={loginStyle.input} type="number" min="0" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
            
             <label className={loginStyle.label} htmlFor="prize">Set Amount:</label>
-            <input className={loginStyle.input} type="number" min="0" id="prize" name="prize" value={prize} onChange={handlePrizeChange} />
+            <input className={loginStyle.input} type="number" min="0" id="amount" name="amount" value={amount} onChange={handleAmountChange} />
            
             <label className={loginStyle.label} htmlFor="title">Set Title:</label>
             <input className={loginStyle.input} type="text" id="title" name="title" value={title} onChange={handleTitleChange} />
@@ -181,16 +186,16 @@ const UploadArt = () => {
           <button
             type="submit"
             className={buttonStyle.glow_btn}
-            style={{ marginTop: '25px', borderRadius: '25px', marginBottom: '25px' }}
+            style={{ marginTop: '25px', borderRadius: '25px', marginBottom: '25px', marginInline: 'auto' }}
+            onClick={handleSubmit}
           >
             Upload Art
           </button>
         </form>
-      </div>
       {image && (
-        <div className="imageContainer" style={{ display: 'block', marginLeft: '20px' }}>
+        <div className="imageContainer" style={{ margin: 'auto', marginLeft: '1vh', }}>
           <div className="imageDetails">
-            <img src={URL.createObjectURL(image)} alt="Uploaded Art" style={{ maxWidth: '300px' }} />
+            <img src={URL.createObjectURL(image)} alt="Uploaded Art"  />
             <h2>{title || 'Title Placeholder'}</h2>
             <p>{description || 'Description Placeholder'}</p>
             <p>Prize: {prize || 'Prize Placeholder'}</p>
@@ -198,7 +203,9 @@ const UploadArt = () => {
           </div>
         </div>
       )}
-    </div>  
+    </div> 
+    </div>
+ 
   );
   
 };
