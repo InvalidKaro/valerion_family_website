@@ -67,7 +67,7 @@
     }
 
     .image {
-      width: 90%;
+      width: 95%;
  
     }
 
@@ -118,7 +118,7 @@
 .tabs {
   display: flex;
   flex-wrap: nowrap; /* Allow buttons to wrap to the next line on smaller screens */
-  width: 90%; /* Ensure tabs take full width */
+  width: 95%; /* Ensure tabs take full width */
   font-size: clamp(1.5rem, 3vw, 3rem);
 }
 
@@ -130,10 +130,11 @@
   z-index: 100;
   transform: translateY(0px);
   text-shadow: 0 0 0;
+  
 }
 
 .tab + label {
-  box-shadow: 0 -1px 0 #eee inset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a box shadow for a light effect */
   border-radius: 6px 6px 0 0;
   cursor: pointer;
   display: block;

@@ -7,12 +7,12 @@ import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
 import PayPal from "./components/payment/paypal.jsx";
 import TestPage from "./functions/Test.jsx";
+import About from "./pages/About.jsx";
 import AccountSettings from "./pages/AccountSettings.jsx";
 import Admin from "./pages/Admin.jsx";
 import Art from "./pages/Art.jsx";
 import Family from "./pages/Family.jsx";
 import Help from "./pages/Help.jsx";
-import History from "./pages/History.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -69,7 +69,7 @@ function App() {
                 />
               }
             />
-            <Route path="/history" element={<History />} />
+            <Route path="/about" element={<About />} />
             <Route
               path="/login"
               element={
