@@ -28,6 +28,46 @@ const About = () => {
     };
   }, []);
 
+  const founders = [
+    {
+      src: "https://cdn.discordapp.com/avatars/263724696116264961/4369ac1fcf1d69947aa3bb465457d582.png?size=4096",
+      name: "Founder 1",
+      quote: "Quote 1",
+      style: {
+        // add any specific styling here
+      },
+    },
+    {
+      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
+      name: "Founder 2",
+      quote: "Quote 2",
+      style: {
+      },
+    },
+    {
+      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
+      name: "Founder 3",
+      quote: "Quote 3",
+      style: {
+      },
+    },
+    {
+      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
+      name: "Founder 4",
+      quote: "Quote 4",
+      style: {
+      },
+    },
+    {
+      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
+      name: "Founder 5",
+      quote: "Quote 5",
+      style: {
+
+      },
+    },
+  ];
+
   return (
     <div className={styles.About}>
       <main className={styles.main}>
@@ -68,21 +108,17 @@ const About = () => {
             make profit!
           </p>
           <div className={styles.founders}>
-            <div className={styles.bubble}>
-              <img
-                src="founder1.jpg"
-                alt="Founder 1"
-                className={styles.founderImage}
-              />
-            </div>
-            <div className={styles.bubble}>
-              <img
-                src="founder2.jpg"
-                alt="Founder 2"
-                className={styles.founderImage}
-              />
-            </div>
-            {/* Add more bubbles for other founders as needed */}
+            {founders.map((founder, index) => (
+              <div key={index} id={`founder-${index}`} className={styles.bubble} style={founder.style}>
+                <img
+                  src={founder.src}
+                  alt={founder.name}
+                  className={styles.founderImage}
+                />
+                <p>{founder.name}</p>
+                <p>{founder.quote}</p>
+              </div>
+            ))}
           </div>
         </section>
       </main>

@@ -96,13 +96,60 @@ const handlePaymentApproval = (data) => {
   .then(data => {
     // Add the product to the cart with animation
     alert('Payment successful! Order ID: ' + data.order_id);
+    payoutSeller(email_address, amount)
+
   })
   .catch(error => {
     console.error('Error creating order:', error);
     alert('Error creating order. Please try again later.');
   });
 }
+const payoutSeller = (sellerEmail, amount) => {
+  const requestBody = {
+    sender_batch_header: {
+      recipient_type: "EMAIL",
+      email_message: "Payment received from your sale.",
+      note: "Thank you for your purchase.",
+      sender_batch_id: Math.random().toString(36).substring(9),
+    },
+    items: [
+      {
+        recipient_type: "EMAIL",
+        amount: {
+          value: amount,
+          currency: "USD",
+        },
+        receiver: sellerEmail,
+        note: "Your payment",
+      },
+    ],
+  };
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${PAYPAL_ACCESS_TOKEN}`, // Replace with your PayPal access token
+    },
+    body: JSON.stringify(requestBody),
+  };
 
+  // POSTMAN OR CURL
+
+  return fetch("https://api-m.paypal.com/v1/payments/payouts", fetchOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to initiate payout to seller.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error initiating payout:", error);
+      throw error;
+    });
+};
 
   if (!product) {
     return <div>Loading...</div>;

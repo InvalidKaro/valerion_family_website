@@ -15,7 +15,7 @@
 
 .main {
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3), -3px -5px 5px rgba(0, 0, 0, 0.3);
-  height: 100vh;
+  height: fit-content;
   display: flex;
   align-items: flex-start;
   justify-content: start;
@@ -23,7 +23,7 @@
   gap: 50px;
   overflow: hidden;
 }
-
+/*
 .main div {
   flex: 1;
   border: 2px solid #999;
@@ -35,7 +35,7 @@
   transition: all 1s ease-in;
   
 }
-
+*/
 .childOne,
 .main div:first-child {
   transform: translateX(-150%);
@@ -79,34 +79,32 @@
   
   /* Apply the animations to the bubbles and make it permanent */
   .founders {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 1s ease-in infinite; /* Apply the animation with infinite iteration */
-  }
+    animation: fadeIn 1s ease-in 1 forwards; /* Apply the animation with infinite iteration */
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 20px; /* Adjust the gap between bubbles as needed */
+    justify-items: center;
+    }
   
   .bubble {
     position: relative;
-    width: 100px; /* Adjust the size as needed */
-    height: 100px; /* Adjust the size as needed */
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
     border-radius: 50%;
     overflow: hidden;
+    border: 2px solid black;
+    padding: auto;
     margin: 10px; /* Adjust the margin as needed */
-  }
+    animation: fadeIn 1s ease-in 1 forwards;
+}
   
-  .bubble::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+
   
   .founderImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    animation: fadeIn 1s ease-in ease; /* Apply the animation with infinite iteration */
+
   }
