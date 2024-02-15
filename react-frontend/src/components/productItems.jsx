@@ -102,7 +102,7 @@ const ProductItems = () => {
                 spaceBetween: 25,
               },
               1440: {
-                slidesPerView: 3,
+                slidesPerView: 5,
                 spaceBetween: 30,
               },
             }}

@@ -1,0 +1,7 @@
+/* PdfViewer.module.css */
+
+/* Hide the text layer elements */
+.textLayer {
+    display: none;
+  }
+  

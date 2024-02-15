@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import logo from "../../images/v-arts-logo.png";
 import Login from "../../pages/Login";
 import { useAuth } from "../../pages/auth";
 import "../../styles/Login.css";
 import headerStyles from "../../styles/header.module.css";
+import CartPopup from "../Cart/CartPopup";
 const Header = () => {
   const { user } = useUser();
   const { isLoggedIn, setUserLoggedOut, navigate } = useAuth();
@@ -14,6 +16,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [LoginModalVisible, setLoginModalVisible] = useState("");
   const [isMenuVisible, setMenuVisible] = useState(false);
+  const [cartVisible, setCartVisible] = useState(''); // State to control cart visibility
+  const location = useLocation();
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
@@ -38,6 +42,20 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    // Hide the cart icon if the current location does not contain "/product/"
+    if (!location.pathname.includes("/product/")) {
+      setCartVisible(false);
+      console.log("Cart icon hidden");
+    }
+  }, [location]);
+
+  const toggleCart = (e) => {
+    e.preventDefault();
+    setCartVisible(!cartVisible);
+  };
+
   const toggleMenu = (e) => {
     e.preventDefault();
 
@@ -65,24 +83,21 @@ const Header = () => {
       // Get the dropdown menu element
       setDropdownVisible(!dropdownVisible);
 
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener("DOMContentLoaded", function () {
         // Get the dropdown menu element
-        const dropdownMenu = document.querySelector('.dropdown_menu');
-      
+        const dropdownMenu = document.querySelector(".dropdown_menu");
+
         // Function to toggle the 'active' class on the dropdown menu
         function toggleDropdown() {
-          dropdownMenu.classList.toggle('active');
+          dropdownMenu.classList.toggle("active");
         }
-      
+
         // Get the dropdown button element
-        const dropdownButton = document.querySelector('.dropdown_button');
-      
+        const dropdownButton = document.querySelector(".dropdown_button");
+
         // Add a click event listener to the dropdown button
-        dropdownButton.addEventListener('click', toggleDropdown);
+        dropdownButton.addEventListener("click", toggleDropdown);
       });
-      
-
-
     }
   };
 
@@ -188,7 +203,7 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          
+
           <div className={headerStyles.header__rsection}>
             <button
               className={headerStyles.buy_button}
@@ -197,7 +212,7 @@ const Header = () => {
             >
               BUY
             </button>
-            
+
             <div className={headerStyles.header__user__section}>
               <a
                 href="#"
@@ -217,31 +232,48 @@ const Header = () => {
                 />
               </a>
             </div>
-            <div className={headerStyles.hamburger_button} onClick={toggleMenu}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
+            {location.pathname.includes("/product/") && (
+              <div className="cart">
+                <img
+                  src={`data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 12.46a2 2 0 0 0 2 1.54h9.72a2 2 0 0 0 2-1.54L23 6H6"></path></svg>`}
+                  alt="Cart"
                   width="24"
                   height="24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
+                  onClick={toggleCart}
+                  style={{ cursor: "pointer" }}
+                />
+              </div>
+            )}
+            <div className={headerStyles.hamburger_button} onClick={toggleMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
             </div>
           </div>
         </header>
         {isLoggedIn && dropdownVisible && (
-      <div className={`${headerStyles.dropdown_menu} ${dropdownVisible ? 'active' : ''}`} id="dropdown">
-        <div className={headerStyles.dropdown}>
-          <button
-            id="dropdown_button"
-            className={headerStyles.dropdown_button}
+          <div
+            className={`${headerStyles.dropdown_menu} ${
+              dropdownVisible ? "active" : ""
+            }`}
+            id="dropdown"
+          >
+            <div className={headerStyles.dropdown}>
+              <button
+                id="dropdown_button"
+                className={headerStyles.dropdown_button}
                 onClick={() => {
                   navigate(`/user/${user.username}`);
                   setDropdownVisible(false);
@@ -274,6 +306,8 @@ const Header = () => {
       {LoginModalVisible && (
         <Login setLoginModalVisible={setLoginModalVisible} />
       )}
+      {cartVisible && <CartPopup onClose={toggleCart} />}
+
     </main>
   );
 };

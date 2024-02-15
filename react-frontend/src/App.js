@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 
-
 import CookiePopup from "./components/Cookies.jsx";
+import PdfView from "./components/FileHandling/test.jsx";
 import Header from "./components/navbar/header.jsx";
 import PayPal from "./components/payment/paypal.jsx";
 import TestPage from "./functions/Test.jsx";
@@ -124,6 +124,7 @@ function App() {
               path="/payment"
               element={<PayPal isUserLoggedIn={isUserLoggedIn} />}
             />
+            <Route path="/pdf" element={<PdfView />} />
           </Routes>
 
 

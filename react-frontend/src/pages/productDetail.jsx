@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import detailStyle from "../styles/productDetail.module.css";
 
-
+import Cart from "../components/Cart/cartHandler";
+import Footer from "../components/Footer/commonFooter";
 const ProductDetail = () => {
   const [showPayPalButton, setShowPayPalButton] = useState(false);
   const { productId } = useParams();
@@ -19,7 +20,6 @@ const ProductDetail = () => {
     // Fetch the product details based on the productId
     fetchProduct(productId);
   }, [productId]);
-
 
   const handleButtonClick = () => {
     setShowPayPalButton(true);
@@ -50,168 +50,198 @@ const ProductDetail = () => {
     }, 1000);
   };
 
-// Handle successful payment approval// Handle successful payment approval// Handle successful payment approval
+  // Handle successful payment approval// Handle successful payment approval// Handle successful payment approval
 
-const handlePaymentApproval = (data) => {
-  console.log("Payment approved:", data);
-  // Extract relevant data from order details
-  const { id, intent, status, create_time, payer, purchase_units } = data;
+  const handlePaymentApproval = (data) => {
+    console.log("Payment approved:", data);
+    // Extract relevant data from order details
+    const { id, intent, status, create_time, payer, purchase_units } = data;
 
-  // Extract necessary fields from the extracted data
-  const { payer_id } = payer;
-  const { reference_id, shipping: { address: { address_line_1 } } } = purchase_units[0];
-  const { email_address } = purchase_units[0].payee;
-
-  // Create a FormData object
-  const formData = new FormData();
-
-  // Append the order details to FormData
-  formData.append('id', id);
-  formData.append('intent', intent);
-  formData.append('status', status);
-  formData.append('create_time', create_time);
-  formData.append('buyer_id', 1);
-  formData.append('product_id', productId);
-  formData.append('total_amount', purchase_units[0].amount.value);
-  formData.append('shipping_address', address_line_1);
-  formData.append('shipping_method', 'test');
-  formData.append('payment_method', email_address);
-  formData.append('seller_id', "2");
-  console.log('Order details:', formData); // Debugging statement
-
-
-  // Send the order details to the server
-  fetch('http://localhost:80/create-order.php', {
-    method: 'POST',
-    body: formData // Send FormData object directly
-  })
-  .then(response => {
-    if (response.ok) {
-      // Order created successfully
-      return response.json();
-    } else {
-      throw new Error('Unable to create order.');
-    }
-  })
-  .then(data => {
-    // Add the product to the cart with animation
-    alert('Payment successful! Order ID: ' + data.order_id);
-    payoutSeller(email_address, amount)
-
-  })
-  .catch(error => {
-    console.error('Error creating order:', error);
-    alert('Error creating order. Please try again later.');
-  });
-}
-const payoutSeller = (sellerEmail, amount) => {
-  const requestBody = {
-    sender_batch_header: {
-      recipient_type: "EMAIL",
-      email_message: "Payment received from your sale.",
-      note: "Thank you for your purchase.",
-      sender_batch_id: Math.random().toString(36).substring(9),
-    },
-    items: [
-      {
-        recipient_type: "EMAIL",
-        amount: {
-          value: amount,
-          currency: "USD",
-        },
-        receiver: sellerEmail,
-        note: "Your payment",
+    // Extract necessary fields from the extracted data
+    const { payer_id } = payer;
+    const {
+      reference_id,
+      shipping: {
+        address: { address_line_1 },
       },
-    ],
-  };
-  const fetchOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${PAYPAL_ACCESS_TOKEN}`, // Replace with your PayPal access token
-    },
-    body: JSON.stringify(requestBody),
-  };
+    } = purchase_units[0];
+    const { email_address } = purchase_units[0].payee;
 
-  // POSTMAN OR CURL
+    // Create a FormData object
+    const formData = new FormData();
 
-  return fetch("https://api-m.paypal.com/v1/payments/payouts", fetchOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to initiate payout to seller.");
+    // Append the order details to FormData
+    formData.append("id", id);
+    formData.append("intent", intent);
+    formData.append("status", status);
+    formData.append("create_time", create_time);
+    formData.append("buyer_id", 1);
+    formData.append("product_id", productId);
+    formData.append("total_amount", purchase_units[0].amount.value);
+    formData.append("shipping_address", address_line_1);
+    formData.append("shipping_method", "test");
+    formData.append("payment_method", email_address);
+    formData.append("seller_id", "2");
+    console.log("Order details:", formData); // Debugging statement
+
+    // Send the order details to the server
+    fetch("http://localhost:80/create-order.php", {
+      method: "POST",
+      body: formData, // Send FormData object directly
+    }).then((response) => {
+      if (response.ok) {
+        // Order created successfully
+        return response.json();
+      } else {
+        throw new Error("Unable to create order.");
       }
-      return response.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.error("Error initiating payout:", error);
-      throw error;
     });
-};
+    const amount = (3)
+      .then((data) => {
+        // Add the product to the cart with animation
+        alert("Payment successful! Order ID: " + data.order_id);
+        payoutSeller(email_address, amount);
+      })
+      .catch((error) => {
+        console.error("Error creating order:", error);
+        alert("Error creating order. Please try again later.");
+      });
+  };
+  const payoutSeller = (sellerEmail, amount) => {
+    const requestBody = {
+      sender_batch_header: {
+        recipient_type: "EMAIL",
+        email_message: "Payment received from your sale.",
+        note: "Thank you for your purchase.",
+        sender_batch_id: Math.random().toString(36).substring(9),
+      },
+      items: [
+        {
+          recipient_type: "EMAIL",
+          amount: {
+            value: amount,
+            currency: "USD",
+          },
+          receiver: sellerEmail,
+          note: "Your payment",
+        },
+      ],
+    };
+    const PAYPAL_ACCESS_TOKEN = 1;
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${PAYPAL_ACCESS_TOKEN}`, // Replace with your PayPal access token
+      },
+      body: JSON.stringify(requestBody),
+    };
+
+    // POSTMAN OR CURL
+
+    return fetch("https://api-m.paypal.com/v1/payments/payouts", fetchOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to initiate payout to seller.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error initiating payout:", error);
+        throw error;
+      });
+  };
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className={detailStyle.product_detail_container}>
-      <img
-        className={detailStyle.product_image}
-        src={product.pictureUrl}
-        alt="Product"
-      />
-      <div className={detailStyle.product_container}>
-        <div className={detailStyle.product_details}>
-          <div className={detailStyle.box}>
-            <h1 className={detailStyle.title}>{product.title}</h1>
-            <p className={detailStyle.price}>${product.price}</p>
-            <p className={detailStyle.description}>{product.description}</p>
-    
-            <div>
-              {/* PayPal button */}
-              {showPayPalButton ? (
-              
-              <PayPalScriptProvider options={{ clientId: "AcDIoMXbZyUPOjPOXmCoWScT-8jv6ejhq-w554g5vg6zsZ3tdCpYz6o7htsH-AOH4ZygmVvPu0Ry7rA5" , components: "buttons", currency: "USD" }}>
-                <PayPalButtons
-                  style={{ layout: "vertical", shape: "pill", height: 40, label: "pay" }}
-                  forceReRender={[{amount: product.price}]}
-                  className={detailStyle.paypal_button}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: {
-                            value: product.price,
-                          },
-                        },
-                      ],
-                    });
-                  }}
-                  onApprove={(data, actions) => {
-                    // Handle successful payment approval
-                    actions.order.get().then((details) => {
-                      console.log("Order details:", details);
+    <main>
+      <div className={detailStyle.product_detail_container}>
+        <img
+          className={detailStyle.product_image}
+          src={product.pictureUrl}
+          alt="Product"
+        />
+        <div className={detailStyle.product_container}>
+          <div className={detailStyle.product_details}>
+            <div className={detailStyle.box}>
+              <h1 className={detailStyle.title}>{product.title}</h1>
+              <p className={detailStyle.price}>${product.price}</p>
+              <p className={detailStyle.description}>{product.description}</p>
 
-                      // Send the order details to the server
-                      handlePaymentApproval(details);
-                    });
-                  }}
-                />
-              </PayPalScriptProvider>
-              ) : (
-                <button type="button" className={detailStyle.buy_button} onClick={handleButtonClick}>Show PayPal Buttons</button>
+              <div>
+                {/* PayPal button */}
+                {showPayPalButton ? (
+                  <PayPalScriptProvider
+                    options={{
+                      clientId:
+                        "AcDIoMXbZyUPOjPOXmCoWScT-8jv6ejhq-w554g5vg6zsZ3tdCpYz6o7htsH-AOH4ZygmVvPu0Ry7rA5",
+                      components: "buttons",
+                      currency: "USD",
+                    }}
+                  >
+                    <PayPalButtons
+                      style={{
+                        layout: "vertical",
+                        shape: "pill",
+                        height: 40,
+                        label: "pay",
+                      }}
+                      forceReRender={[{ amount: product.price }]}
+                      className={detailStyle.paypal_button}
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: product.price,
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                      onApprove={(data, actions) => {
+                        // Handle successful payment approval
+                        actions.order.get().then((details) => {
+                          console.log("Order details:", details);
+
+                          // Send the order details to the server
+                          handlePaymentApproval(details);
+                        });
+                      }}
+                    />
+                  </PayPalScriptProvider>
+                ) : (
+                  <button
+                    type="button"
+                    className={detailStyle.buy_button}
+                    onClick={handleButtonClick}
+                  >
+                    Show PayPal Buttons
+                  </button>
                 )}
+              </div>
+              <button
+                className={detailStyle.cart_button}
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
+              {showConfirmation && (
+                <div className={detailStyle.added_to_cart}>Added to Cart!</div>
+              )}
+              {cart.length > 0 && <Cart cartItems={cart} />}
             </div>
-            <button className={detailStyle.cart_button} onClick={handleAddToCart}>
-              Add to Cart
-            </button>
-            {showConfirmation && <div className={detailStyle.added_to_cart}>Added to Cart!</div>}
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </main>
   );
 };
 
