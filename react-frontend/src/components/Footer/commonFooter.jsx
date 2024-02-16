@@ -1,5 +1,9 @@
-import React from 'react';
-import './Footer.css'; // Import CSS file for styling
+import React from "react";
+import "./Footer.css"; // Import CSS file for styling
+
+const inlineStyle = {
+  display: "inline",
+};
 
 const Footer = () => {
   return (
@@ -10,8 +14,8 @@ const Footer = () => {
             <div className="col-md-3 col-sm-6">
               <h4>About Us</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
             </div>
             <div className="col-md-3 col-sm-6">
@@ -38,6 +42,28 @@ const Footer = () => {
                 <li>Email: info@example.com</li>
                 <li>Phone: +123 456 7890</li>
               </ul>
+              <ul className="col-md-3 col-sm-6" style={{ display: 'inline-flex', gap: '1rem', justifyContent: 'center'}}>
+                <li>
+                  <a href="#" className="termsetc">
+                    Terms and Conditions
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="termsetc">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="termsetc">
+                    Shipping
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="termsetc">
+                    Returns
+                  </a>
+                </li>
+              </ul>
             </div>
             <div className="col-md-3 col-sm-6">
               <h4>Follow Us</h4>
@@ -49,7 +75,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fab fa-twitter"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
                   </a>
                 </li>
                 <li>
@@ -62,6 +88,11 @@ const Footer = () => {
                     <i className="fab fa-pinterest"></i>
                   </a>
                 </li>
+                <li>
+                  <a href="https://discord.gg/wdjpUt4rdY">
+                    <i className="fab fa-discord"></i>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -72,12 +103,8 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-6">
               <p>
-                &copy; {new Date().getFullYear()} V-Arts. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} V-Arts. All rights reserved.
               </p>
-            </div>
-            <div className="col-md-6">
-              <p className="text-right">Designed by Invalid Karo</p>
             </div>
           </div>
         </div>

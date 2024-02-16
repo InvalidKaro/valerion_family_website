@@ -26,10 +26,12 @@ const CartPopup = ({ onClose, cartItems }) => {
         {/* PayPal buttons for purchasing */}
         {/* Integrate PayPal buttons here */}
         
+        <div className="cart-buttons">
         {/* Clear cart button */}
-        <button onClick={clearLocalStorageCart}>Clear Cart</button>
+        <button onClick={clearLocalStorageCart} style={{display: "flex"}}>Clear Cart</button>
         {/* Close button */}
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose} style={{display: "flex"}}>Close</button>
+        </div>
       </div>
     </div>
   );

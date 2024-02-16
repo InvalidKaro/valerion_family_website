@@ -8,7 +8,7 @@ const Cart = ({ cartItems }) => {
       <ul className="cart-items">
         {cartItems.map((item, index) => (
           <li key={index} className="cart-item">
-            <div>
+            <div style={{ display: 'flex', alignItems: 'center', padding: '10px'}}>
               <img
                 src={item.pictureUrl}
                 alt={item.title}

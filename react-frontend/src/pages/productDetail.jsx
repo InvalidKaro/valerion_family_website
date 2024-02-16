@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import detailStyle from "../styles/productDetail.module.css";
 
-import Cart from "../components/Cart/cartHandler";
 import Footer from "../components/Footer/commonFooter";
 const ProductDetail = () => {
   const [showPayPalButton, setShowPayPalButton] = useState(false);
@@ -235,7 +234,6 @@ const ProductDetail = () => {
               {showConfirmation && (
                 <div className={detailStyle.added_to_cart}>Added to Cart!</div>
               )}
-              {cart.length > 0 && <Cart cartItems={cart} />}
             </div>
           </div>
         </div>
