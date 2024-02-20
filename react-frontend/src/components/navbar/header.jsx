@@ -16,7 +16,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [LoginModalVisible, setLoginModalVisible] = useState("");
   const [isMenuVisible, setMenuVisible] = useState(false);
-  const [cartVisible, setCartVisible] = useState(''); // State to control cart visibility
+  const [cartVisible, setCartVisible] = useState(""); // State to control cart visibility
   const location = useLocation();
 
   useEffect(() => {
@@ -125,7 +125,7 @@ const Header = () => {
         <div className={headerStyles.menuContainer}>
           <ul className={headerStyles.menu}>
             <li>
-              <a href="../History">About us</a>
+              <a href="../about">About us</a>
             </li>
             <li>
               <a href="../Supporters">Supporters</a>
@@ -154,7 +154,7 @@ const Header = () => {
           <nav>
             <ul className={headerStyles.header__menu}>
               <li className={headerStyles.header__link}>
-                <a href="../History">About us</a>
+                <a href="../about">About us</a>
               </li>
               <li className={headerStyles.header__link}>
                 <a href="../Supporters">Supporters</a>
@@ -307,7 +307,6 @@ const Header = () => {
         <Login setLoginModalVisible={setLoginModalVisible} />
       )}
       {cartVisible && <CartPopup onClose={toggleCart} />}
-
     </main>
   );
 };

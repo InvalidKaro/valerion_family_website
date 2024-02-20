@@ -13,10 +13,12 @@
   
   .footer h4 {
     color: #fff;
+    margin-bottom: 1rem;
   }
   
   .footer p {
     color: #ccc;
+    margin-bottom: 1rem;
   }
   
   .footer ul {

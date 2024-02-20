@@ -15,3 +15,38 @@
     flex-direction: column;
     margin-top: 150px;
 }
+.search-results {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.search-results ul {
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.search-results img {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the image maintains aspect ratio and covers the container */
+}
+
+.search-results h2 {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-results p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Add additional styling as needed */

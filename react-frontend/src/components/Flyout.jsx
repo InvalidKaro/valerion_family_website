@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/flyout.css';
+import React, { useEffect, useState } from "react";
+import "../styles/flyout.css";
 
 function Flyout({ user, duration }) {
-
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -14,7 +13,7 @@ function Flyout({ user, duration }) {
   }, [duration]);
 
   return (
-    <div className={`flyout ${isVisible ? 'visible' : ''}`}>
+    <div className={`flyout ${isVisible ? "visible" : ""}`}>
       Welcome, {user}
     </div>
   );

@@ -1,25 +1,26 @@
-import React from 'react';
-import PaypalTest from '../components/payment/paypal';
-import '../styles/App.css';
+import React, { useState } from 'react';
+import ErrorFlag from '../Errors/errorFlag.jsx';
 
-function Test() {
-  const simulateError = () => {
-    // Simulate an error by setting a property of undefined
-    const undefinedObject = undefined;
-    console.log(undefinedObject.property);
+function YourComponent() {
+  const [error, setError] = useState(null);
+  const [flagVisible, setFlagVisible] = useState(false);
+
+  const handleError = () => {
+    setError(null);
+    setFlagVisible(false); // Reset the visibility of the ErrorFlag
+  };
+
+  const triggerError = () => {
+    setError('An error occurred!');
+    setFlagVisible(true); // Show the ErrorFlag
   };
 
   return (
-    <main>
-      <PaypalTest />
-      <button onClick={simulateError} style={{ marginTop: 'clamp(3%, 1em, 5%)', color: 'red' }}>Simulate Error</button>
-        <h1>
-          <p>Lorem ipsum dolor sit amet. Nam dolores praesentium ea blanditiis galisum et inventore ipsam ut itaque saepe et omnis sequi. Sed adipisci unde est nulla galisum sit dolorem nemo ad molestiae distinctio eum unde error! Ut galisum dicta eum sint magni a pariatur quasi a dolore repellat sit dolor sunt vel Quis libero. </p>
-          <p>Eos ipsum illo qui beatae reiciendis nam quis temporibus! Non voluptas ratione a voluptas autem vel quasi rerum eos neque nulla! Ut nostrum iure ut harum maiores et consectetur necessitatibus ut recusandae modi. Sit voluptas eaque et velit porro id quam dolor a sint voluptate. </p>
-          <p>Et quibusdam rerum ea labore aliquam ea architecto dolorem et architecto repellat. Non incidunt perferendis ut quia sunt eos minima obcaecati ut iste dolores. </p>
-        </h1>
-    </main>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+      {flagVisible && <ErrorFlag error={error} duration={5000} handleError={handleError} setFlagVisible={setFlagVisible} />}
+      <button onClick={triggerError}>Trigger Error</button>
+    </div>
   );
 }
 
-export default Test;
+export default YourComponent;

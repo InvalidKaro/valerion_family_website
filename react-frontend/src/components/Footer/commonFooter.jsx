@@ -14,8 +14,8 @@ const Footer = () => {
             <div className="col-md-3 col-sm-6">
               <h4>About Us</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              V-Arts is a platform, specifically a website 
+              which is a Marketplace for AI generated content
               </p>
             </div>
             <div className="col-md-3 col-sm-6">

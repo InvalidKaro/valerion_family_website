@@ -7,6 +7,7 @@ import PdfView from "./components/FileHandling/test.jsx";
 import Header from "./components/navbar/header.jsx";
 import PayPal from "./components/payment/paypal.jsx";
 import TestPage from "./functions/Test.jsx";
+import DocTitle from "./functions/docTitle.jsx";
 import About from "./pages/About.jsx";
 import AccountSettings from "./pages/AccountSettings.jsx";
 import Admin from "./pages/Admin.jsx";
@@ -27,7 +28,7 @@ function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
-  const [showCookiePopup] = useState(true);
+  const [showCookiePopup] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   // eslint-disable-next-line no-unused-vars
   const [height, setHeight] = useState(0);
@@ -35,18 +36,30 @@ function App() {
   useEffect(() => {
     const listenToScroll = () => {
       let heightToHideFrom = 500;
-      const winScroll = window.pageYOffset;
+      const winScroll = window.scrollY;
       setHeight(winScroll);
       setIsVisible(winScroll <= heightToHideFrom);
     };
 
     window.addEventListener("scroll", listenToScroll);
 
-    // Clean up the event listener when the component is unmounted
+    const docTitle = document.title;
+    const onBlur = () => {
+      document.title = "Come back 🙁";
+    };
+    const onFocus = () => {
+      document.title = docTitle;
+    };
+
+    window.addEventListener("blur", onBlur);
+    window.addEventListener("focus", onFocus);
+
+    // Clean up the event listeners when the component is unmounted
     return () => {
       window.removeEventListener("scroll", listenToScroll);
+      window.removeEventListener("blur", onBlur);
+      window.removeEventListener("focus", onFocus);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -55,18 +68,18 @@ function App() {
 
       <UserProvider>
         <Router>
-          
           <Header setUser={setUsername} isVisible={isVisible} />
           <Routes>
-            
             <Route
               path="/"
               element={
-                <Home
-                  user={{ username, isUserLoggedIn }}
-                  setLoggedIn={setUserLoggedIn}
-                  isUserLoggedIn={isUserLoggedIn}
-                />
+                <DocTitle title="Home Page" /> && (
+                  <Home
+                    user={{ username, isUserLoggedIn }}
+                    setLoggedIn={setUserLoggedIn}
+                    isUserLoggedIn={isUserLoggedIn}
+                  />
+                )
               }
             />
             <Route path="/about" element={<About />} />
@@ -126,12 +139,8 @@ function App() {
             />
             <Route path="/pdf" element={<PdfView />} />
           </Routes>
-
-
         </Router>
-
       </UserProvider>
-
     </div>
   );
 }

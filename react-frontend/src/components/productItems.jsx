@@ -55,9 +55,7 @@ const ProductItems = () => {
             {/* Additional content for the overlay */}
           </div>
           <h3 className={productStyles.productTitle}>{product.title}</h3>
-          <p className={productStyles.productPrice}>
-            Price: {product.price}
-          </p>
+          <p className={productStyles.productPrice}>Price: {product.price}</p>
           <a
             href={`/user/${product.author}`}
             className={productStyles.authorLink}
@@ -73,13 +71,14 @@ const ProductItems = () => {
     <div className={productStyles.container}>
       {Object.entries(groupedProducts).map(([category, products]) => (
         <div className={productStyles.categoryContainer} key={category}>
-          <h2 className={productStyles.category} style={{ marginTop: "20px" }}>{category}</h2>
+          <h2 className={productStyles.category} style={{ marginTop: "20px" }}>
+            {category}
+          </h2>
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={30}
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             centeredSlides={false}
-
             navigation
             pagination={{ clickable: true }}
             fadeEffect={{ crossFade: true }}
@@ -106,7 +105,6 @@ const ProductItems = () => {
                 spaceBetween: 30,
               },
             }}
-            
           >
             {renderProductSlides(products)}
           </Swiper>

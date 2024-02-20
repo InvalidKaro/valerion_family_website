@@ -90,6 +90,7 @@ const ProductDetail = () => {
     }).then((response) => {
       if (response.ok) {
         // Order created successfully
+        
         return response.json();
       } else {
         throw new Error("Unable to create order.");
@@ -131,7 +132,7 @@ const ProductDetail = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${PAYPAL_ACCESS_TOKEN}`, // Replace with your PayPal access token
+        Authorization: `Bearer ${PAYPAL_ACCESS_TOKEN}`, // Replace with PayPal access token
       },
       body: JSON.stringify(requestBody),
     };
@@ -183,7 +184,7 @@ const ProductDetail = () => {
                       components: "buttons",
                       currency: "USD",
                     }}
-                  >
+                  > 
                     <PayPalButtons
                       style={{
                         layout: "vertical",
@@ -209,7 +210,7 @@ const ProductDetail = () => {
                         actions.order.get().then((details) => {
                           console.log("Order details:", details);
 
-                          // Send the order details to the server
+                          //  Send the order details to the server
                           handlePaymentApproval(details);
                         });
                       }}
