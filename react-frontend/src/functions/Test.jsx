@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import ErrorFlag from '../Errors/errorFlag.jsx';
+import CustomAlert from '../Errors/alerts'; // Assuming CustomAlert component is in the same directory
 
 function YourComponent() {
-  const [error, setError] = useState(null);
-  const [flagVisible, setFlagVisible] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
-  const handleError = () => {
-    setError(null);
-    setFlagVisible(false); // Reset the visibility of the ErrorFlag
+  const handleClose = () => {
+    setShowAlert(false);
   };
 
-  const triggerError = () => {
-    setError('An error occurred!');
-    setFlagVisible(true); // Show the ErrorFlag
+  const handleShowAlert = () => {
+    setShowAlert(true);
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      {flagVisible && <ErrorFlag error={error} duration={5000} handleError={handleError} setFlagVisible={setFlagVisible} />}
-      <button onClick={triggerError}>Trigger Error</button>
+    <div>
+      <button onClick={handleShowAlert} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px', margin: '10px',  borderRadius: '5px', backgroundColor: 'green', color: 'white', marginInline: 'auto', }}>Show Alert</button>
+      {showAlert && (
+        <CustomAlert
+          type="error"
+          title="Error Title"
+          message="This is an error message."
+          onClose={handleClose}
+          showCloseButton={true}
+        />
+      )}
     </div>
   );
 }
