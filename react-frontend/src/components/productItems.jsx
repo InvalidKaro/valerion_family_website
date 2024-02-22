@@ -54,6 +54,7 @@ const ProductItems = () => {
           <div className={productStyles.productInfo}>
             {/* Additional content for the overlay */}
           </div>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "80%" }}>
           <h3 className={productStyles.productTitle}>{product.title}</h3>
           <p className={productStyles.productPrice}>Price: {product.price}</p>
           <a
@@ -62,6 +63,7 @@ const ProductItems = () => {
           >
             Author: {product.author}
           </a>
+          </div>
         </div>
       </SwiperSlide>
     ));
@@ -71,7 +73,7 @@ const ProductItems = () => {
     <div className={productStyles.container}>
       {Object.entries(groupedProducts).map(([category, products]) => (
         <div className={productStyles.categoryContainer} key={category}>
-          <h2 className={productStyles.category} style={{ marginTop: "20px" }}>
+          <h2 className={productStyles.category} style={{ marginTop: "20px",display: "flex", fontSize: "clamp(2rem, 3rem, 4rem)"}}>
             {category}
           </h2>
           <Swiper

@@ -39,12 +39,13 @@ const Footer = () => {
               <h4>Contact Info</h4>
               <ul>
                 <li>123 Main Street, City</li>
-                <li>Email: info@example.com</li>
+                <li>Austria</li>
+                <li>Email: info@v-arts.shop</li>
                 <li>Phone: +123 456 7890</li>
               </ul>
               <ul className="col-md-3 col-sm-6" style={{ display: 'inline-flex', gap: '1rem', justifyContent: 'center'}}>
                 <li>
-                  <a href="#" className="termsetc">
+                  <a href="/terms_of_use" className="termsetc">
                     Terms and Conditions
                   </a>
                 </li>

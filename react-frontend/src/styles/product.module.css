@@ -84,7 +84,11 @@
   .container {
     margin-inline: calc(1em + 1vw);
   }
-  
+
+  .textBox {
+    background: none;
+  }
+
   .productCard {
     position: relative;
     overflow: hidden;
@@ -94,9 +98,11 @@
     display: flex;
     flex-direction: column;
     max-width: 400px;
+    height: 500px;
     border: #58585858 3px solid;
     border-radius: 20px;
     background-color: #34343446;
+    align-items: center;
   }
   
   .productCard > a {
@@ -104,20 +110,21 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    background: none;
   }
   
   .productCard img {
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 13rem;
+    height: 13rem;
     max-height: 500px;
     border-radius: 1.5em;
+    align-self: center;
   }
   
   .productCard > div {
     position: absolute;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 12px;
   }

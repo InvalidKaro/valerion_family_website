@@ -6,6 +6,7 @@ import CookiePopup from "./components/Cookies.jsx";
 import PdfView from "./components/FileHandling/test.jsx";
 import Header from "./components/navbar/header.jsx";
 import PayPal from "./components/payment/paypal.jsx";
+import TermsOfUse from "./documents/termsOfUse.jsx";
 import TestPage from "./functions/Test.jsx";
 import DocTitle from "./functions/docTitle.jsx";
 import About from "./pages/About.jsx";
@@ -138,6 +139,7 @@ function App() {
               element={<PayPal isUserLoggedIn={isUserLoggedIn} />}
             />
             <Route path="/pdf" element={<PdfView />} />
+            <Route path="/terms_of_use" element={<TermsOfUse />} />
           </Routes>
         </Router>
       </UserProvider>

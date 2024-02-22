@@ -17,30 +17,36 @@ function CustomAlert({
   closeButtonIcon,
 }) {
   const alertStyles = {
-    error: { backgroundColor: "red", color: "#721c24" },
-    warning: { backgroundColor: "#fff3cd", color: "#856404" },
-    success: { backgroundColor: "#d4edda", color: "#155724" },
-    info: { backgroundColor: "#d1ecf1", color: "#0c5460" },
+    error: { backgroundColor: "red", color: "#721c24", width: "fit-content" },
+    warning: { backgroundColor: "#fff3cd", color: "#856404", width: "fit-content" },
+    success: { backgroundColor: "#d4edda", color: "#155724", width: "fit-content" },
+    info: { backgroundColor: "#d1ecf1", color: "#0c5460", width: "fit-content" },
   };
 
+/* 
+TODO: Use this function to display different types of alerts 
+  with optional close button
+*/
   const renderCloseButton = () => {
     if (!showCloseButton) return null;
 
     return (
       <IconButton
+        
         aria-label="close"
         color="inherit"
+        sx={{ p: 0.5 }}
         size="small"
         onClick={onClose}
       >
-        {closeButtonIcon || <CloseIcon fontSize="inherit" />}
+        {closeButtonIcon || <CloseIcon fontSize="inherit"/>}
       </IconButton>
     );
   };
 
   return (
     <Alert
-      style={alertStyles[type]}
+      style={alertStyles[type] }
       severity={type}
       action={renderCloseButton()}
     >
