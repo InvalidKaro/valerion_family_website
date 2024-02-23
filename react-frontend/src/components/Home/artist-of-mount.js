@@ -1,41 +1,26 @@
 import React, { useEffect, useState } from "react";
-// eslint-disable-next-line no-unused-vars
-// eslint-disable-next-line no-unused-vars
+
 const AofM = () => {
-  const [artOfMountData, setArtOfMountData] = useState([]);
-  const [artistOfMountData, setArtistOfMountData] = useState([]);
+  const [artData, setArtData] = useState(null);
+  const [artistData, setArtistData] = useState(null);
   const [artPrice, setArtPrice] = useState(0);
   const [artistPrice, setArtistPrice] = useState(0);
 
-  /*
-   * Fetches data from http://localhost:80/month.php and filters it based on the values of "Title".
-   * Sets the filtered data to state variables and sets the price from the filtered JSON data.
-   *
-   * @return {void}
-   */
   const fetchData = async () => {
     try {
-      // Fetch data from localhost:80/month.php
       const response = await fetch("http://localhost:80/month.php");
-      const json = await response.json();
-
-      // Filter the data based on the values of "Title"
-      const artOfMountJson = json.filter((item) => item.Title === "art");
-      const artistOfMountJson = json.filter((item) => item.Title === "artist");
-
-      setArtOfMountData(artOfMountJson);
-      setArtistOfMountData(artistOfMountJson);
-
-      // Set the price from the filtered JSON data
-      if (artOfMountJson.length > 0) {
-        setArtPrice(artOfMountJson[0]?.price || 0);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
       }
-
-      if (artistOfMountJson.length > 0) {
-        setArtistPrice(artistOfMountJson[0]?.price || 0);
-      }
+      const jsonData = await response.json();
+      const art = jsonData.find((item) => item.art);
+      const artist = jsonData.find((item) => item.artist);
+      setArtData(art);
+      setArtistData(artist);
+      setArtPrice(art?.price || 0);
+      setArtistPrice(artist?.price || 0);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data:", error.message);
     }
   };
 
@@ -53,14 +38,20 @@ const AofM = () => {
         </div>
         <div className="aofM__imgs">
           <div className="img__box">
-            <img src={artOfMountData[0]?.Art} alt="Art of the Mount" />
-            {/* <img src={art_of_mount_img} alt="Art of the Month" /> */}
-            <div className="price">{artPrice}$</div>
+            {artData && (
+              <>
+                <img src={artData.art} alt="Art of the Month" />
+                <div className="price">{artPrice}$</div>
+              </>
+            )}
           </div>
           <div className="img__box">
-            <img src={artistOfMountData[0]?.Artist} alt="Artist of Mount" />
-            {/* <img src={artist_of_mount_img} alt="Artist of Month" />*/}
-            <div className="price">{artistPrice}$</div>
+            {artistData && (
+              <>
+                <img src={artistData.artist} alt="Artist of the Month" />
+                <div className="price">{artistPrice}$</div>
+              </>
+            )}
           </div>
         </div>
       </div>

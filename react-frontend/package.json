@@ -36,6 +36,7 @@
         "react-error-boundary": "^4.0.12",
         "react-fontawesome": "^1.7.1",
         "react-google-recaptcha": "^3.1.0",
+        "react-helmet": "^6.1.0",
         "react-pdf": "^7.7.0",
         "react-router-dom": "^6.21.1",
         "react-scripts": "^5.0.1",
