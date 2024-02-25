@@ -88,3 +88,15 @@ body.blur {
 section {
   margin-top: 9rem;
 }
+
+/* App.css */
+.appear {
+  opacity: 0;
+  transform: translateY(20px); /* or any other initial position */
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.appear-appear {
+  opacity: 1;
+  transform: translateY(0);
+}

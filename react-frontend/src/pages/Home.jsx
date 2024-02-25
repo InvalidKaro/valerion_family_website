@@ -1,5 +1,6 @@
 import React from "react";
 import { useUser } from "../UserContext";
+import ScrollToTopButton from "../components/BackToTop/topButton.jsx";
 import Flyout from "../components/Flyout.jsx";
 import Footer from "../components/Footer/commonFooter.jsx";
 import AofM from "../components/Home/artist-of-mount.js";
@@ -12,11 +13,12 @@ function Home() {
   const { user } = useUser();
   return (
     <div className="App">
-      <main>
+      <main style={{ scrollBehavior: "smooth" }}>
         <Hero />
         {user && user.username && (
           <Flyout user={user.username} duration={3000} />
         )}
+        <ScrollToTopButton />
         <WhySection />
         <Reviews isLoggedIn={user && user.username} />
         <AofM />

@@ -1,0 +1,142 @@
+.help-text {
+    position: relative;
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+   transform-style: preserve-3d; 
+   opacity: 1;
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    
+ }
+ .text-on-image {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;    
+   margin-top: 5vh;
+
+ }
+ .help-text h1 {
+    color: rgb(255, 255, 255);
+    font-size: clamp(8rem, 4vh, 14rem);
+    opacity: 0.4;
+    text-align: center;
+    padding: 10px;
+
+    text-shadow: 0 0 10px #000, 0 0 10px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8)
+
+ }
+
+ h1 {
+    font-size: clamp(4rem, 4vh, 10rem);
+    text-align: center;
+    padding: 10px;
+ }
+ h2 {
+    font-size: clamp(2rem, 2vh, 6rem);
+    text-align: center;
+    padding: 20px;
+ }
+ 
+ .help-main  {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    pointer-events: none; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d; 
+    opacity: 1;
+ }
+
+.help-image {
+    width: 100%;
+    height: 50vh;
+    margin-top: 5vh;
+    opacity: 0.7;
+    object-fit: cover;
+ }
+ .help {
+   width: 100%;
+ }
+
+ .category-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+   border: 1px solid black; /* Add border around each category item */
+   border-radius: 5px; /* Add border radius for rounded corners */
+   width: 100px; /* Set a fixed width for the category items */
+   height: 100px; /* Set a fixed height for the category items */
+ }
+ 
+ .icon {
+   margin-bottom: 5px;
+   font-size: 2rem; /* Adjust the size as needed for responsiveness */
+ }
+ 
+ @media (max-width: 768px) {
+   .category-item {
+     width: 75px; /* Adjust the width for smaller screens */
+     height: 75px; /* Adjust the height for smaller screens */
+   }
+ 
+   .icon {
+     font-size: 1.5rem; /* Adjust the icon size for smaller screens */
+   }
+ }
+
+ /*base code*/
+.animated {
+   -webkit-animation-duration: 1s;
+   animation-duration: 1s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+ }
+ .animated.infinite {
+   -webkit-animation-iteration-count: infinite;
+   animation-iteration-count: infinite;
+ }
+ .animated.hinge {
+   -webkit-animation-duration: 2s;
+   animation-duration: 2s;
+ }
+ /*the animation definition*/
+ @-webkit-keyframes fadeInUp {
+   0% {
+     opacity: 0;
+     -webkit-transform: translate3d(0, 100%, 0);
+     transform: translate3d(0, 100%, 0)
+   }
+   100% {
+     opacity: 1;
+     -webkit-transform: none;
+     transform: none
+   }
+ }
+ @keyframes fadeInUp {
+   0% {
+     opacity: 0;
+     -webkit-transform: translate3d(0, 100%, 0);
+     -ms-transform: translate3d(0, 100%, 0);
+     transform: translate3d(0, 100%, 0)
+   }
+   100% {
+     opacity: 1;
+     -webkit-transform: none;
+     -ms-transform: none;
+     transform: none
+   }
+ }
+ .fadeInUp {
+   -webkit-animation-name: fadeInUp;
+   animation-name: fadeInUp
+ }
+ 

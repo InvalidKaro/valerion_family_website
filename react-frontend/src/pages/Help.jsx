@@ -1,7 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer/commonFooter';
-import '../styles/App.css';
+import HelpCategories from '../components/Help/categories';
+import helpBack from "../images/help.png";
+import '../styles/help.css';
 
 function Help() {
 
@@ -16,11 +18,22 @@ function Help() {
       <Helmet>
         <title>Get Help</title>
       </Helmet>
-      
-      <div className="help-hero">
-        <img src='https://freefrontend.com/assets/img/css-hero-effects/Diagonal-Hero-Div-With-CSS-Star-Animation-Background.gif' className='help-hero'/>
-        
+      <div className='help'>
+      <div className = "help-text">
+        <div className = "help-image">
+          <img src = {helpBack} alt = "Freedom Blog" className='help-image'/>
+        </div>
+          <div className='text-on-image'>
+          <div id="square" class="fadeInUp animated">  
 
+             <h1 className='help-h1' > Help Center </h1>
+             </div>
+          </div>
+      </div>
+      </div>
+      <div id="square" class="fadeInUp animated">  
+
+      <HelpCategories />
       </div>
 
       <Footer />
