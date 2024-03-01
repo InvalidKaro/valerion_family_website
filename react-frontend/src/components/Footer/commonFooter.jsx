@@ -1,13 +1,7 @@
-import React from "react";
 import "./Footer.css"; // Import CSS file for styling
-
-const inlineStyle = {
-  display: "inline",
-};
-
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" style={{textAlign: "center"}}>
       <div className="footer__top">
         <div className="container">
           <div className="row">

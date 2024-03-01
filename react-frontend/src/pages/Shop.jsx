@@ -84,6 +84,7 @@ function Shop() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Shop;
+

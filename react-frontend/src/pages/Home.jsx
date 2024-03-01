@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 import { useUser } from "../UserContext";
 import ScrollToTopButton from "../components/BackToTop/topButton.jsx";
 import Flyout from "../components/Flyout.jsx";
@@ -12,19 +13,28 @@ import "../styles/artist-of-mount.css";
 function Home() {
   const { user } = useUser();
   return (
-    <div className="App">
+    <div className="App" style={{ scrollBehavior: "smooth" }}>
       <main style={{ scrollBehavior: "smooth" }}>
         <Hero />
         {user && user.username && (
           <Flyout user={user.username} duration={3000} />
         )}
-        <ScrollToTopButton />
-        <WhySection />
-        <Reviews isLoggedIn={user && user.username} />
-        <AofM />
+        <Fade>
+          <WhySection/>
+        </Fade>
+        <Fade direction="up">
+          <Reviews isLoggedIn={user && user.username} />
+        </Fade>
+        <Fade direction="up">
+          <AofM />
+        </Fade>
       </main>
-      <Footer />
+      <Fade direction="up">
+        <Footer />
+      </Fade>
+      <ScrollToTopButton />
     </div>
+    
   );
 }
 

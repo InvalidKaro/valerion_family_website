@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { Fade } from "react-awesome-reveal";
 import productStyles from "../styles/product.module.css";
 
 const ProductItems = () => {
@@ -70,6 +71,7 @@ const ProductItems = () => {
   };
 
   return (
+    <Fade>
     <div className={productStyles.container}>
       {Object.entries(groupedProducts).map(([category, products]) => (
         <div className={productStyles.categoryContainer} key={category}>
@@ -113,6 +115,7 @@ const ProductItems = () => {
         </div>
       ))}
     </div>
+    </Fade>
   );
 };
 

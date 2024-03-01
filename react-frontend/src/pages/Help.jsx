@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer/commonFooter';
 import HelpCategories from '../components/Help/categories';
@@ -14,7 +15,7 @@ function Help() {
 
 
   return (
-    <main className="help-main">
+    <main className="help-main" style={{ width: "100%"}}>
       <Helmet>
         <title>Get Help</title>
       </Helmet>
@@ -24,19 +25,16 @@ function Help() {
           <img src = {helpBack} alt = "Freedom Blog" className='help-image'/>
         </div>
           <div className='text-on-image'>
-          <div id="square" class="fadeInUp animated">  
 
              <h1 className='help-h1' > Help Center </h1>
-             </div>
           </div>
       </div>
       </div>
-      <div id="square" class="fadeInUp animated">  
 
       <HelpCategories />
-      </div>
-
+<Fade style={{ width: "100%" }}>
       <Footer />
+      </Fade>
     </main>
   );
 }

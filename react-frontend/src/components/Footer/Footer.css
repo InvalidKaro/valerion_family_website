@@ -2,9 +2,10 @@
 .footer {
     background-color: var(--clr-bg);
     color: #fff;
-    padding: 50px 0;
+    padding: 50px ;
     border-top: 1px solid #555;
     max-width: 100%;
+    width: 100%;
   }
   
   .footer__top {

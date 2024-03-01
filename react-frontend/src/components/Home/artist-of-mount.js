@@ -28,6 +28,8 @@ const AofM = () => {
     fetchData();
   }, []);
 
+  
+
   return (
     <section className="container aOfM">
       <div className="aOfM__sec">
