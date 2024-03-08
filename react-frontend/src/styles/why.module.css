@@ -57,13 +57,24 @@
     transition: opacity 0.5s ease; /* Add transition for smooth opacity change */
   }
   
+  .textAn, .textAn p, .textAn span{
+    font-size: clamp(0.8em, 3vw, 1.125em);
+    ; /* Adjust paragraph font size with relative units */
+    line-height: clamp(1em, 3vw, 1.5em);
+    text-align: center;
+    opacity: 1; /* Show content */
+    transition: opacity 0.5s ease; /* Add transition for smooth opacity change */
+    max-width: 	90%;
+    white-space: normal;
+    background: none;
+  }
   /* WhySection.module.css */
 
 /* WhySection.module.css */
 
     .textWithImageContainer {
       position: relative; /* Set container to relative positioning */
-      display: inline-block; /* Ensure container only takes up space necessary */
+      display: block;
     }
 
     .image {
@@ -85,6 +96,7 @@
       background-color: rgba(0, 0, 0, 0.3); /* Add semi-transparent black background */
       border-radius: 10px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      
     }
     .title {
       font-size: clamp(1.5rem, 3vw, 3rem);

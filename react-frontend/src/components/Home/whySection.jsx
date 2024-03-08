@@ -1,9 +1,10 @@
 // WhySection.jsx
 
 import React, { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import styles from "../../styles/why.module.css"; // Importing CSS module for styling
 
-const WhySection = () => {
+const WhySection = (onVisibilityChange) => {
   const [displayText, setDisplayText] = useState({
     text: "Start your journey as an outstanding collector in V-Arts, grow your wealth and imagination! Contribute to the industry as you see it expands!",
     image:
@@ -100,6 +101,7 @@ const WhySection = () => {
             Trading
           </label>
         </div>
+        
         <div className={`${styles.content} ${displayText ? "show" : ""}`}>
           {displayText && (
             <div className={styles.textWithImageContainer}>
@@ -109,11 +111,14 @@ const WhySection = () => {
                 className={styles.image}
               />
               <div className={styles.textOverlay}>
-                <p>{displayText.text}</p>
+                <Fade className={styles.textAn} delay={1e2} cascade damping={1e-1}>
+                  {displayText.text}
+                </Fade>
               </div>
             </div>
           )}
         </div>
+          
       </div>
     </section>
   );

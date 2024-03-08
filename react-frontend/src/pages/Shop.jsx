@@ -69,7 +69,7 @@ function Shop() {
         >
           Upload your own
         </button>
-        <ProductItems></ProductItems>
+        <ProductItems/>
         {user && user.username ? ( // Check if user and username exist
           <div>
             <h1>Welcome, {user.username}!</h1>

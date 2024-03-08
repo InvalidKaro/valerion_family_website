@@ -26,6 +26,7 @@ const LazyComponents = {
   UserPage: lazy(() => import("./pages/User.jsx")),
   ForgotPassword: lazy(() => import("./pages/forgotPassword.jsx")),
   ProductDetail: lazy(() => import("./pages/productDetail.jsx")),
+  NotFound: lazy(() => import("./pages/NotFound.jsx")),
 };
 
 function App() {
@@ -156,6 +157,7 @@ function App() {
               />
               <Route path="/pdf" element={<LazyComponents.PdfView />} />
               <Route path="/terms_of_use" element={<TermsOfUse />} />
+              <Route path="*" element={<LazyComponents.NotFound />} />
             </Routes>
           </Suspense>
         </Router>

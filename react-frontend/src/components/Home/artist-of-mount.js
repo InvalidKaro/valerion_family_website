@@ -31,7 +31,7 @@ const AofM = () => {
   
 
   return (
-    <section className="container aOfM">
+    <section className="container aOfM" style={{ marginTop: "50vh", marginBottom: "50vh" }}>
       <div className="aOfM__sec">
         <div className="aOfM__header">
           <p>Art of the Month</p>

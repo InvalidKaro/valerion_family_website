@@ -1,7 +1,7 @@
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
-import './ScrollToTopButton.css'; // Import CSS for styling
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
+import "./ScrollToTopButton.css"; // Import CSS for styling
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,10 +15,10 @@ const ScrollToTopButton = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
 
     return () => {
-      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
 
@@ -26,14 +26,19 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   return (
-    <div className={`scroll-to-top ${isVisible ? 'show' : 'hide'}`} onClick={scrollToTop}>
-<FontAwesomeIcon icon={faArrowUp} />
-      <span className="scroll-to-top-text" style={{ textAlign: 'center' }}>Scroll back to top</span>
+    <div
+      className={`scroll-to-top ${isVisible ? "show" : "hide"}`}
+      onClick={scrollToTop}
+    >
+      <FontAwesomeIcon icon={faArrowUp} />
+      <span className="scroll-to-top-text" style={{ textAlign: "center" }}>
+        Scroll back to top
+      </span>
     </div>
   );
 };

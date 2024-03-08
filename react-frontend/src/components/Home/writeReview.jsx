@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import { useUser } from "../../UserContext";
 import textStyle from "../../styles/TextStyle.module.css";
 import buttonStyle from "../../styles/button.module.css";
@@ -85,9 +86,12 @@ const WriteReviewButton = ({ setReviews, isLoggedIn }) => {
   };
   return (
     <>
+    <Fade triggerOnce>
       <button onClick={openPopup} className={buttonStyle.tag_button} style={{ marginTop: 'clamp(3%, 1em, 5%)' }}>
+
         Write a review
       </button>
+      </Fade>
 
       {showPopup && (
         <div

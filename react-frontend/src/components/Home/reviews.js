@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Mousewheel, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import reviewStyles from '../../styles/review.module.css'; // Import the CSS file for the Reviews component
 
 import WriteReviewButton from './writeReview';
@@ -53,7 +53,9 @@ const Reviews = () => {
   
     return (
       <>
-        <section className={reviewStyles.container}>
+        <Fade cascade >
+        
+        <section className={reviewStyles.container} style={{ marginTop: "50vh" }}>
           <Swiper
             slidesPerView={1}
             spaceBetween={20}
@@ -91,7 +93,9 @@ const Reviews = () => {
             {renderReviews()}
           </Swiper>
         </section>
+        </Fade>
         <WriteReviewButton setReviews={setReviews} />
+
       </>
     );
 

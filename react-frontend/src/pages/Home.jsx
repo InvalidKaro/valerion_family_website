@@ -22,16 +22,12 @@ function Home() {
         <Fade>
           <WhySection/>
         </Fade>
-        <Fade direction="up">
           <Reviews isLoggedIn={user && user.username} />
-        </Fade>
         <Fade direction="up">
           <AofM />
         </Fade>
       </main>
-      <Fade direction="up">
         <Footer />
-      </Fade>
       <ScrollToTopButton />
     </div>
     

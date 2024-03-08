@@ -56,7 +56,7 @@ const ProductItems = () => {
             {/* Additional content for the overlay */}
           </div>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginTop: "80%" }}>
-          <h3 className={productStyles.productTitle}>{product.title}</h3>
+          <h3 className={productStyles.productTitle} style={{ marginTop: "clamp(20px, 3vw, 50px)" }}>{product.title}</h3>
           <p className={productStyles.productPrice}>Price: {product.price}</p>
           <a
             href={`/user/${product.author}`}

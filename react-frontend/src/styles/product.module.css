@@ -1,6 +1,7 @@
 /* ProductView.module.css */
 * {
   text-align: center;
+;
 }
 .productViewContainer {
     margin-top: 75px;
@@ -22,6 +23,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly; /* Center items horizontally */
+    
   }
   
   .productItem {
@@ -37,7 +39,7 @@
   
   .productImageContainer {
     position: relative;
-    width: 100%;
+    width: 80%;
     padding-top: 100%; /* Set the aspect ratio for a squared container (height is equal to width) */
     overflow: hidden;
   }
@@ -82,7 +84,9 @@
   }
   
   .container {
-    margin-inline: calc(1em + 1vw);
+    margin-inline: auto;
+    width: 95%;
+    padding-inline: 5em;
   }
 
   .textBox {
@@ -117,7 +121,6 @@
     object-fit: cover;
     width: 13rem;
     height: 13rem;
-    max-height: 500px;
     border-radius: 1.5em;
     align-self: center;
   }

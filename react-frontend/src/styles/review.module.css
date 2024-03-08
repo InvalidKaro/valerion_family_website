@@ -2,9 +2,10 @@
 
 .container {
     /* Updated padding and margin-top for better spacing */
-    margin-inline: calc(1em + 1vw);
-  
-
+    margin-inline: calc(1em + 5vw);
+    z-index: 10;
+    position: relative;
+    
   }
   
   .review__card {

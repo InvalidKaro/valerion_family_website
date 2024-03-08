@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import heroStyles from '../../styles/hero.module.css';
-
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [images, setImages] = useState([]);
@@ -47,7 +47,10 @@ const Hero = () => {
           ))}
         </div>
         <div className={heroStyles.frameOverlay}></div>
+
         <div className={heroStyles.heroContent}>
+          <Fade cascade damping={1e-1} className={heroStyles.heroFade}>
+
           <h1 className={`${heroStyles.heroTitle} ${heroStyles.smoothEffect}`}>
             Beyond Pixels
           </h1>
@@ -58,7 +61,9 @@ const Hero = () => {
           <p className={`${heroStyles.heroMotto} ${heroStyles.smoothEffect}`}>
             AI Artistry Marketplace
           </p>
-        </div>
+          </Fade>
+
+        </div> 
       </section>
     </main>
   );
