@@ -14,6 +14,60 @@ const NotFound = () => {
       particles: {
         number: {
           value: 100,
+          
+        },
+
+        interactivity: {
+          events: {
+
+            onHover: {
+              enable: true,
+              mode: "bubble",
+              parallax: {
+                enable: false,
+                force: 60,
+                smooth: 10,
+              },
+            },
+            onClick: {
+              enable: true,
+              mode: "repulse",
+            },
+
+            resize: true,
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 2,
+              opacity: 0.8,
+              size: 40,
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4,
+            },
+
+            push: {
+              quantity: 4,
+            },
+            remove: {
+              quantity: 2,
+            },
+
+            slow: {
+              factor: 3,
+              radius: 200,
+            },
+            attract: {
+              distance: 2000,
+              duration: 0.4,
+              easing: "ease-out-quad",
+              factor: 1,
+              maxSpeed: 50,
+              speed: 1,
+            },
+          },
         },
         color: {
           value: "#ffffff",
@@ -25,7 +79,7 @@ const NotFound = () => {
           width: 4,
           triangles: {
             enable: true,
-            frequency: 10,
+            frequency: 1,
             color: "#3a3a3a",
             opacity: 0.1,
           },
@@ -47,7 +101,24 @@ const NotFound = () => {
         },
         move: {
           enable: true,
-          speed: 2.5,
+          speed: 2,
+
+          gravity: {
+            enable: true,
+            acceleration: 0.2,
+            maxSpeed: 10,
+
+            
+
+           
+          },
+
+          drift: {
+            enable: true,
+            speed: 10,
+          },
+
+         
           direction: "none",
           random: true,
           straight: false,
@@ -61,11 +132,19 @@ const NotFound = () => {
           },
         },
       },
+
+      detectRetina: true,
+
+      fpsLimit: 60,
       background: {
         color: "#1a1a1a",
       },
       poisson: {
         enable: true,
+        force: 1,
+        threshold: 2,
+        maxSpeed: 1,
+        direction: "top",
       },
     };
 
