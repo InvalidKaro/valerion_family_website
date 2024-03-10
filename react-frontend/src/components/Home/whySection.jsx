@@ -111,7 +111,7 @@ const WhySection = (onVisibilityChange) => {
                 className={styles.image}
               />
               <div className={styles.textOverlay}>
-                <Fade className={styles.textAn} delay={1e2} cascade damping={1e-1}>
+                <Fade className={styles.textAn} delay={0.5e2} cascade damping={0.5e-1}>
                   {displayText.text}
                 </Fade>
               </div>
