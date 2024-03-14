@@ -100,3 +100,10 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+/* Dark mode styles */
+.dark-mode {
+  /* Define your dark mode styles here */
+  background-color: #1f1f1f;
+  color: #ffffff;
+  /* Add more styles as needed */
+}

@@ -5,7 +5,6 @@ import { UserProvider } from "./UserContext";
 import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
 import TermsOfUse from "./documents/termsOfUse.jsx";
-import LogIn from "./test.jsx"
 import "./styles/App.css";
 
 const LazyComponents = {
@@ -29,6 +28,19 @@ const LazyComponents = {
   ProductDetail: lazy(() => import("./pages/productDetail.jsx")),
   NotFound: lazy(() => import("./pages/NotFound.jsx")),
 };
+// This is the main App component for the React frontend. It's responsible for
+// rendering the header, routes, and handling the user's login state.
+//
+// We are using the useState hook to keep track of the user's login status and
+// username. We are also using the useEffect hook to add event listeners for
+// the scroll and blur events. When the user scrolls down, we check if they
+// have scrolled past a certain point, and if so, we hide the header. When the
+// user switches to a different tab or minimizes the browser, we change the
+// title to "Come back 🙁".
+//
+// We are using the useEffect hook to add a class to the body based on the
+// darkMode state. When darkMode is true, we add the "dark-mode" class to the
+// body. When it's false, we remove it.
 
 function App() {
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -38,6 +50,20 @@ function App() {
   const [isVisible, setIsVisible] = useState(true);
   // eslint-disable-next-line no-unused-vars
   const [height, setHeight] = useState(0);
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    // Add dark mode class to body based on darkMode state
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
 
   useEffect(() => {
     const listenToScroll = () => {
@@ -69,7 +95,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? "dark-mode" : ""}`}> {/* Apply dark mode class */}
       {showCookiePopup && <CookiePopup />}
       <UserProvider>
         <Router>
@@ -89,7 +115,6 @@ function App() {
                   </>
                 }
               />
-              <Route path="/logintest" element={LogIn} />
 
               <Route path="/about" element={<LazyComponents.About />} />
               <Route
