@@ -5,6 +5,7 @@ import { UserProvider } from "./UserContext";
 import CookiePopup from "./components/Cookies.jsx";
 import Header from "./components/navbar/header.jsx";
 import TermsOfUse from "./documents/termsOfUse.jsx";
+import LogIn from "./test.jsx"
 import "./styles/App.css";
 
 const LazyComponents = {
@@ -88,6 +89,8 @@ function App() {
                   </>
                 }
               />
+              <Route path="/logintest" element={LogIn} />
+
               <Route path="/about" element={<LazyComponents.About />} />
               <Route
                 path="/login"
