@@ -18,7 +18,7 @@ const CartPopup = ({ onClose, cartItems }) => {
   };
 
   // PayPal client ID
-  const clientId = "your_client_id";
+  const clientId = "AcDIoMXbZyUPOjPOXmCoWScT-8jv6ejhq-w554g5vg6zsZ3tdCpYz6o7htsH-AOH4ZygmVvPu0Ry7rA5";
 
   // Function to create an order
   const createOrder = (data, actions) => {
