@@ -1,15 +1,18 @@
+import { faDiscord, faFacebookF, faInstagram, faPinterest, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./Footer.css"; // Import CSS file for styling
+
 const Footer = () => {
   return (
-    <footer className="footer" style={{textAlign: "center"}}>
+    <footer className="footer" style={{ textAlign: "center" }}>
       <div className="footer__top">
         <div className="container">
           <div className="row">
             <div className="col-md-3 col-sm-6">
               <h4>About Us</h4>
               <p>
-              V-Arts is a platform, specifically a website 
-              which is a Marketplace for AI generated content
+                V-Arts is a platform, specifically a website which is a
+                Marketplace for AI generated content
               </p>
             </div>
             <div className="col-md-3 col-sm-6">
@@ -37,55 +40,48 @@ const Footer = () => {
                 <li>Email: info@v-arts.shop</li>
                 <li>Phone: +123 456 7890</li>
               </ul>
-              <ul className="col-md-3 col-sm-6" style={{ display: 'inline-flex', gap: '1rem', justifyContent: 'center'}}>
-                <li>
+              <ul
+                className="col-md-3 col-sm-6"
+                style={{
+                  display: "inline-flex",
+                  gap: "1rem",
+                  justifyContent: "center",
+                }}
+              >
+                <li style={{ textDecoration: "underline" }}>
                   <a href="/terms_of_use" className="termsetc">
                     Terms and Conditions
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="termsetc">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="termsetc">
-                    Shipping
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="termsetc">
-                    Returns
-                  </a>
-                </li>
+
               </ul>
             </div>
             <div className="col-md-3 col-sm-6">
               <h4>Follow Us</h4>
-              <ul className="social-icons">
+              <ul className="social-icons" style={{ justifyContent: "center", fontSize: "1.5rem" }}>
                 <li>
                   <a href="#">
-                    <i className="fab fa-facebook-f"></i>
+                    <FontAwesomeIcon icon={faFacebookF} size="xl" />
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="fa-brands fa-x-twitter"></i>
+                    <FontAwesomeIcon icon={faXTwitter} size="xl"/>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fab fa-instagram"></i>
+                    <FontAwesomeIcon icon={faInstagram} size="xl"/>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i className="fab fa-pinterest"></i>
+                    <FontAwesomeIcon icon={faPinterest} size="xl"/>
                   </a>
                 </li>
                 <li>
                   <a href="https://discord.gg/wdjpUt4rdY">
-                    <i className="fab fa-discord"></i>
+                    <FontAwesomeIcon icon={faDiscord} size="xl"/>
                   </a>
                 </li>
               </ul>
