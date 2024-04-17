@@ -1,31 +1,33 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer/commonFooter';
-import '../styles/App.css';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import Footer from "../components/Footer/commonFooter";
+import "../styles/App.css";
+
+
 
 function Help() {
   // State variables for form fields
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to handle form submission, such as sending data to a backend server
-    console.log('Form submitted:', { name, email, message });
+    console.log("Form submitted:", { name, email, message });
     // Clear form fields after submission
-    setName('');
-    setEmail('');
-    setMessage('');
+    setName("");
+    setEmail("");
+    setMessage("");
   };
-
 
   // TODO: Add ticket support form
   // ? Think of php script and ticket handler
   // ! Secured support
 
-  
+
+
   return (
     <main className="help-main">
       <Helmet>
@@ -36,7 +38,6 @@ function Help() {
 
       {/* Ticket support form */}
 
-      
       <form onSubmit={handleSubmit} className="ticket-form">
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -69,7 +70,6 @@ function Help() {
         </div>
         <button type="submit">Submit</button>
       </form>
-
       <Footer />
     </main>
   );
