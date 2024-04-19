@@ -6,7 +6,7 @@ import VArtsContent from "../documents/faq"; // Importing VArtsContent correctly
 
 const FAQ = () => {
   return (
-      <Documents content={VArtsContent} />
+      <Documents content={VArtsContent} /> // TODO: Krümel mach hier mal design.
   );
 }
 
