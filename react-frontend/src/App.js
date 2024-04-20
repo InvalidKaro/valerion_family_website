@@ -146,7 +146,7 @@ function App() {
                   />
                 }
               />
-              <Route path="/faq" element={<LazyComponents.FAQ />} />
+              <Route path="/frequently-asked-questions" element={<LazyComponents.FAQ />} />
               <Route path="/help" element={<LazyComponents.Help />} />
               <Route
                 path="/supporters"

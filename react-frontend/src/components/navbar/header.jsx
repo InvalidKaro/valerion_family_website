@@ -134,7 +134,7 @@ const Header = () => {
               <a href="../Shop">Market</a>
             </li>
             <li>
-              <a href="../Family">FAQ's</a>
+              <a href="../frequently-asked-questions">FAQ's</a>
             </li>
             <li>
               <a href="../Help">Need Help?</a>
@@ -196,7 +196,7 @@ const Header = () => {
                 </div>
               </li>
               <li className={headerStyles.header__link}>
-                <a href="../Family">FAQ's</a>
+                <a href="../frequently-asked-questions">FAQ's</a>
               </li>
               <li className={headerStyles.header__link}>
                 <a href="../Help">Need Help?</a>
