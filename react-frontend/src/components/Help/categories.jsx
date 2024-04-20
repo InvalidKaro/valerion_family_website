@@ -26,25 +26,25 @@ const HelpCategories = () => {
                     name="Account"
                     icon={faUser}
                     ticketValues={{ category: "Account", urgency: "Low" }}
-                    onClick={openTicketingModal()}
+                    onClick={() => openTicketingModal("Account")}
                 />
                 <CategoryButton
                     name="Payments"
                     icon={faMoneyBill}
                     ticketValues={{ category: "Payments", urgency: "Medium" }}
-                    onClick={openTicketingModal}
+                    onClick={() => openTicketingModal("Payments")}
                 />
                 <CategoryButton
                     name="Security"
                     icon={faShieldAlt}
                     ticketValues={{ category: "Security", urgency: "High" }}
-                    onClick={openTicketingModal}
+                    onClick={() => openTicketingModal("Security")}
                 />
                 <CategoryButton
                     name="FAQ"
                     icon={faQuestionCircle}
                     ticketValues={{ category: "FAQ", urgency: "Low" }}
-                    onClick={openTicketingModal}
+                    onClick={() => openTicketingModal("FAQ")}
                 />
             </div>
             
@@ -59,9 +59,9 @@ const HelpCategories = () => {
     );
 };
 
-const CategoryButton = ({ name, icon, ticketValues, onClick }) => {
+const CategoryButton = ({ name, icon, onClick }) => {
     return (
-        <button className="category-item" onClick={() => onClick(ticketValues)}>
+        <button className="category-item" onClick={onClick}>
             <FontAwesomeIcon icon={icon} size="2x" className="icon" />
             <div>{name}</div>
         </button>
