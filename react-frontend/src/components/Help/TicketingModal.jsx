@@ -14,18 +14,53 @@ const TicketingModal = ({ category, urgency, onClose }) => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      // Handle file input
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      // Handle other inputs
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle ticket submission logic here
     console.log(formData); // For demonstration purposes
+    // Add a php post request here to send the data to the backend server
+
+    fetch("http://localhost:80/ticket.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Handle success or display error message
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error during ticket submission:", error);
+      });
+      // add timeout
+      setTimeout(() => {
+        onClose();
+      }, 2000);
   };
+    
+
+    
 
   // Define predefined data for each category
   const predefinedData = {
