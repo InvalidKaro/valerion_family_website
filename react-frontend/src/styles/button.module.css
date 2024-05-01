@@ -14,6 +14,24 @@
       0 6px 9px rgba(255, 255, 255, 0.197), 0 0 20px -10px var(--clr-prim);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+.login_btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  width: clamp(200px, (25vw + 10px), 350px);
+  letter-spacing: 0.05em;
+  border: 2px solid var(--clr-prim);
+  font-size: var(--size-2xl);
+  margin: 0;
+  color: var(--clr-prim);
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login_btn:hover{
+
+}
  
 .tag_button {
     

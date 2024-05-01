@@ -4,9 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 // Replace this with your actual database connection logic
 
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "login";
 
 // Create connection

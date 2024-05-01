@@ -4,9 +4,7 @@
 // Retrieve the verification token from the query parameters
 $verificationToken = $_GET['token'];
 
-$servername = "localhost:3306";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "login";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

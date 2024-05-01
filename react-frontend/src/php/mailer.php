@@ -5,9 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 
 // Function to connect to the database
 function get_db_connection() {
-    $servername = "localhost";
-    $username = "root";
-    $password = "b59]UY]jp9@ASDac";
+    include_once("_var.php");
     $dbname = "login";
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {

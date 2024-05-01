@@ -2,9 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "login";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

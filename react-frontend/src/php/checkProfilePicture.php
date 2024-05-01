@@ -12,9 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data->username)) {
         // Assuming you have a database connection
         // Replace the following with your actual database connection code
-        $servername = "localhost";
-        $username = "root";
-        $password = "b59]UY]jp9@ASDac";
+        include_once("_var.php");
         $dbname = "login";
 
         try {

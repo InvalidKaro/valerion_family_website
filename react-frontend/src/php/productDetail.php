@@ -3,9 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 // Replace with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "art";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

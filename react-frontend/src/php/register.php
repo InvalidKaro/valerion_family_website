@@ -10,9 +10,7 @@ $json_data = file_get_contents('php://input');
 error_log("Received JSON data: $json_data");
 $data = json_decode($json_data, true);
 // Establish a connection to your database
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "login";
 
 // Create a new database connection
