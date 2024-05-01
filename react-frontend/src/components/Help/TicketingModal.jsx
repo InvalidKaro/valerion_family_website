@@ -14,13 +14,13 @@ const TicketingModal = ({ category, urgency, onClose }) => {
   });
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === "file") {
-      // Handle file input
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: files[0],
-      }));
+      const { name, value, type } = e.target;
+      if (type === "file") {
+        // Handle file input
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: e.target.files[0], // Use e.target.files to get the file object
+        }));
     } else {
       // Handle other inputs
       setFormData((prevData) => ({
@@ -31,33 +31,34 @@ const TicketingModal = ({ category, urgency, onClose }) => {
   };
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle ticket submission logic here
-    console.log(formData); // For demonstration purposes
-    // Add a php post request here to send the data to the backend server
-
-    fetch("http://localhost:80/ticket.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // Handle success or display error message
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error during ticket submission:", error);
+  
+    const formDataToSend = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataToSend.append(key, value);
+    });
+  
+    try {
+      const response = await fetch("http://localhost:80/ticket.php", {
+        method: "POST",
+        body: formDataToSend,
       });
-      // add timeout
-      setTimeout(() => {
-        onClose();
-      }, 2000);
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      // Handle success or display error message
+      onClose();
+    } catch (error) {
+      // Handle fetch errors
+      console.error("Error during ticket submission:", error);
+    }
   };
+  
     
 
     
