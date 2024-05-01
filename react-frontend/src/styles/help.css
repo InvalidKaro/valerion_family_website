@@ -43,13 +43,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    pointer-events: none; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d; 
     opacity: 1;
  }
@@ -65,18 +64,7 @@
    width: 100%;
  }
 
- .category-item {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   padding: 10px;
-   border: 1px solid black; /* Add border around each category item */
-   border-radius: 5px; /* Add border radius for rounded corners */
-   width: 100px; /* Set a fixed width for the category items */
-   height: 100px; /* Set a fixed height for the category items */
- }
- 
+
  .icon {
    margin-bottom: 5px;
    font-size: 2rem; /* Adjust the size as needed for responsiveness */
@@ -140,3 +128,46 @@
    animation-name: fadeInUp
  }
  
+
+ /* HelpCategories.css */
+
+.account-category {
+  background-color: lightblue;
+  color: white;
+}
+
+.payments-category {
+  background-color: lightgreen;
+  color: white;
+}
+
+.security-category {
+  background-color: lightcoral;
+  color: white;
+}
+
+.faq-category {
+  background-color: lightsalmon;
+  color: white;
+}
+
+/* help.css */
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid black; /* Add border around each category item */
+  border-radius: 5px; /* Add border radius for rounded corners */
+  width: 150px; /* Set a fixed width for the category items */
+  height: 150px; /* Set a fixed height for the category items */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.icon {
+  margin-bottom: 5px;
+  font-size: 2rem; /* Adjust the size as needed for responsiveness */
+}
+
+/* Add any other styles as needed */

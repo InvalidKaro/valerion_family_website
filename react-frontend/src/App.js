@@ -16,7 +16,7 @@ const LazyComponents = {
   AccountSettings: lazy(() => import("./pages/AccountSettings.jsx")),
   Admin: lazy(() => import("./pages/Admin.jsx")),
   Art: lazy(() => import("./pages/Art.jsx")),
-  Family: lazy(() => import("./pages/Family.jsx")),
+  FAQ: lazy(() => import("./pages/FAQ.jsx")),
   Help: lazy(() => import("./pages/Help.jsx")),
   Home: lazy(() => import("./pages/Home.jsx")),
   Login: lazy(() => import("./pages/Login.jsx")),
@@ -146,7 +146,7 @@ function App() {
                   />
                 }
               />
-              <Route path="/family" element={<LazyComponents.Family />} />
+              <Route path="/frequently-asked-questions" element={<LazyComponents.FAQ />} />
               <Route path="/help" element={<LazyComponents.Help />} />
               <Route
                 path="/supporters"

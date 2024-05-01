@@ -1,0 +1,63 @@
+.help-categories-container {
+    display: grid;
+    gap: 20px;
+    margin-top: 1em;
+  }
+  
+  @media (min-width: 768px) {
+    .help-categories-container {
+      grid-template-columns: repeat(auto-fill, calc(100% / 5 - 20px));
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .help-categories-container {
+      grid-template-columns: repeat(auto-fill, calc(100% / 4 - 20px));
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .help-categories-container {
+      grid-template-columns: repeat(auto-fill, calc(100% / 3 - 20px));
+    }
+  }
+  
+  .category-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background: linear-gradient(145deg, #42465b, #1f1f1f);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .category-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.35);
+  }
+  
+  .category-button-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-button-icon {
+    margin-bottom: 10px;
+    background-color: transparent;
+  }
+  
+  .icon {
+    background-color: transparent;
+  }
+  
+  .category-button-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
