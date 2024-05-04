@@ -1,0 +1,68 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #0f1a20;
+}
+
+#button-container {
+    display: flex;
+    margin-top: 40px;
+    height: 54px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-button {
+    position: relative;
+    border: 2px solid #4d4d4d;
+    border-radius: 500px;
+    width: 400px;
+    height: 52px;
+    overflow: hidden;
+    background-color: transparent;
+    color: var(--clr-prim);
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition-duration: 0.3s;
+}
+
+.primary-button:hover {
+    cursor: pointer;
+    border: 2px solid var(--clr-blue);
+}
+
+.primary-button .round {
+    border-radius: 50%;
+  background-color: var(--clr-blue);
+  position: absolute;
+  top: 50%; /* Position it in the middle of the button vertically */
+  left: 50%; /* Position it in the middle of the button horizontally */
+  transform: translate(-50%, -50%); /* Center the element */
+  z-index: -1;
+  animation: scale-down 0.2s forwards;
+  visibility: visible;
+}
+
+.primary-button.animate .round {
+    animation: scale-up 0.5s forwards;
+}
+
+@keyframes scale-up {
+    to {
+        transform: scale(800);
+        visibility: visible;
+    }
+}
+
+@keyframes scale-down {
+    from {
+        transform: scale(800);
+        visibility: visible;
+    }
+    to {
+        ransform: scale(0);
+        visibility: hidden;
+    }
+}

@@ -6,6 +6,9 @@ import buttonStyle from "../styles/button.module.css";
 import loginStyle from "../styles/login.module.css";
 import Register from "./Register";
 import { useAuth } from "./auth";
+
+import PrimaryButton from "../styles/effects.btn.expand";
+
 const Login = ({ loginModalVisible, setLoginModalVisible }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -177,6 +180,7 @@ export default MyComponent;
                     loginModalVisible ? loginStyle.show : ""
                   }`}
                 >
+                  
                   <form
                     onSubmit={handleLogin}
                     autoComplete="off"
@@ -194,7 +198,7 @@ export default MyComponent;
                       className={textStyle.a_h1}
                       style={{ fontSize: "clamp(2rem, 5vw, var(--size-6xl))" }}
                     >
-                      Log into your account
+                      WELCOME
                     </h1>
                     <input
                       type="text"
@@ -223,21 +227,27 @@ export default MyComponent;
                     {loginMessage && (
                       <p className={textStyle.error}>{loginMessage}</p>
                     )}
-                    <button
+                    <div className="captcha" style={{scale: "1.31", marginTop: "30px"}}>
+                      <CaptchaComponent
+                        style={{ marginTop: "10px"}}
+                        isCaptchaValid={isCaptchaValid}
+                        setIsCaptchaValid={setIsCaptchaValid}
+                        setCaptchaRef={setCaptchaRef}
+                      />
+                    </div>
+                    <PrimaryButton text="Login"/>
+                    {/*<button
                       type="submit"
-                      className={buttonStyle.glow_btn}
+                      className={buttonStyle.login_btn}
                       onClick={handleLogin}
-                      style={{ marginTop: "30px", borderRadius: "25px" }}
+                      style={{ marginTop: "30px", borderRadius: "50px", width: "clamp(250px, 75%, 400px)" }}
                     >
+
                       Login
-                    </button>
+                      <span class="round" />
+                    </button>*/}
                     <br></br>
-                    <CaptchaComponent
-                      style={{ marginTop: "10px" }}
-                      isCaptchaValid={isCaptchaValid}
-                      setIsCaptchaValid={setIsCaptchaValid}
-                      setCaptchaRef={setCaptchaRef}
-                    />
+                    
 
                     {!isLoggedIn && (
                       <button
@@ -252,24 +262,12 @@ export default MyComponent;
                             fontSize: "var(--size-lg)",
                             marginTop: "1%",
                             overflow: "show",
-                            textDecoration: "underline",
-                          }}
-                        >
-                          Don't have an account yet?
-                        </p>
-                        <a
-                          href="#/"
-                          className={loginStyle.link}
-                          style={{
-                            marginTop: "1%",
-                            fontSize: "var(--size-lg)",
-                            color: "#0197B2",
                             textDecoration: "none",
+                            color: "gray"
                           }}
                         >
-                          <br></br>
-                          Sign Up
-                        </a>
+                          Don't have an account? <a className={loginStyle.hover} style={{color: "white"}}>Sign Up</a>
+                        </p>
                       </button>
                     )}
                   </form>

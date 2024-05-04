@@ -1,9 +1,7 @@
 <?php
 
 function get_db_connection() {
-    $servername = "localhost";
-    $username = "root";
-    $password = "b59]UY]jp9@ASDac";
+    include_once("_var.php");
     $dbname = "login";
 
     // Create database connection

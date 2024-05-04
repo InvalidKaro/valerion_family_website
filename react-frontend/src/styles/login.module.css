@@ -4,29 +4,26 @@
 {
     margin-bottom: 20px;
     border: 2px solid #a29898;
-    border-radius: 20px;
+    border-radius: 17px;
     padding: 15px;
-    width: clamp(250px, 75%, 400px);
-    text-align: center;
+    width: clamp(250px, 100%, 400px);
+    text-align: left;
     transition: border-color 0.3s cubic-bezier(0.58,-0.25, 0.58, 1);
-    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
     border: #58585858 2px solid;
-    background: #343434;
+    background: rgba(0, 0, 0, 0);
     color: white
 
 }
 
 .input[type="email"]:focus,.input[type="password"]:focus,.input[type="text"]:focus,.input[type="number"]:focus
 {
-    border-color: #4285f4;
+    border-color: var(--clr-blue);
     outline: none;
-    box-shadow: 0 0 10px rgba(66, 133, 244, 0.7), 0 0 20px rgba(66, 133, 244, 0.3); /* Updated box-shadow on focus */
 }
 .input[type="email"]:hover,.input[type="password"]:hover,.input[type="text"]:hover,.input[type="number"]:hover
 {   
-    border-color: #4285f4;
+  background: rgba(255, 255, 255, 0.03);
     outline: none;
-    box-shadow: 0 0 10px rgba(105, 152, 228, 0.7); /* Added a subtle box-shadow on focus */
 }
 
 
@@ -67,6 +64,10 @@ input[type=number]:hover::-webkit-inner-spin-button {
     border-radius: 4px;
     text-decoration: none;
     text-align: center;
+    transition-duration: 0.3s;
+}
+.hover:hover{
+  text-decoration: underline;
 }
 .container {
     display: inherit;
@@ -83,16 +84,16 @@ input[type=number]:hover::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
     gap: 10px; /* Increased gap for more spacing between elements */
-    background-color: #1a1a1a; /* Adjusted background color to match the theme */
-    border-radius: 20px;
+    
     padding: 30px; /* Increased padding for a larger box */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Darker box-shadow with alpha value 0.8 */
     text-align: center;
-    border: #58585858 2px solid;
-    box-shadow: 2px 2px 5px rgba(93, 93, 93, 0.209);
-    max-width: clamp(300px, 100%, 600px);
+    width: max-content;
+    height: 750px;
+    margin-top: calc(50vh - 375px);
     margin-inline: auto;
-    margin-top: clamp(6em, 10%, 8em);
+    border-radius: 10px;
+    background-color: #0f0f0f;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
   
 
@@ -176,6 +177,7 @@ div {
     z-index: 2000;
     transition: visibility 0s, opacity 0.5s ease;
     cursor: pointer;
+
   }
   
 
@@ -184,12 +186,12 @@ div {
     position: fixed;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     z-index: 2000;
     transition: display 0.5s ease;
     backdrop-filter: blur(15px);
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    background: linear-gradient(120deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(13,138,163,1) 100%);
+
 
   }
   
@@ -204,10 +206,11 @@ div {
   }
 
   .x {
+   position: absolute;
    align-self: end;
    cursor: pointer;
-   margin-bottom: 20px;
-   margin-right: 10px;
+   top: 20px;
+   right: 20px;
    font-weight: 400;
   }
 
@@ -228,6 +231,10 @@ div {
   
     .link {
       font-size: clamp(12px, 4vw, 16px);
+      text-decoration: none;
+    }
+    .link:hover{
+      text-decoration: underline;
     }
   
     .form {

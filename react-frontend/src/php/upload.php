@@ -5,10 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json; charset=utf-8');
 
 // Connect to the database
-
-$servername = "localhost";
-$username = "root";
-$password = "b59]UY]jp9@ASDac";
+include_once("_var.php");
 $dbname = "art";
 $uploadDirectory = "Art/"; // Directory to store the uploaded profile pictures
 
