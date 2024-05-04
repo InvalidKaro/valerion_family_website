@@ -36,15 +36,31 @@
   
 }
 */
-.childOne,
-.main div:first-child {
-  transform: translateX(-150%);
-  opacity: 0;
-}
+
 .childTwo,
 .main div:last-child {
   transform: translateX(150%);
   opacity: 0;
+}
+
+.card
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+  transition: all 1s ease-in;
+
+}
+.card:hover
+{
+  box-shadow: -3px -5px 5px rgba(0, 0, 0, 0.3) , 3px 5px 5px rgba(248, 248, 248, 0.3);
+  transform: scale(1.04);
+  
 }
 
 .slide_in {
@@ -108,3 +124,19 @@
     object-fit: cover;
 
   }
+
+  /* about.module.css */
+
+/* For medium-sized screens, switch to 3 columns */
+@media (min-width: 768px) {
+  .founders {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+/* For large screens, switch to 4 columns */
+@media (min-width: 1024px) {
+  .founders {
+    grid-template-columns: auto auto auto auto auto;
+  }
+}

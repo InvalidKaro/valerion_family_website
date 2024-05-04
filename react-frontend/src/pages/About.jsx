@@ -31,22 +31,22 @@ const About = () => {
   const founders = [
     {
       src: "https://cdn.discordapp.com/avatars/263724696116264961/4369ac1fcf1d69947aa3bb465457d582.png?size=4096",
-      name: "Founder 1",
+      name: "DeathSHAADOOOWS",
       quote: "Quote 1",
       style: {
         // add any specific styling here
       },
     },
     {
-      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
-      name: "Founder 2",
-      quote: "Quote 2",
+      src: "https://cdn.discordapp.com/avatars/792839933387472918/a_20ce85b6c6fae90265f5af7ef4192198.gif?size=4096",
+      name: "invalidkaro",
+      quote: "Ganja ist die Heilung einer Nation, Alkohol ist ihre Zerstörung",
       style: {
       },
     },
     {
       src: "https://cdn.discordapp.com/avatars/792839933387472918/a_2641053c382b169c1295a3ee1e46105e.gif?size=4096",
-      name: "Founder 3",
+      name: "Sky 3",
       quote: "Quote 3",
       style: {
       },
@@ -109,14 +109,18 @@ const About = () => {
           </p>
           <div className={styles.founders}>
             {founders.map((founder, index) => (
+              <div className={styles.card}>
               <div key={index} id={`founder-${index}`} className={styles.bubble} style={founder.style}>
                 <img
                   src={founder.src}
                   alt={founder.name}
                   className={styles.founderImage}
                 />
-                <p>{founder.name}</p>
-                <p>{founder.quote}</p>
+               
+              </div>
+              <p>{founder.name}</p>
+              <br></br>
+              <p style={{ textAlign: "center", fontSize: "0.9rem", maxWidth: "10rem" }}>{founder.quote}</p>
               </div>
             ))}
           </div>
